@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Palette</title>
+    <link rel="stylesheet" href="../src/index.css" />
+    <style>
+      body {
+        padding: var(--ui-space-xl);
+        display: grid;
+        gap: var(--ui-space-xl);
+      }
+      h2 {
+        font-size: var(--ui-text-sm);
+        font-weight: var(--ui-weight-semibold);
+        margin-bottom: var(--ui-space-sm);
+      }
+      .scale {
+        display: grid;
+        grid-template-columns: repeat(13, 1fr);
+        border-radius: var(--ui-radius-md);
+        overflow: hidden;
+        border: 1px solid var(--ui-color-border);
+      }
+      .scale div {
+        height: 4.5rem;
+        padding: var(--ui-space-xs);
+        font: var(--ui-text-xs)/1.3 var(--ui-font-code);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+      }
+      .themes {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border-radius: var(--ui-radius-lg);
+        overflow: hidden;
+        border: 1px solid var(--ui-color-border);
+      }
+      .theme {
+        background: var(--ui-color-bg);
+        color: var(--ui-color-text);
+        padding: var(--ui-space-lg);
+        display: grid;
+        gap: var(--ui-space-sm);
+      }
+      .row {
+        display: grid;
+        grid-template-columns: 2.25rem 1fr;
+        gap: var(--ui-space-sm);
+        align-items: center;
+        font: var(--ui-text-xs)/1.2 var(--ui-font-code);
+      }
+      .sw {
+        width: 2.25rem;
+        height: 1.5rem;
+        border-radius: var(--ui-radius-sm);
+        box-shadow: inset 0 0 0 1px var(--ui-color-border);
+      }
+      .hex {
+        color: var(--ui-color-text-muted);
+      }
+    </style>
+  </head>
+  <body data-theme="light">
+    <section>
+      <h2>Neutral primitives (chroma 0)</h2>
+      <div class="scale" id="scale"></div>
+    </section>
+    <section>
+      <h2>Semantic colors</h2>
+      <div class="themes">
+        <div class="theme" data-theme="light" id="light"></div>
+        <div class="theme" data-theme="dark" id="dark"></div>
+      </div>
+    </section>
+    <script>
+      const ctx = document
+        .createElement("canvas")
+        .getContext("2d", { willReadFrequently: true });
+      const hex = (el) => {
+        ctx.clearRect(0, 0, 1, 1);
+        ctx.fillStyle = getComputedStyle(el).backgroundColor;
+        ctx.fillRect(0, 0, 1, 1);
+        return (
+          "#" +
+          [...ctx.getImageData(0, 0, 1, 1).data]
+            .slice(0, 3)
+            .map((v) => v.toString(16).padStart(2, "0"))
+            .join("")
+        );
+      };
+      const steps = [
+        "white",
+        "gray-50",
+        "gray-100",
+        "gray-200",
+        "gray-300",
+        "gray-400",
+        "gray-500",
+        "gray-600",
+        "gray-700",
+        "gray-800",
+        "gray-900",
+        "gray-950",
+        "black",
+      ];
+      const scale = document.getElementById("scale");
+      steps.forEach((s, i) => {
+        const d = document.createElement("div");
+        d.style.background = `var(--ui-ref-${s})`;
+        d.style.color = i < 6 ? "#000" : "#fff";
+        scale.append(d);
+        d.innerHTML = `<b>${s.replace("gray-", "")}</b>${hex(d)}`;
+      });
+      const tokens = [
+        "bg",
+        "surface",
+        "surface-raised",
+        "surface-sunken",
+        "text",
+        "text-muted",
+        "text-disabled",
+        "border",
+        "border-strong",
+        "accent",
+        "accent-hover",
+        "accent-contrast",
+        "accent-soft",
+        "success",
+        "success-soft",
+        "warning",
+        "warning-soft",
+        "danger",
+        "danger-soft",
+        "info",
+        "info-soft",
+      ];
+      for (const id of ["light", "dark"]) {
+        const t = document.getElementById(id);
+        t.insertAdjacentHTML(
+          "beforeend",
+          `<h2>${id === "light" ? "Light — pure white" : "Dark — pitch black"}</h2>`,
+        );
+        for (const k of tokens) {
+          const r = document.createElement("div");
+          r.className = "row";
+          r.innerHTML = `<span class="sw" style="background:var(--ui-color-${k})"></span><span>--ui-color-${k} <span class="hex"></span></span>`;
+          t.append(r);
+          r.querySelector(".hex").textContent = hex(r.querySelector(".sw"));
+        }
+      }
+    </script>
+  </body>
+</html>

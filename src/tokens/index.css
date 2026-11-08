@@ -1,0 +1,8 @@
+/* Tokens entry point. Import this file alone to get the theme without components. */
+@layer ui.tokens, ui.reset, ui.base, ui.layout, ui.components, ui.utilities;
+
+@import "./primitives/colours.css";
+@import "./primitives/sizes.css";
+@import "./primitives/fonts.css";
+
+@import "./themes/colour-scheme.css";

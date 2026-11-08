@@ -1,0 +1,12 @@
+/* THEME. Follows the OS by default; data-theme forces light or dark on any element and its subtree. */
+@layer ui.tokens {
+  :root {
+    color-scheme: light dark;
+  }
+  [data-theme="light"] {
+    color-scheme: light;
+  }
+  [data-theme="dark"] {
+    color-scheme: dark;
+  }
+}

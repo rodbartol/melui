@@ -1,0 +1,17 @@
+/* SEMANTIC. Radii, borders, focus ring. */
+@layer ui.tokens {
+  :root {
+    --ui-radius-none: 0;
+    --ui-radius-sm: var(--ui-ref-size-1);
+    --ui-radius-md: var(--ui-ref-size-2);
+    --ui-radius-lg: var(--ui-ref-size-3);
+    --ui-radius-xl: var(--ui-ref-size-4);
+    --ui-radius-full: 9999px;
+
+    --ui-border-width: 1px;
+    --ui-border-width-thick: 2px;
+
+    --ui-focus-ring-width: 2px;
+    --ui-focus-ring-offset: 2px;
+  }
+}

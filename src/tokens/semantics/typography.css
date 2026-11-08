@@ -1,0 +1,31 @@
+/* SEMANTIC. Typography. */
+@layer ui.tokens {
+  :root {
+    --ui-font-body: var(--ui-ref-font-sans);
+    --ui-font-heading: var(--ui-ref-font-sans);
+    --ui-font-code: var(--ui-ref-font-mono);
+
+    --ui-text-xs: var(--ui-ref-font-size-12);
+    --ui-text-sm: var(--ui-ref-font-size-14);
+    --ui-text-md: var(--ui-ref-font-size-16);
+    --ui-text-lg: var(--ui-ref-font-size-18);
+    --ui-text-xl: var(--ui-ref-font-size-20);
+    --ui-text-2xl: var(--ui-ref-font-size-24);
+    --ui-text-3xl: var(--ui-ref-font-size-30);
+    --ui-text-4xl: var(--ui-ref-font-size-36);
+    --ui-text-5xl: var(--ui-ref-font-size-48);
+
+    --ui-weight-normal: var(--ui-ref-font-weight-400);
+    --ui-weight-medium: var(--ui-ref-font-weight-500);
+    --ui-weight-semibold: var(--ui-ref-font-weight-600);
+    --ui-weight-bold: var(--ui-ref-font-weight-700);
+
+    --ui-leading-tight: 1.2;
+    --ui-leading-normal: 1.5;
+    --ui-leading-loose: 1.75;
+
+    --ui-tracking-tight: -0.01em;
+    --ui-tracking-normal: 0;
+    --ui-tracking-wide: 0.04em;
+  }
+}

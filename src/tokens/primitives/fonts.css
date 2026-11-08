@@ -1,0 +1,26 @@
+/* PRIMITIVE. Font stacks, sizes (named by 16px root), weights. */
+@layer ui.tokens {
+  :root {
+    --ui-ref-font-sans:
+      system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+      sans-serif;
+    --ui-ref-font-serif: ui-serif, Georgia, Cambria, "Times New Roman", serif;
+    --ui-ref-font-mono:
+      ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+    --ui-ref-font-size-12: 0.75rem;
+    --ui-ref-font-size-14: 0.875rem;
+    --ui-ref-font-size-16: 1rem;
+    --ui-ref-font-size-18: 1.125rem;
+    --ui-ref-font-size-20: 1.25rem;
+    --ui-ref-font-size-24: 1.5rem;
+    --ui-ref-font-size-30: 1.875rem;
+    --ui-ref-font-size-36: 2.25rem;
+    --ui-ref-font-size-48: 3rem;
+
+    --ui-ref-font-weight-400: 400;
+    --ui-ref-font-weight-500: 500;
+    --ui-ref-font-weight-600: 600;
+    --ui-ref-font-weight-700: 700;
+  }
+}

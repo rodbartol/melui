@@ -1,0 +1,21 @@
+/* ELEMENTS. Default look of bare HTML elements. Element selectors only, no classes. */
+@layer ui.base {
+  body {
+    font-family: var(--ui-font-body);
+    font-size: var(--ui-text-md);
+    line-height: var(--ui-leading-normal);
+    color: var(--ui-color-text);
+    background: var(--ui-color-bg);
+  }
+  a {
+    color: var(--ui-color-accent);
+  }
+  a:hover {
+    color: var(--ui-color-accent-hover);
+  }
+
+  :focus-visible {
+    outline: var(--ui-focus-ring-width) solid var(--ui-color-focus);
+    outline-offset: var(--ui-focus-ring-offset);
+  }
+}

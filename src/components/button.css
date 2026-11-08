@@ -1,0 +1,107 @@
+/* COMPONENT. Button
+   <button class="ui-btn">Cancel</button>
+   <button class="ui-btn" data-variant="primary" data-size="lg">Save</button>
+   Variants: (default) | primary | ghost | danger     Sizes: sm | (md) | lg
+   Also: data-icon-only, disabled / aria-disabled="true", works on <a>.
+
+   Public tokens (set on the button or any parent):
+     --ui-btn-radius, --ui-btn-font-weight                                    */
+@layer ui.components {
+  .ui-btn {
+    /* Private variables: variants and sizes only change these */
+    --_bg: var(--ui-color-surface);
+    --_bg-hover: color-mix(
+      in oklch,
+      var(--ui-color-surface),
+      var(--ui-color-text) 8%
+    );
+    --_fg: var(--ui-color-text);
+    --_border: var(--ui-color-border-strong);
+    --_height: var(--ui-control-height-md);
+    --_pad-x: var(--ui-space-md);
+    --_font-size: var(--ui-text-sm);
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--ui-space-sm);
+    min-height: var(--_height);
+    padding: 0 var(--_pad-x);
+
+    font-family: inherit;
+    font-size: var(--_font-size);
+    font-weight: var(--ui-btn-font-weight, var(--ui-weight-medium));
+    line-height: var(--ui-leading-tight);
+    white-space: nowrap;
+    text-decoration: none;
+
+    color: var(--_fg);
+    background: var(--_bg);
+    border: var(--ui-border-width) solid var(--_border);
+    border-radius: var(--ui-btn-radius, var(--ui-radius-md));
+
+    cursor: pointer;
+    user-select: none;
+    transition:
+      background-color var(--ui-duration-fast) var(--ui-ease-standard),
+      border-color var(--ui-duration-fast) var(--ui-ease-standard),
+      transform var(--ui-duration-fast) var(--ui-ease-standard);
+  }
+
+  /* Variants */
+  .ui-btn[data-variant="primary"] {
+    --_bg: var(--ui-color-accent);
+    --_bg-hover: var(--ui-color-accent-hover);
+    --_fg: var(--ui-color-accent-contrast);
+    --_border: transparent;
+  }
+  .ui-btn[data-variant="ghost"] {
+    --_bg: transparent;
+    --_bg-hover: color-mix(in oklch, var(--ui-color-text) 8%, transparent);
+    --_border: transparent;
+  }
+  .ui-btn[data-variant="danger"] {
+    --_bg: var(--ui-color-danger);
+    --_bg-hover: var(--ui-color-danger-hover);
+    --_fg: var(--ui-color-danger-contrast);
+    --_border: transparent;
+  }
+
+  /* Sizes */
+  .ui-btn[data-size="sm"] {
+    --_height: var(--ui-control-height-sm);
+    --_pad-x: calc(var(--ui-space-sm) * 1.5);
+    --_font-size: var(--ui-text-sm);
+  }
+  .ui-btn[data-size="lg"] {
+    --_height: var(--ui-control-height-lg);
+    --_pad-x: var(--ui-space-lg);
+    --_font-size: var(--ui-text-md);
+  }
+
+  /* Icon support */
+  .ui-btn > svg {
+    width: 1.25em;
+    height: 1.25em;
+    flex-shrink: 0;
+  }
+  .ui-btn[data-icon-only] {
+    padding: 0;
+    aspect-ratio: 1;
+  }
+
+  /* States */
+  @media (hover: hover) {
+    .ui-btn:hover:not(:disabled, [aria-disabled="true"]) {
+      background: var(--_bg-hover);
+    }
+  }
+  .ui-btn:active:not(:disabled, [aria-disabled="true"]) {
+    transform: translateY(1px);
+  }
+  .ui-btn:disabled,
+  .ui-btn[aria-disabled="true"] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}

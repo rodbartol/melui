@@ -1,0 +1,13 @@
+/* SEMANTIC. Spacing for padding, gaps, margins. */
+@layer ui.tokens {
+  :root {
+    --ui-space-2xs: var(--ui-ref-size-px);
+    --ui-space-xs: var(--ui-ref-size-1);
+    --ui-space-sm: var(--ui-ref-size-2);
+    --ui-space-md: var(--ui-ref-size-4);
+    --ui-space-lg: var(--ui-ref-size-6);
+    --ui-space-xl: var(--ui-ref-size-8);
+    --ui-space-2xl: var(--ui-ref-size-12);
+    --ui-space-3xl: var(--ui-ref-size-16);
+  }
+}

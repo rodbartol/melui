@@ -1,0 +1,8 @@
+/* SEMANTIC. Heights for interactive controls (buttons, inputs, selects). */
+@layer ui.tokens {
+  :root {
+    --ui-control-height-sm: var(--ui-ref-size-8);
+    --ui-control-height-md: var(--ui-ref-size-10);
+    --ui-control-height-lg: var(--ui-ref-size-12);
+  }
+}

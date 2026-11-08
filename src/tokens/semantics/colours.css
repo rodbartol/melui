@@ -1,0 +1,120 @@
+/* SEMANTIC. Colours by role. Public API: apps override these. */
+@layer ui.tokens {
+  :root {
+    /* Surfaces */
+    --ui-color-bg: light-dark(var(--ui-ref-white), var(--ui-ref-black));
+    --ui-color-surface: light-dark(var(--ui-ref-white), var(--ui-ref-gray-950));
+    --ui-color-surface-raised: light-dark(
+      var(--ui-ref-white),
+      var(--ui-ref-gray-900)
+    );
+    --ui-color-surface-sunken: light-dark(
+      var(--ui-ref-gray-50),
+      var(--ui-ref-black)
+    );
+
+    /* Text */
+    --ui-color-text: light-dark(var(--ui-ref-gray-950), var(--ui-ref-gray-50));
+    --ui-color-text-muted: light-dark(
+      var(--ui-ref-gray-600),
+      var(--ui-ref-gray-400)
+    );
+    --ui-color-text-disabled: light-dark(
+      var(--ui-ref-gray-400),
+      var(--ui-ref-gray-600)
+    );
+
+    /* Borders */
+    --ui-color-border: light-dark(
+      var(--ui-ref-gray-200),
+      var(--ui-ref-gray-800)
+    );
+    --ui-color-border-strong: light-dark(
+      var(--ui-ref-gray-500),
+      var(--ui-ref-gray-500)
+    );
+
+    /* Accent: monochrome (black on light, white on dark). Swap for a brand hue to theme. */
+    --ui-color-accent: light-dark(
+      var(--ui-ref-gray-950),
+      var(--ui-ref-gray-50)
+    );
+    --ui-color-accent-hover: light-dark(
+      var(--ui-ref-gray-700),
+      var(--ui-ref-gray-300)
+    );
+    --ui-color-accent-contrast: light-dark(
+      var(--ui-ref-white),
+      var(--ui-ref-black)
+    );
+    --ui-color-accent-soft: light-dark(
+      var(--ui-ref-gray-100),
+      var(--ui-ref-gray-900)
+    );
+    --ui-color-focus: var(--ui-color-accent);
+
+    /* Status: base (fills, icons), -soft (backgrounds), -contrast (text on base), -text (text on soft) */
+    --ui-color-success: light-dark(
+      var(--ui-ref-green-600),
+      var(--ui-ref-green-400)
+    );
+    --ui-color-success-soft: light-dark(
+      var(--ui-ref-green-50),
+      var(--ui-ref-green-900)
+    );
+    --ui-color-success-contrast: light-dark(
+      var(--ui-ref-white),
+      var(--ui-ref-black)
+    );
+    --ui-color-success-text: light-dark(
+      var(--ui-ref-green-700),
+      var(--ui-ref-green-200)
+    );
+
+    --ui-color-warning: light-dark(
+      var(--ui-ref-amber-500),
+      var(--ui-ref-amber-400)
+    );
+    --ui-color-warning-soft: light-dark(
+      var(--ui-ref-amber-50),
+      var(--ui-ref-amber-900)
+    );
+    --ui-color-warning-contrast: var(--ui-ref-black);
+    --ui-color-warning-text: light-dark(
+      var(--ui-ref-amber-800),
+      var(--ui-ref-amber-200)
+    );
+
+    --ui-color-danger: light-dark(var(--ui-ref-red-600), var(--ui-ref-red-400));
+    --ui-color-danger-hover: light-dark(
+      var(--ui-ref-red-700),
+      var(--ui-ref-red-300)
+    );
+    --ui-color-danger-soft: light-dark(
+      var(--ui-ref-red-50),
+      var(--ui-ref-red-900)
+    );
+    --ui-color-danger-contrast: light-dark(
+      var(--ui-ref-white),
+      var(--ui-ref-black)
+    );
+    --ui-color-danger-text: light-dark(
+      var(--ui-ref-red-700),
+      var(--ui-ref-red-200)
+    );
+
+    --ui-color-info: light-dark(var(--ui-ref-blue-600), var(--ui-ref-blue-400));
+    --ui-color-info-soft: light-dark(
+      var(--ui-ref-blue-50),
+      var(--ui-ref-blue-900)
+    );
+    --ui-color-info-contrast: light-dark(
+      var(--ui-ref-white),
+      var(--ui-ref-black)
+    );
+    --ui-color-info-text: light-dark(
+      var(--ui-ref-blue-700),
+      var(--ui-ref-blue-200)
+    );
+  }
+}

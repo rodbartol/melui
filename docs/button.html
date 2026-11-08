@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Button</title>
+    <link rel="stylesheet" href="../src/index.css" />
+    <style>
+      .demo {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
+      }
+      .panel {
+        padding: var(--ui-space-xl);
+        background: var(--ui-color-bg);
+        color: var(--ui-color-text);
+        display: grid;
+        gap: var(--ui-space-lg);
+        align-content: start;
+      }
+      h2 {
+        font-size: var(--ui-text-sm);
+        color: var(--ui-color-text-muted);
+        font-weight: var(--ui-weight-medium);
+      }
+    </style>
+  </head>
+  <body>
+    <svg width="0" height="0" style="position: absolute">
+      <symbol id="plus" viewBox="0 0 24 24">
+        <path
+          d="M12 5v14M5 12h14"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          fill="none"
+        />
+      </symbol>
+    </svg>
+    <div class="demo">
+      <section class="panel" data-theme="light">
+        <h2>Variants</h2>
+        <div class="ui-cluster">
+          <button class="ui-btn">Default</button>
+          <button class="ui-btn" data-variant="primary">Primary</button>
+          <button class="ui-btn" data-variant="ghost">Ghost</button>
+          <button class="ui-btn" data-variant="danger">Danger</button>
+        </div>
+        <h2>Sizes</h2>
+        <div class="ui-cluster">
+          <button class="ui-btn" data-variant="primary" data-size="sm">
+            Small
+          </button>
+          <button class="ui-btn" data-variant="primary">Medium</button>
+          <button class="ui-btn" data-variant="primary" data-size="lg">
+            Large
+          </button>
+        </div>
+        <h2>Icons, link, disabled</h2>
+        <div class="ui-cluster">
+          <button class="ui-btn" data-variant="primary">
+            <svg><use href="#plus" /></svg>New item
+          </button>
+          <button class="ui-btn" data-icon-only>
+            <svg><use href="#plus" /></svg
+            ><span class="ui-visually-hidden">Add</span>
+          </button>
+          <a class="ui-btn" href="#">Link</a>
+          <button class="ui-btn" data-variant="primary" disabled>
+            Disabled
+          </button>
+        </div>
+        <h2>Token override (pill radius) + full width utility</h2>
+        <div class="ui-cluster" style="--ui-btn-radius: var(--ui-radius-full)">
+          <button class="ui-btn">Pill</button>
+          <button class="ui-btn" data-variant="primary">Pill</button>
+        </div>
+        <button class="ui-btn ui-w-full" data-variant="primary">
+          Full width
+        </button>
+      </section>
+      <section class="panel" data-theme="dark">
+        <h2>Variants</h2>
+        <div class="ui-cluster">
+          <button class="ui-btn">Default</button>
+          <button class="ui-btn" data-variant="primary">Primary</button>
+          <button class="ui-btn" data-variant="ghost">Ghost</button>
+          <button class="ui-btn" data-variant="danger">Danger</button>
+        </div>
+        <h2>Sizes</h2>
+        <div class="ui-cluster">
+          <button class="ui-btn" data-variant="primary" data-size="sm">
+            Small
+          </button>
+          <button class="ui-btn" data-variant="primary">Medium</button>
+          <button class="ui-btn" data-variant="primary" data-size="lg">
+            Large
+          </button>
+        </div>
+        <h2>Icons, link, disabled</h2>
+        <div class="ui-cluster">
+          <button class="ui-btn" data-variant="primary">
+            <svg><use href="#plus" /></svg>New item
+          </button>
+          <button class="ui-btn" data-icon-only>
+            <svg><use href="#plus" /></svg
+            ><span class="ui-visually-hidden">Add</span>
+          </button>
+          <a class="ui-btn" href="#">Link</a>
+          <button class="ui-btn" data-variant="primary" disabled>
+            Disabled
+          </button>
+        </div>
+        <h2>Token override (pill radius) + full width utility</h2>
+        <div class="ui-cluster" style="--ui-btn-radius: var(--ui-radius-full)">
+          <button class="ui-btn">Pill</button>
+          <button class="ui-btn" data-variant="primary">Pill</button>
+        </div>
+        <button class="ui-btn ui-w-full" data-variant="primary">
+          Full width
+        </button>
+      </section>
+    </div>
+  </body>
+</html>

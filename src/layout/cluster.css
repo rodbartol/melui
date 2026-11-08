@@ -1,0 +1,9 @@
+/* OBJECT. Horizontal group that wraps. No visual styling, only arrangement. */
+@layer ui.layout {
+  .ui-cluster {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--ui-cluster-gap, var(--ui-space-sm));
+  }
+}

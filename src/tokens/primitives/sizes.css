@@ -1,0 +1,19 @@
+/* PRIMITIVE. 4px-based size scale (1 step = 0.25rem). */
+@layer ui.tokens {
+  :root {
+    --ui-ref-size-0: 0;
+    --ui-ref-size-px: 1px;
+    --ui-ref-size-1: 0.25rem;
+    --ui-ref-size-2: 0.5rem;
+    --ui-ref-size-3: 0.75rem;
+    --ui-ref-size-4: 1rem;
+    --ui-ref-size-5: 1.25rem;
+    --ui-ref-size-6: 1.5rem;
+    --ui-ref-size-8: 2rem;
+    --ui-ref-size-10: 2.5rem;
+    --ui-ref-size-12: 3rem;
+    --ui-ref-size-16: 4rem;
+    --ui-ref-size-20: 5rem;
+    --ui-ref-size-24: 6rem;
+  }
+}
