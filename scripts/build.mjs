@@ -1,4 +1,4 @@
-// Build mel.ui: bundle CSS @imports into single files and make standalone demo pages.
+// Build melui: bundle CSS @imports into single files and make standalone demo pages.
 // Run: node scripts/build.mjs
 import { readFileSync, writeFileSync, mkdirSync, readdirSync } from "node:fs";
 import { dirname, resolve, join } from "node:path";
@@ -35,4 +35,4 @@ for (const name of readdirSync(join(root, "docs")).filter((f) =>
   writeFileSync(join(root, "dist/docs", name), html);
 }
 
-console.log("Built dist/mel.ui.css, dist/tokens.css, dist/docs/*.html");
+console.log("Built dist/melui.css, dist/tokens.css, dist/docs/*.html");
