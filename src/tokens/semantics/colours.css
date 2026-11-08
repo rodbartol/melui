@@ -72,17 +72,17 @@
     );
 
     --ui-color-warning: light-dark(
-      var(--ui-ref-amber-500),
-      var(--ui-ref-amber-400)
+      var(--ui-ref-yellow-500),
+      var(--ui-ref-yellow-400)
     );
     --ui-color-warning-soft: light-dark(
-      var(--ui-ref-amber-50),
-      var(--ui-ref-amber-900)
+      var(--ui-ref-yellow-50),
+      var(--ui-ref-yellow-900)
     );
     --ui-color-warning-contrast: var(--ui-ref-black);
     --ui-color-warning-text: light-dark(
-      var(--ui-ref-amber-800),
-      var(--ui-ref-amber-200)
+      var(--ui-ref-yellow-800),
+      var(--ui-ref-yellow-200)
     );
 
     --ui-color-danger: light-dark(var(--ui-ref-red-600), var(--ui-ref-red-400));

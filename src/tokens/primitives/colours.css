@@ -42,17 +42,17 @@
     --ui-ref-green-800: oklch(35% 0.09 150);
     --ui-ref-green-900: oklch(28% 0.07 150);
 
-    /* Amber */
-    --ui-ref-amber-50: oklch(98% 0.03 85);
-    --ui-ref-amber-100: oklch(95% 0.07 85);
-    --ui-ref-amber-200: oklch(91% 0.12 85);
-    --ui-ref-amber-300: oklch(86% 0.16 80);
-    --ui-ref-amber-400: oklch(80% 0.17 75);
-    --ui-ref-amber-500: oklch(74% 0.17 65);
-    --ui-ref-amber-600: oklch(64% 0.16 55);
-    --ui-ref-amber-700: oklch(54% 0.14 50);
-    --ui-ref-amber-800: oklch(45% 0.11 50);
-    --ui-ref-amber-900: oklch(37% 0.08 50);
+    /* Yellow */
+    --ui-ref-yellow-50: oklch(98% 0.03 95);
+    --ui-ref-yellow-100: oklch(95% 0.07 95);
+    --ui-ref-yellow-200: oklch(91% 0.12 95);
+    --ui-ref-yellow-300: oklch(86% 0.16 95);
+    --ui-ref-yellow-400: oklch(80% 0.17 95);
+    --ui-ref-yellow-500: oklch(74% 0.17 95);
+    --ui-ref-yellow-600: oklch(64% 0.16 95);
+    --ui-ref-yellow-700: oklch(54% 0.14 95);
+    --ui-ref-yellow-800: oklch(45% 0.11 95);
+    --ui-ref-yellow-900: oklch(37% 0.08 95);
 
     /* Red */
     --ui-ref-red-50: oklch(97% 0.02 25);
