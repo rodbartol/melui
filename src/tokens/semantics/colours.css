@@ -53,14 +53,15 @@
     );
     --ui-color-focus: var(--ui-color-accent);
 
-    /* Status: base (fills, icons), -soft (backgrounds), -contrast (text on base), -text (text on soft) */
+    /* Status: base (fills, icons), -soft (backgrounds), -contrast (text on base), -text (text on soft).
+       color-mix() picks a shade between two palette steps (50/50 unless a % is given). */
     --ui-color-success: light-dark(
-      var(--ui-ref-green-600),
+      color-mix(in oklch, var(--ui-ref-green-600), var(--ui-ref-green-500)),
       var(--ui-ref-green-400)
     );
     --ui-color-success-soft: light-dark(
       var(--ui-ref-green-50),
-      var(--ui-ref-green-900)
+      color-mix(in oklch, var(--ui-ref-green-900), var(--ui-ref-green-800))
     );
     --ui-color-success-contrast: light-dark(
       var(--ui-ref-white),
@@ -72,8 +73,8 @@
     );
 
     --ui-color-warning: light-dark(
-      var(--ui-ref-yellow-500),
-      var(--ui-ref-yellow-400)
+      color-mix(in oklch, var(--ui-ref-yellow-500), var(--ui-ref-yellow-400)),
+      color-mix(in oklch, var(--ui-ref-yellow-400), var(--ui-ref-yellow-300))
     );
     --ui-color-warning-soft: light-dark(
       var(--ui-ref-yellow-50),
@@ -85,7 +86,10 @@
       var(--ui-ref-yellow-200)
     );
 
-    --ui-color-danger: light-dark(var(--ui-ref-red-600), var(--ui-ref-red-400));
+    --ui-color-danger: light-dark(
+      color-mix(in oklch, var(--ui-ref-red-600) 70%, var(--ui-ref-red-500)),
+      color-mix(in oklch, var(--ui-ref-red-400), var(--ui-ref-red-500))
+    );
     --ui-color-danger-hover: light-dark(
       var(--ui-ref-red-700),
       var(--ui-ref-red-300)
@@ -103,7 +107,10 @@
       var(--ui-ref-red-200)
     );
 
-    --ui-color-info: light-dark(var(--ui-ref-blue-600), var(--ui-ref-blue-400));
+    --ui-color-info: light-dark(
+      color-mix(in oklch, var(--ui-ref-blue-600), var(--ui-ref-blue-500)),
+      var(--ui-ref-blue-400)
+    );
     --ui-color-info-soft: light-dark(
       var(--ui-ref-blue-50),
       var(--ui-ref-blue-900)
