@@ -6,8 +6,6 @@ Melui. A small UI toolkit. Plain CSS.
 
 ```html
 <link rel="stylesheet" href="mel.ui/src/index.css" />
-
-<button class="ui-btn" data-variant="primary">Save</button>
 ```
 
 ## Theme
@@ -36,7 +34,7 @@ CSS is stacked from general to specific. Each layer can override the ones above 
 | 2   | Generic    | `src/reset.css`     | Removes browser differences.             |
 | 3   | Elements   | `src/base.css`      | Styles plain HTML tags.                  |
 | 4   | Objects    | `src/layout/`       | Arranges things. No looks.               |
-| 5   | Components | `src/components/`   | Buttons and more.                        |
+| 5   | Components | `src/components/`   | None yet. Identity comes first.          |
 | 6   | Utilities  | `src/utilities.css` | One-job helpers. Always win.             |
 
 Your app's own CSS beats all of them.

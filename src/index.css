@@ -6,5 +6,5 @@
 @import "./reset.css"; /* Generic */
 @import "./base.css"; /* Elements */
 @import "./layout/cluster.css"; /* Objects */
-@import "./components/button.css"; /* Components */
+/* Components: none yet. The ui.components layer is reserved above. */
 @import "./utilities.css"; /* Trumps */
