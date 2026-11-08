@@ -5,4 +5,12 @@
 @import "./primitives/sizes.css";
 @import "./primitives/fonts.css";
 
+@import "./semantics/colours.css";
+@import "./semantics/space.css";
+@import "./semantics/sizing.css";
+@import "./semantics/typography.css";
+@import "./semantics/shape.css";
+@import "./semantics/motion.css";
+@import "./semantics/elevation.css";
+
 @import "./themes/colour-scheme.css";
