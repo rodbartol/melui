@@ -18,7 +18,7 @@ function bundle(file) {
 mkdirSync(join(root, "dist/docs"), { recursive: true });
 
 const all = bundle(join(root, "src/index.css"));
-writeFileSync(join(root, "dist/mel.ui.css"), all);
+writeFileSync(join(root, "dist/melui.css"), all);
 writeFileSync(
   join(root, "dist/tokens.css"),
   bundle(join(root, "src/tokens/index.css")),
