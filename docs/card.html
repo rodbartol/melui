@@ -254,6 +254,23 @@
       </div>
     </section>
 
+    <section>
+      <h2>Empty</h2>
+      <p>When there is nothing yet.</p>
+      <template id="empties">
+        <div class="ui-empty">
+          <span class="ui-empty-symbol"><svg><use href="#i-fish" /></svg></span>
+          <h3 class="ui-empty-title">No fish yet</h3>
+          <p class="ui-empty-text">Add your first fish and it shows up here.</p>
+          <div class="ui-empty-actions"><button class="ui-button ui-button-accent"><svg><use href="#i-save" /></svg>Add a fish</button></div>
+        </div>
+      </template>
+      <div class="demo-pair">
+        <div class="demo-panel" data-theme="light" data-fill="empties"></div>
+        <div class="demo-panel" data-theme="dark" data-fill="empties"></div>
+      </div>
+    </section>
+
     <script>
       const materials = ["solid", "glass", "paper", "ink"];
       for (const panel of document.querySelectorAll("[data-fill]")) {

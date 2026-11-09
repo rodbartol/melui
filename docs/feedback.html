@@ -263,6 +263,70 @@
       </div>
     </section>
 
+    <section>
+      <h2>Skeleton and spinner</h2>
+      <p>Something is coming.</p>
+      <template id="waiting">
+        <div class="demo-stack">
+          <div class="demo-row">
+            <span class="ui-spinner" role="status" aria-label="Loading"></span>
+            <span class="ui-spinner ui-spinner-md" role="status" aria-label="Loading"></span>
+            <button class="ui-button ui-button-accent" disabled><span class="ui-spinner" aria-hidden="true"></span>Saving</button>
+          </div>
+          <div class="ui-skeleton" style="block-size: 6rem" aria-hidden="true"></div>
+          <div class="ui-skeleton" style="block-size: 1rem; inline-size: 70%" aria-hidden="true"></div>
+          <div class="ui-skeleton" style="block-size: 1rem; inline-size: 40%" aria-hidden="true"></div>
+        </div>
+      </template>
+      <div class="demo-pair">
+        <div class="demo-panel" data-theme="light" data-fill="waiting"></div>
+        <div class="demo-panel" data-theme="dark" data-fill="waiting"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Accent badge and indicator</h2>
+      <p>A count on a symbol.</p>
+      <template id="marks">
+        <div class="demo-row">
+          <span class="ui-badge ui-badge-accent">New</span>
+          <span class="ui-indicator">
+            <button class="ui-button ui-button-icon ui-button-round" aria-label="Messages, 3 unread"><svg><use href="#i-info" /></svg></button>
+            <span class="ui-badge ui-badge-accent ui-indicator-item" aria-hidden="true">3</span>
+          </span>
+          <span class="ui-indicator">
+            <button class="ui-button ui-button-flat ui-button-icon ui-button-round" aria-label="Alerts, 9+ unread"><svg><use href="#i-alert" /></svg></button>
+            <span class="ui-badge ui-badge-danger ui-indicator-item" aria-hidden="true">9+</span>
+          </span>
+        </div>
+      </template>
+      <div class="demo-pair">
+        <div class="demo-panel" data-theme="light" data-fill="marks"></div>
+        <div class="demo-panel" data-theme="dark" data-fill="marks"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Tooltip alignment</h2>
+      <p>End, centred, and one you can reach into.</p>
+      <template id="tips2">
+        <div class="demo-row demo-tips" style="justify-content: space-between">
+          <span class="ui-tooltip ui-tooltip-center">
+            <button class="ui-button" aria-describedby="tip3">Centre</button>
+            <span class="ui-tooltip-text" role="tooltip" id="tip3">Centred on the button</span>
+          </span>
+          <span class="ui-tooltip ui-tooltip-end ui-tooltip-interactive ui-tooltip-below">
+            <button class="ui-button" aria-describedby="tip4">End</button>
+            <span class="ui-tooltip-text" role="tooltip" id="tip4">Feeding is paused. <a href="#">Ask why</a></span>
+          </span>
+        </div>
+      </template>
+      <div class="demo-pair">
+        <div class="demo-panel" data-theme="light" data-fill="tips2"></div>
+        <div class="demo-panel" data-theme="dark" data-fill="tips2"></div>
+      </div>
+    </section>
+
     <script>
       // Demo only: fill both panels and give each its own ids.
       for (const panel of document.querySelectorAll("[data-fill]")) {

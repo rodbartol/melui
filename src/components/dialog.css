@@ -85,3 +85,18 @@
     }
   }
 }
+
+/* Full: fills the screen on phones, a dialog above. <dialog class="ui-dialog ui-dialog-full">.
+   For dialogs with more in them than a centred card can hold: a tall form, an editor. */
+@layer ui.components {
+  @media (max-width: 40rem) {
+    .ui-dialog-full {
+      inline-size: 100%;
+      max-inline-size: none;
+      block-size: 100%;
+      max-block-size: none;
+      margin: 0;
+      border-radius: 0;
+    }
+  }
+}

@@ -1,0 +1,68 @@
+/* COMPONENT. Popover: a small solid card, floating, anchored to a control. It can hold
+   actions, unlike a tooltip; it isn't a list, unlike a menu.
+   <div class="ui-popover">
+     <button aria-expanded="…">…</button>
+     <div class="ui-popover-panel">…</div>
+   </div>
+   It opens below the control, aligned to its start edge. ui-popover-end aligns it to the end
+   edge, ui-popover-above opens it above. Opening, closing and choosing a side is the app's
+   job; ui-popover-open shows it with no JavaScript while the wrapper is hovered or focused.
+   A pad bridges the gap to the control, so the pointer can travel into it.
+   An ancestor with overflow: hidden clips it. */
+@layer ui.components {
+  .ui-popover {
+    position: relative;
+    display: inline-block;
+  }
+  .ui-popover-panel {
+    /* Default elevation: floating. */
+    --_shadow: var(--ui-shadow-floating);
+    --_light: var(--ui-light-floating);
+    --_z: var(--ui-z-floating);
+    --_up-shadow: var(--ui-shadow-floating);
+    --_up-light: var(--ui-light-floating);
+    --_up-z: var(--ui-z-floating);
+
+    position: absolute;
+    inset-block-start: calc(100% + var(--ui-space-xs));
+    inset-inline-start: 0;
+    display: grid;
+    gap: var(--ui-space-sm);
+    inline-size: max-content;
+    min-inline-size: 12rem;
+    max-inline-size: min(20rem, 100vw - 2 * var(--ui-space-md));
+    padding: var(--ui-space-sm);
+    border-radius: var(--ui-radius-lg);
+    font-size: var(--ui-text-sm);
+    animation: ui-popover-in var(--ui-duration-normal) var(--ui-ease-out);
+  }
+  .ui-popover-panel::before {
+    content: "";
+    position: absolute;
+    inset: calc(-1 * var(--ui-space-sm)) 0;
+    z-index: -1;
+  }
+  .ui-popover-end > .ui-popover-panel {
+    inset-inline: auto 0;
+  }
+  .ui-popover-above > .ui-popover-panel {
+    inset-block: auto calc(100% + var(--ui-space-xs));
+    animation-name: ui-popover-in-above;
+  }
+  .ui-popover-open:not(:hover, :focus-within) > .ui-popover-panel {
+    display: none;
+  }
+
+  @keyframes ui-popover-in {
+    from {
+      opacity: 0;
+      translate: 0 calc(-1 * var(--ui-lift));
+    }
+  }
+  @keyframes ui-popover-in-above {
+    from {
+      opacity: 0;
+      translate: 0 var(--ui-lift);
+    }
+  }
+}

@@ -8,6 +8,12 @@
    ui-select        on a wrapper around <select>; it draws the chevron.
    ui-choice        on a <label> around a checkbox, a radio, or a switch
                     (<input type="checkbox" role="switch">). The label text follows the input.
+   ui-input-group   a symbol inside a field: a wrapper around an svg (or ui-input-symbol) and a
+                    ui-input or ui-select. A ui-input-end element (a clear button) sits at the end.
+   ui-input-round   a pill-shaped input or select, for search.
+   ui-range         on <input type="range">: a sunken track, an accent fill, a raised thumb.
+                    Blink and WebKit can't fill the track on their own: set --ui-range-fill to
+                    the value as a percentage (style="--ui-range-fill: 40%"). Firefox fills itself.
 
    Invalid (:user-invalid or aria-invalid="true") gets a danger edge. */
 @layer ui.components {
@@ -211,6 +217,144 @@
     }
     .ui-choice > input::before {
       display: none;
+    }
+  }
+
+  /* ---------- Round: a pill, for search fields ---------- */
+  :is(.ui-input, .ui-select > select).ui-input-round,
+  .ui-select.ui-input-round > select {
+    border-radius: var(--ui-radius-full);
+  }
+
+  /* ---------- Input group: a symbol inside the field ---------- */
+  .ui-input-group {
+    --_inset: calc(var(--ui-space-sm) + var(--ui-space-xs));
+    position: relative;
+    display: grid;
+    align-items: center;
+    isolation: isolate;
+    color: var(--ui-color-text-muted);
+  }
+  .ui-input-group > :is(svg, .ui-input-symbol) {
+    position: absolute;
+    inset-inline-start: var(--_inset);
+    z-index: var(--ui-z-raised);
+    inline-size: var(--ui-icon-sm);
+    block-size: var(--ui-icon-sm);
+    fill: currentColor;
+    pointer-events: none;
+  }
+  .ui-input-group > .ui-input-end {
+    position: absolute;
+    inset-inline-end: var(--ui-space-xs);
+    z-index: var(--ui-z-raised);
+  }
+  .ui-input-group > :is(.ui-input, .ui-select) {
+    grid-area: 1 / 1;
+  }
+  .ui-input-group:has(> :is(svg, .ui-input-symbol)) > :is(.ui-input, .ui-select > select) {
+    padding-inline-start: calc(var(--_inset) + var(--ui-icon-sm) + var(--ui-space-sm));
+  }
+  .ui-input-group:has(> .ui-input-end) > .ui-input {
+    padding-inline-end: calc(var(--ui-control-height-sm) + var(--ui-space-xs));
+  }
+  .ui-input-group > .ui-select > select {
+    padding-inline-start: calc(var(--_inset) + var(--ui-icon-sm) + var(--ui-space-sm));
+  }
+
+  /* ---------- Range: a sunken track, an accent fill, a raised thumb ---------- */
+  .ui-range {
+    --_track: calc(var(--ui-space-xs) * 1.5);
+    --_thumb: var(--ui-icon-sm);
+    --_fill: var(--ui-color-accent-text);
+    appearance: none;
+    display: block;
+    inline-size: 100%;
+    block-size: var(--ui-icon-md);
+    margin: 0;
+    background: transparent;
+    color: var(--_fill);
+    cursor: pointer;
+  }
+  .ui-range::-webkit-slider-runnable-track {
+    block-size: var(--_track);
+    border-radius: var(--ui-radius-full);
+    background: linear-gradient(var(--_fill), var(--_fill)) 0 0 / var(--ui-range-fill, 0%) 100%
+        no-repeat,
+      var(--ui-color-border);
+    box-shadow: var(--ui-shadow-sunken);
+  }
+  .ui-range:dir(rtl)::-webkit-slider-runnable-track {
+    background-position: 100% 0, 0 0;
+  }
+  .ui-range::-moz-range-track {
+    block-size: var(--_track);
+    border-radius: var(--ui-radius-full);
+    background: var(--ui-color-border);
+    box-shadow: var(--ui-shadow-sunken);
+  }
+  .ui-range::-moz-range-progress {
+    block-size: var(--_track);
+    border-radius: var(--ui-radius-full);
+    background: var(--_fill);
+  }
+  .ui-range::-webkit-slider-thumb {
+    appearance: none;
+    inline-size: var(--_thumb);
+    block-size: var(--_thumb);
+    margin-block-start: calc((var(--_track) - var(--_thumb)) / 2);
+    border: var(--ui-border-width) solid var(--ui-color-border-strong);
+    border-radius: var(--ui-radius-full);
+    background: var(--ui-color-surface-raised);
+    box-shadow: var(--ui-shadow-raised);
+    transition: box-shadow var(--ui-duration-fast) var(--ui-ease-out),
+      scale var(--ui-duration-fast) var(--ui-ease-out);
+  }
+  .ui-range::-moz-range-thumb {
+    inline-size: var(--_thumb);
+    block-size: var(--_thumb);
+    border: var(--ui-border-width) solid var(--ui-color-border-strong);
+    border-radius: var(--ui-radius-full);
+    background: var(--ui-color-surface-raised);
+    box-shadow: var(--ui-shadow-raised);
+    transition: box-shadow var(--ui-duration-fast) var(--ui-ease-out),
+      scale var(--ui-duration-fast) var(--ui-ease-out);
+  }
+  /* Hover and drag lift the thumb one level. */
+  .ui-range:is(:hover, :focus-visible, :active)::-webkit-slider-thumb {
+    box-shadow: var(--ui-shadow-floating);
+    scale: 1.15;
+  }
+  .ui-range:is(:hover, :focus-visible, :active)::-moz-range-thumb {
+    box-shadow: var(--ui-shadow-floating);
+    scale: 1.15;
+  }
+  .ui-range:focus-visible {
+    outline: none;
+  }
+  .ui-range:focus-visible::-webkit-slider-thumb {
+    outline: var(--ui-focus-ring-width) solid var(--ui-color-focus);
+    outline-offset: var(--ui-focus-ring-offset);
+  }
+  .ui-range:focus-visible::-moz-range-thumb {
+    outline: var(--ui-focus-ring-width) solid var(--ui-color-focus);
+    outline-offset: var(--ui-focus-ring-offset);
+  }
+  .ui-range:disabled {
+    --_fill: var(--ui-color-text-disabled);
+    cursor: not-allowed;
+  }
+  .ui-range:disabled::-webkit-slider-thumb {
+    box-shadow: none;
+    scale: 1;
+  }
+  .ui-range:disabled::-moz-range-thumb {
+    box-shadow: none;
+    scale: 1;
+  }
+  @media (forced-colors: active) {
+    .ui-range {
+      appearance: auto;
     }
   }
 }

@@ -13,7 +13,7 @@
       .ui-select > select,
       .ui-choice > input,
       .ui-button,
-      .ui-menu-list,
+      .ui-menu-list, .ui-popover-panel,
       .ui-dialog,
       .ui-toast,
       .ui-tooltip-text,
