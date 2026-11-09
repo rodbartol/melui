@@ -14,8 +14,8 @@
     border-radius: var(--ui-radius-full);
     background: var(--_fill);
     color: var(--_on);
-    font-size: var(--ui-text-xs);
-    font-weight: var(--ui-weight-semibold);
+    font-size: var(--ui-text-sm);
+    font-weight: var(--ui-weight-bold);
     line-height: var(--ui-leading-tight);
     white-space: nowrap;
     vertical-align: middle;
@@ -71,7 +71,7 @@
   }
   :is(.ui-notice-title, .ui-toast-title) {
     font-size: var(--ui-text-md);
-    font-weight: var(--ui-weight-semibold);
+    font-weight: var(--ui-weight-bold);
     line-height: var(--ui-leading-tight);
     padding-block-start: var(--ui-space-2xs);
   }
@@ -196,8 +196,8 @@
     border-radius: var(--ui-radius-md);
     /* A small shadow: a top-level one would darken the control right below it. */
     box-shadow: var(--ui-shadow-floating);
-    font-size: var(--ui-text-xs);
-    font-weight: var(--ui-weight-medium);
+    font-size: var(--ui-text-sm);
+    font-weight: var(--ui-weight-normal);
     line-height: var(--ui-leading-normal);
     white-space: normal;
     opacity: 0;

@@ -15,21 +15,20 @@
         gap: var(--ui-space-3xl);
       }
       h1 {
-        font-size: var(--ui-text-4xl);
+        font-size: var(--ui-text-xl);
         font-weight: var(--ui-weight-bold);
-        letter-spacing: var(--ui-tracking-tight);
         line-height: var(--ui-leading-tight);
       }
       h2 {
-        font-size: var(--ui-text-2xl);
-        font-weight: var(--ui-weight-semibold);
+        font-size: var(--ui-text-lg);
+        font-weight: var(--ui-weight-bold);
         line-height: var(--ui-leading-tight);
         margin-bottom: var(--ui-space-xs);
       }
       .demo-panel > h3,
       .demo-band h3 {
         font-size: var(--ui-text-sm);
-        font-weight: var(--ui-weight-semibold);
+        font-weight: var(--ui-weight-bold);
         color: var(--ui-color-text-muted);
       }
       section > p,
@@ -40,11 +39,11 @@
       }
       code {
         font-family: var(--ui-font-code);
-        font-size: var(--ui-text-xs);
+        font-size: var(--ui-text-sm);
       }
       pre {
         font-family: var(--ui-font-code);
-        font-size: var(--ui-text-xs);
+        font-size: var(--ui-text-sm);
         background: var(--ui-color-surface-sunken);
         border: var(--ui-border-width) solid var(--ui-color-border);
         border-radius: var(--ui-radius-md);
@@ -143,11 +142,7 @@
 
     <header>
       <h1>Structure</h1>
-      <p>
-        Tabs and segmented controls, toolbars, lists, avatars and drawers.
-        Tabs sit in a sunken track and the selected one stays raised. A
-        toolbar is glass and floats. A drawer is a dialog from the edge.
-      </p>
+      <p>Tabs, toolbars, lists, avatars, drawers.</p>
       <pre><code>&lt;div class="ui-tabs" role="tablist"&gt;
   &lt;button class="ui-tab" role="tab" aria-selected="true"&gt;Fish&lt;/button&gt;
   &lt;button class="ui-tab" role="tab" aria-selected="false"&gt;Plants&lt;/button&gt;
@@ -168,11 +163,7 @@
 
     <section>
       <h2>Tabs and segmented control</h2>
-      <p>
-        Tabs use <code>aria-selected</code> (click to switch: switching is the
-        app's job, done here with a few lines of demo script). The segmented
-        control below needs no script: each segment is a label around a radio.
-      </p>
+      <p>The selected tab stays raised.</p>
       <template id="tabs">
         <div class="demo-stack">
           <div>
@@ -199,7 +190,7 @@
 
     <section>
       <h2>Toolbar</h2>
-      <p>Glass by default, at the floating level. Groups symbol buttons; a divider separates groups.</p>
+      <p>Glass, floating. Groups symbol buttons.</p>
       <template id="toolbar">
         <div class="demo-backdrop">
           <div class="ui-toolbar" role="toolbar" aria-label="Format">
@@ -219,10 +210,7 @@
 
     <section>
       <h2>List and avatar</h2>
-      <p>
-        Plain rows and link rows. Link rows are flat until hovered or focused,
-        then lift. Avatars are pictures or initials, in three sizes.
-      </p>
+      <p>Link rows lift on hover.</p>
       <template id="list">
         <div class="demo-stack">
           <ul class="ui-list">
@@ -263,10 +251,7 @@
 
     <section>
       <h2>Drawer</h2>
-      <p>
-        A dialog from the edge: <code>ui-dialog ui-dialog-drawer</code>, full
-        height, actions at the bottom. Opens as a popover with no JavaScript.
-      </p>
+      <p>A dialog from the edge.</p>
       <template id="drawer">
         <div class="demo-row">
           <button class="ui-button ui-button-accent" popovertarget="drawer"><svg><use href="#i-menu" /></svg>Open drawer</button>

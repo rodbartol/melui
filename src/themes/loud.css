@@ -1,5 +1,4 @@
-/* THEME: Loud. Hot magenta, glass, big radii, heavy type. Fonts: Archivo (Google Fonts).
-   Tokens only: no component CSS. Use with data-ui-theme on <html> or any element. */
+/* THEME: Loud. CI only: colours and font. Font: Archivo (Google Fonts). */
 @layer ui.tokens {
   [data-ui-theme="loud"] {
     /* Grays with a magenta cast */
@@ -20,7 +19,7 @@
     /* Page: a pale pink wash by day */
     --ui-color-bg: light-dark(var(--ui-ref-gray-50), var(--ui-ref-black));
 
-    /* Accent: hot magenta, the same in both modes, with dark text */
+    /* Accent: hot magenta, with dark text */
     --ui-color-accent: oklch(72% 0.222 345);
     --ui-color-accent-hover: oklch(78% 0.162 345);
     --ui-color-accent-contrast: var(--ui-ref-gray-950);
@@ -47,30 +46,10 @@
     --ui-color-info-contrast: var(--ui-ref-gray-950);
     --ui-color-info-text: light-dark(oklch(40% 0.092 240), oklch(86% 0.086 230));
 
-    /* Glass is the default material */
-    --ui-material-default-fill: var(--ui-material-glass-fill);
-    --ui-material-default-edge: var(--ui-material-glass-edge);
-    --ui-material-default-texture: none;
-    --ui-material-default-grain: 100%;
-    --ui-material-default-reveal: 0;
-    --ui-material-default-opacity: var(--ui-material-glass-opacity);
-    --ui-material-default-backdrop: var(--ui-material-glass-backdrop);
-
-    /* Shape: big and round */
-    --ui-radius-sm: 10px;
-    --ui-radius-md: 16px;
-    --ui-radius-lg: 22px;
-    --ui-radius-xl: 30px;
-
-    /* Type: a heavy grotesk */
+    /* Font */
     --ui-font-body: "Archivo", sans-serif;
-    --ui-font-heading: "Archivo", sans-serif;
-    --ui-weight-medium: 600;
-    --ui-weight-semibold: 800;
-    --ui-weight-bold: 900;
-    --ui-tracking-tight: -0.02em;
 
-    /* Shadow: magenta */
+    /* Shadow tint: magenta */
     --ui-shadow-color: light-dark(oklch(45% 0.192 345 / 0.2), oklch(0% 0 0 / 0.6));
   }
 }

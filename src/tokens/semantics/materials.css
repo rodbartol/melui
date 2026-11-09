@@ -12,7 +12,7 @@
      --ui-mat-backdrop a backdrop-filter, or none (glass: blur)
    A see-through material without a veil (like glass) sets --ui-mat-grain to 100%.
    The default material (--ui-material-default-*) is what a component without a class is
-   made of. It is solid; a theme can point it at another material. */
+   made of. It is solid. Themes leave it alone: material is Melui's, not CI. */
 
 /* These never inherit: a material applies only to the element with its class. */
 @property --ui-mat-fill {

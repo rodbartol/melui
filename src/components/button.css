@@ -20,7 +20,7 @@
     padding-inline: calc(var(--ui-space-sm) + var(--ui-space-xs));
     border-radius: var(--ui-radius-md);
     font-size: var(--ui-text-sm);
-    font-weight: var(--ui-weight-medium);
+    font-weight: var(--ui-weight-normal);
     line-height: var(--ui-leading-tight);
     text-decoration: none;
     white-space: nowrap;

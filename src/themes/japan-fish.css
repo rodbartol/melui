@@ -1,5 +1,4 @@
-/* THEME: Japan Fish. Washi paper and night indigo, sage and vermilion. Fonts: Shippori Mincho (Google Fonts).
-   Tokens only: no component CSS. Use with data-ui-theme on <html> or any element. */
+/* THEME: Japan Fish. CI only: colours and font. Font: Shippori Mincho (Google Fonts). */
 @layer ui.tokens {
   [data-ui-theme="japan-fish"] {
     /* Washi light, indigo night; the grays run from warm paper to indigo */
@@ -28,27 +27,10 @@
     --ui-color-success-text: light-dark(var(--ui-ref-green-800), var(--ui-ref-green-200));
     --ui-color-info-text: light-dark(var(--ui-ref-blue-800), var(--ui-ref-blue-200));
 
-    /* Paper is the default material */
-    --ui-material-paper-grain: 9%;
-    --ui-material-default-fill: var(--ui-material-paper-fill);
-    --ui-material-default-edge: var(--ui-material-paper-edge);
-    --ui-material-default-texture: var(--ui-material-paper-texture);
-    --ui-material-default-grain: var(--ui-material-paper-grain);
-    --ui-material-default-reveal: var(--ui-material-paper-reveal);
-    --ui-material-default-opacity: 100%;
-    --ui-material-default-backdrop: none;
-
-    /* Shape: soft */
-    --ui-radius-sm: 6px;
-    --ui-radius-md: 10px;
-    --ui-radius-lg: 14px;
-    --ui-radius-xl: 20px;
-
-    /* Type: a Mincho serif */
+    /* Font */
     --ui-font-body: "Shippori Mincho", serif;
-    --ui-font-heading: "Shippori Mincho", serif;
 
-    /* Shadow: indigo */
+    /* Shadow tint: indigo */
     --ui-shadow-color: light-dark(oklch(25% 0.06 268 / 0.16), oklch(5% 0.03 268 / 0.6));
   }
 }
