@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Forms</title>
+    <link rel="stylesheet" href="../src/index.css" />
+    <style>
+      /* Demo page styles only. Everything visual on the controls comes from Melui. */
+      body {
+        max-width: 72rem;
+        margin-inline: auto;
+        padding: var(--ui-space-xl) var(--ui-space-md);
+        display: grid;
+        gap: var(--ui-space-3xl);
+      }
+      h1 {
+        font-size: var(--ui-text-4xl);
+        font-weight: var(--ui-weight-bold);
+        letter-spacing: var(--ui-tracking-tight);
+        line-height: var(--ui-leading-tight);
+      }
+      h2 {
+        font-size: var(--ui-text-2xl);
+        font-weight: var(--ui-weight-semibold);
+        line-height: var(--ui-leading-tight);
+        margin-bottom: var(--ui-space-xs);
+      }
+      .demo-panel > h3,
+      .demo-band h3 {
+        font-size: var(--ui-text-sm);
+        font-weight: var(--ui-weight-semibold);
+        color: var(--ui-color-text-muted);
+      }
+      section > p,
+      header > p {
+        color: var(--ui-color-text-muted);
+        max-width: 40rem;
+        margin-bottom: var(--ui-space-lg);
+      }
+      code {
+        font-family: var(--ui-font-code);
+        font-size: var(--ui-text-xs);
+      }
+      pre {
+        font-family: var(--ui-font-code);
+        font-size: var(--ui-text-xs);
+        background: var(--ui-color-surface-sunken);
+        border: var(--ui-border-width) solid var(--ui-color-border);
+        border-radius: var(--ui-radius-md);
+        padding: var(--ui-space-md);
+        overflow-x: auto;
+        max-width: 40rem;
+      }
+
+      .demo-pair {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr));
+        border: var(--ui-border-width) solid var(--ui-color-border-strong);
+        border-radius: var(--ui-radius-lg);
+        overflow: hidden;
+      }
+      .demo-panel {
+        background: var(--ui-color-bg);
+        color: var(--ui-color-text);
+        padding: var(--ui-space-lg);
+        display: grid;
+        gap: var(--ui-space-lg);
+        align-content: start;
+      }
+      .demo-form {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+        gap: var(--ui-space-lg) var(--ui-space-md);
+        align-items: start;
+      }
+      .demo-stack {
+        display: grid;
+      }
+
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Forms</h1>
+      <p>
+        Controls sit sunken in solid and lift to the surface while focused.
+        Every control has a visible label. Invalid controls get a danger edge;
+        checked ones fill with the accent.
+      </p>
+      <pre><code>&lt;div class="ui-field"&gt;
+  &lt;label class="ui-field-label" for="name"&gt;Name&lt;/label&gt;
+  &lt;input class="ui-input" id="name" aria-describedby="name-hint" /&gt;
+  &lt;p class="ui-field-hint" id="name-hint"&gt;…&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class="ui-select"&gt;&lt;select&gt;…&lt;/select&gt;&lt;/div&gt;
+
+&lt;label class="ui-choice"&gt;&lt;input type="checkbox" /&gt;Morning&lt;/label&gt;
+&lt;label class="ui-choice"&gt;&lt;input type="checkbox" role="switch" /&gt;Pump&lt;/label&gt;</code></pre>
+    </header>
+
+    <section>
+      <h2>Fields</h2>
+      <p>
+        Text input, text area and select, each in a field with a label and a
+        hint or an error. Tab through them: each lifts while focused.
+      </p>
+      <template id="fields">
+        <div class="demo-form">
+          <div class="ui-field">
+            <label class="ui-field-label" for="name">Pond name</label>
+            <input class="ui-input" id="name" placeholder="Koi pond" aria-describedby="name-hint" />
+            <p class="ui-field-hint" id="name-hint">Shown on the garden map.</p>
+          </div>
+          <div class="ui-field">
+            <label class="ui-field-label" for="email">Email</label>
+            <input class="ui-input" id="email" type="email" value="koi@" aria-invalid="true" aria-describedby="email-error" />
+            <p class="ui-field-error" id="email-error">Enter a full email address.</p>
+          </div>
+          <div class="ui-field">
+            <label class="ui-field-label" for="water">Water</label>
+            <div class="ui-select">
+              <select id="water">
+                <option>Clear</option>
+                <option>Cloudy</option>
+                <option>Green</option>
+              </select>
+            </div>
+          </div>
+          <div class="ui-field">
+            <label class="ui-field-label" for="depth">Depth</label>
+            <input class="ui-input" id="depth" value="1.2 m" disabled />
+            <p class="ui-field-hint">Disabled: flat, no material.</p>
+          </div>
+          <div class="ui-field">
+            <label class="ui-field-label" for="notes">Notes</label>
+            <textarea class="ui-input" id="notes" placeholder="Anything to remember"></textarea>
+          </div>
+          <div class="ui-field">
+            <label class="ui-field-label" for="paper">On paper</label>
+            <input class="ui-input ui-material-paper" id="paper" value="ui-material-paper" />
+          </div>
+        </div>
+      </template>
+      <div class="demo-pair">
+        <div class="demo-panel" data-theme="light" data-fill="fields"></div>
+        <div class="demo-panel" data-theme="dark" data-fill="fields"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Choices</h2>
+      <p>
+        Checkboxes, radios and switches, each inside its label. Groups use a
+        <code>&lt;fieldset class="ui-field"&gt;</code> with a legend.
+      </p>
+      <template id="choices">
+        <div class="demo-form">
+          <fieldset class="ui-field">
+            <legend class="ui-field-label">Feeding</legend>
+            <div class="demo-stack">
+              <label class="ui-choice"><input type="checkbox" checked />Morning</label>
+              <label class="ui-choice"><input type="checkbox" />Noon</label>
+              <label class="ui-choice"><input type="checkbox" data-indeterminate />Evening (mixed)</label>
+              <label class="ui-choice"><input type="checkbox" checked disabled />Night</label>
+            </div>
+          </fieldset>
+          <fieldset class="ui-field">
+            <legend class="ui-field-label">Season</legend>
+            <div class="demo-stack">
+              <label class="ui-choice"><input type="radio" name="season" checked />Spring</label>
+              <label class="ui-choice"><input type="radio" name="season" />Summer</label>
+              <label class="ui-choice"><input type="radio" name="season" disabled />Winter</label>
+            </div>
+          </fieldset>
+          <fieldset class="ui-field">
+            <legend class="ui-field-label">Equipment</legend>
+            <div class="demo-stack">
+              <label class="ui-choice"><input type="checkbox" role="switch" checked />Pump</label>
+              <label class="ui-choice"><input type="checkbox" role="switch" />Lights</label>
+              <label class="ui-choice"><input type="checkbox" role="switch" disabled />Heater</label>
+            </div>
+          </fieldset>
+        </div>
+      </template>
+      <div class="demo-pair">
+        <div class="demo-panel" data-theme="light" data-fill="choices"></div>
+        <div class="demo-panel" data-theme="dark" data-fill="choices"></div>
+      </div>
+    </section>
+
+    <script>
+      for (const panel of document.querySelectorAll("[data-fill]")) {
+        const suffix = "-" + panel.dataset.theme;
+        panel.insertAdjacentHTML(
+          "beforeend",
+          `<h3>${panel.dataset.theme === "light" ? "Light" : "Dark"}</h3>`,
+        );
+        const content = document
+          .getElementById(panel.dataset.fill)
+          .content.cloneNode(true);
+        // Each panel gets its own ids and radio groups.
+        for (const el of content.querySelectorAll("[id]")) el.id += suffix;
+        for (const el of content.querySelectorAll("[for]")) el.htmlFor += suffix;
+        for (const el of content.querySelectorAll("[aria-describedby]"))
+          el.setAttribute("aria-describedby", el.getAttribute("aria-describedby") + suffix);
+        for (const el of content.querySelectorAll("[name]")) el.name += suffix;
+        for (const el of content.querySelectorAll("[data-indeterminate]")) el.indeterminate = true;
+        panel.append(content);
+      }
+    </script>
+  </body>
+</html>

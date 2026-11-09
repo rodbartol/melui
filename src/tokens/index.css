@@ -1,9 +1,10 @@
 /* Tokens entry point. Import this file alone to get the theme without components. */
-@layer ui.tokens, ui.reset, ui.base, ui.layout, ui.components, ui.utilities;
+@layer ui.tokens, ui.reset, ui.base, ui.layout, ui.components, ui.materials, ui.elevation, ui.utilities;
 
 @import "./primitives/colours.css";
 @import "./primitives/sizes.css";
 @import "./primitives/fonts.css";
+@import "./primitives/textures.css";
 
 @import "./semantics/colours.css";
 @import "./semantics/space.css";
@@ -12,5 +13,6 @@
 @import "./semantics/shape.css";
 @import "./semantics/motion.css";
 @import "./semantics/elevation.css";
+@import "./semantics/materials.css";
 
 @import "./themes/colour-scheme.css";

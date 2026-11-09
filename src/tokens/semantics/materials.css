@@ -1,0 +1,165 @@
+/* SEMANTIC. Materials: what a surface is made of. Public API: change a recipe here.
+   A material sets fill, edge and texture. Elevation sets how much light falls on it.
+   Applied with a class: ui-material-<name> (see src/materials.css).
+
+   Your own material: give a class named ui-material-<name> these properties:
+     --ui-mat-fill     colour (use light-dark() for both modes)
+     --ui-mat-edge     border colour
+     --ui-mat-texture  image, or none
+     --ui-mat-grain    how much texture shows, 0% to 100%
+     --ui-mat-reveal   how much more it shows under light (dark mode), a number
+     --ui-mat-opacity  how solid the body is, 0% to 100% (glass: 72%)
+     --ui-mat-backdrop a backdrop-filter, or none (glass: blur)
+   A see-through material without a veil (like glass) sets --ui-mat-grain to 100%.
+   The default material (--ui-material-default-*) is what a component without a class is
+   made of. It is solid; a theme can point it at another material. */
+
+/* These never inherit: a material applies only to the element with its class. */
+@property --ui-mat-fill {
+  syntax: "*";
+  inherits: false;
+}
+@property --ui-mat-edge {
+  syntax: "*";
+  inherits: false;
+}
+@property --ui-mat-texture {
+  syntax: "*";
+  inherits: false;
+}
+@property --ui-mat-grain {
+  syntax: "*";
+  inherits: false;
+}
+@property --ui-mat-reveal {
+  syntax: "*";
+  inherits: false;
+}
+@property --ui-mat-opacity {
+  syntax: "*";
+  inherits: false;
+}
+@property --ui-mat-backdrop {
+  syntax: "*";
+  inherits: false;
+}
+/* State slots: a component sets these for a state (checked, invalid) and they beat any material.
+     --ui-state-fill   fill colour
+     --ui-state-edge   border colour
+     --ui-state-text   text colour
+     --ui-state-catch  1 (default) or 0: whether the fill catches light in dark mode.
+                       Set 0 where a fill must keep its exact contrast with its text.
+     --ui-state-opacity  set 100% so a state fill stays solid on a see-through material.
+     --ui-state-texture, --ui-state-backdrop  set none for a flat, bare state (a resting tab). */
+@property --ui-state-fill {
+  syntax: "*";
+  inherits: false;
+}
+@property --ui-state-edge {
+  syntax: "*";
+  inherits: false;
+}
+@property --ui-state-text {
+  syntax: "*";
+  inherits: false;
+}
+@property --ui-state-catch {
+  syntax: "*";
+  inherits: false;
+}
+@property --ui-state-opacity {
+  syntax: "*";
+  inherits: false;
+}
+@property --ui-state-texture {
+  syntax: "*";
+  inherits: false;
+}
+@property --ui-state-backdrop {
+  syntax: "*";
+  inherits: false;
+}
+/* Light falling on this element, set by its elevation level. Never inherits. */
+@property --ui-level-light {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+
+@layer ui.tokens {
+  :root,
+  [data-ui-theme] {
+    /* Solid (default): flat, plain fill, thin border. */
+    --ui-material-solid-fill: light-dark(
+      var(--ui-ref-white),
+      var(--ui-ref-gray-950)
+    );
+    --ui-material-solid-edge: var(--ui-color-border);
+
+    /* Glass: see-through and blurred at every height. */
+    --ui-material-glass-fill: light-dark(
+      var(--ui-ref-white),
+      var(--ui-ref-gray-950)
+    );
+    --ui-material-glass-edge: light-dark(
+      oklch(100% 0 0 / 0.7),
+      oklch(100% 0 0 / 0.18)
+    );
+    --ui-material-glass-opacity: 72%;
+    --ui-material-glass-blur: 16px;
+    --ui-material-glass-backdrop: blur(var(--ui-material-glass-blur))
+      saturate(1.2);
+
+    /* Paper: fine grain, soft. Texture shows more as it rises. */
+    --ui-material-paper-fill: light-dark(
+      var(--ui-ref-gray-50),
+      var(--ui-ref-gray-950)
+    );
+    --ui-material-paper-edge: var(--ui-color-border);
+    --ui-material-paper-texture: var(--ui-ref-texture-grain-fine);
+    --ui-material-paper-grain: 7%;
+    --ui-material-paper-reveal: 0.6;
+
+    /* Ink: dark and dense, in both modes. Only brightens under light. */
+    --ui-material-ink-fill: var(--ui-ref-black);
+    --ui-material-ink-edge: var(--ui-color-border);
+
+    /* Default: what a component is made of without a ui-material-<name> class. */
+    --ui-material-default-fill: var(--ui-material-solid-fill);
+    --ui-material-default-edge: var(--ui-material-solid-edge);
+    --ui-material-default-texture: none;
+    --ui-material-default-grain: 0%;
+    --ui-material-default-reveal: 0;
+    --ui-material-default-opacity: 100%;
+    --ui-material-default-backdrop: none;
+
+  }
+
+  /* Glass turns solid where blur isn't available, when the user asks for less transparency,
+     and in high contrast. Paper loses its grain in high contrast. Doubled selectors beat a
+     theme's own values. */
+  @supports not (
+    (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))
+  ) {
+    :root:root,
+    [data-ui-theme][data-ui-theme] {
+      --ui-material-glass-opacity: 100%;
+      --ui-material-glass-backdrop: none;
+    }
+  }
+  @media (prefers-reduced-transparency: reduce) {
+    :root:root,
+    [data-ui-theme][data-ui-theme] {
+      --ui-material-glass-opacity: 100%;
+      --ui-material-glass-backdrop: none;
+    }
+  }
+  @media (prefers-contrast: more), (forced-colors: active) {
+    :root:root,
+    [data-ui-theme][data-ui-theme] {
+      --ui-material-glass-opacity: 100%;
+      --ui-material-glass-backdrop: none;
+      --ui-material-paper-texture: none;
+    }
+  }
+}

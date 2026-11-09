@@ -1,8 +1,34 @@
-/* SEMANTIC. Heights for interactive controls (buttons, inputs, selects). */
+/* SEMANTIC. Heights for interactive controls (buttons, inputs, selects), and icon sizes.
+   Controls grow on touch screens so fingers can hit them. */
 @layer ui.tokens {
-  :root {
-    --ui-control-height-sm: var(--ui-ref-size-8);
-    --ui-control-height-md: var(--ui-ref-size-10);
-    --ui-control-height-lg: var(--ui-ref-size-12);
+  :root,
+  [data-ui-theme] {
+    /* Icons: filled, three sizes. Melui ships no icons; bring your own. */
+    --ui-icon-sm: var(--ui-ref-size-4); /* 16px */
+    --ui-icon-md: var(--ui-ref-size-6); /* 24px */
+    --ui-icon-lg: var(--ui-ref-size-8); /* 32px */
+
+    /* Checkbox, radio and switch height. */
+    --ui-choice-size: var(--ui-ref-size-5); /* 20px */
+
+    /* Avatar sizes. */
+    --ui-avatar-sm: var(--ui-ref-size-8); /* 32px */
+    --ui-avatar-md: var(--ui-ref-size-10); /* 40px */
+    --ui-avatar-lg: var(--ui-ref-size-12); /* 48px */
+
+    /* Progress bar height. */
+    --ui-progress-size: var(--ui-ref-size-2); /* 8px */
+
+    --ui-control-height-sm: var(--ui-ref-size-8); /* 32px */
+    --ui-control-height-md: var(--ui-ref-size-10); /* 40px */
+    --ui-control-height-lg: var(--ui-ref-size-12); /* 48px */
+  }
+  @media (pointer: coarse) {
+    :root:root,
+    [data-ui-theme][data-ui-theme] {
+      --ui-control-height-sm: var(--ui-ref-size-10); /* 40px */
+      --ui-control-height-md: var(--ui-ref-size-11); /* 44px */
+      --ui-control-height-lg: var(--ui-ref-size-13); /* 52px */
+    }
   }
 }

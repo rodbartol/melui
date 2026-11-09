@@ -1,17 +1,22 @@
 /* SEMANTIC. Animation timing. Durations drop to 0 for users who prefer reduced motion. */
 @layer ui.tokens {
-  :root {
-    --ui-duration-fast: 120ms;
-    --ui-duration-normal: 200ms;
-    --ui-duration-slow: 320ms;
+  :root,
+  [data-ui-theme] {
+    --ui-duration-fast: 160ms;
+    --ui-duration-normal: 280ms;
+    --ui-duration-slow: 420ms;
 
     --ui-ease-standard: cubic-bezier(0.2, 0, 0, 1);
     --ui-ease-out: cubic-bezier(0, 0, 0.2, 1);
     --ui-ease-in: cubic-bezier(0.4, 0, 1, 1);
+
+    /* How long the pointer rests before a tooltip shows. Not motion, so it stays. */
+    --ui-tooltip-delay: 500ms;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    :root {
+    :root:root,
+    [data-ui-theme][data-ui-theme] {
       --ui-duration-fast: 0ms;
       --ui-duration-normal: 0ms;
       --ui-duration-slow: 0ms;

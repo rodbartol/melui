@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Card</title>
+    <link rel="stylesheet" href="../src/index.css" />
+    <style>
+      /* Demo page styles only. Everything visual on the cards comes from Melui. */
+      body {
+        max-width: 72rem;
+        margin-inline: auto;
+        padding: var(--ui-space-xl) var(--ui-space-md);
+        display: grid;
+        gap: var(--ui-space-3xl);
+      }
+      h1 {
+        font-size: var(--ui-text-4xl);
+        font-weight: var(--ui-weight-bold);
+        letter-spacing: var(--ui-tracking-tight);
+        line-height: var(--ui-leading-tight);
+      }
+      h2 {
+        font-size: var(--ui-text-2xl);
+        font-weight: var(--ui-weight-semibold);
+        line-height: var(--ui-leading-tight);
+        margin-bottom: var(--ui-space-xs);
+      }
+      .demo-panel > h3,
+      .demo-band h3 {
+        font-size: var(--ui-text-sm);
+        font-weight: var(--ui-weight-semibold);
+        color: var(--ui-color-text-muted);
+      }
+      section > p,
+      header > p {
+        color: var(--ui-color-text-muted);
+        max-width: 40rem;
+        margin-bottom: var(--ui-space-lg);
+      }
+      code {
+        font-family: var(--ui-font-code);
+        font-size: var(--ui-text-xs);
+      }
+      pre {
+        font-family: var(--ui-font-code);
+        font-size: var(--ui-text-xs);
+        background: var(--ui-color-surface-sunken);
+        border: var(--ui-border-width) solid var(--ui-color-border);
+        border-radius: var(--ui-radius-md);
+        padding: var(--ui-space-md);
+        overflow-x: auto;
+        max-width: 40rem;
+      }
+
+      .demo-pair {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr));
+        border: var(--ui-border-width) solid var(--ui-color-border-strong);
+        border-radius: var(--ui-radius-lg);
+        overflow: hidden;
+      }
+      .demo-panel {
+        background: var(--ui-color-bg);
+        color: var(--ui-color-text);
+        padding: var(--ui-space-lg);
+        display: grid;
+        gap: var(--ui-space-lg);
+        align-content: start;
+      }
+      .demo-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(min(100%, 10.5rem), 1fr));
+        gap: var(--ui-space-md);
+        align-items: stretch;
+      }
+
+      /* Coloured shapes behind the cards, so glass has something to show through. */
+      .demo-backdrop {
+        position: relative;
+        isolation: isolate;
+        border-radius: var(--ui-radius-lg);
+        background: var(--ui-color-surface);
+        padding: var(--ui-space-md);
+        overflow: hidden;
+      }
+      .demo-backdrop::before,
+      .demo-backdrop::after {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        border-radius: var(--ui-radius-full);
+      }
+      .demo-backdrop::before {
+        width: 40%;
+        aspect-ratio: 1;
+        top: 10%;
+        left: 12%;
+        background: var(--ui-color-info);
+      }
+      .demo-backdrop::after {
+        width: 28%;
+        aspect-ratio: 1;
+        top: 30%;
+        right: 18%;
+        background: var(--ui-color-warning);
+      }
+
+      /* A header band for the overlap demo. */
+      .demo-band {
+        background: var(--ui-color-accent-soft);
+        border-radius: var(--ui-radius-lg);
+        padding: var(--ui-space-lg) var(--ui-space-lg) calc(var(--ui-overlap) + var(--ui-space-lg));
+      }
+      .demo-band p {
+        color: var(--ui-color-text-muted);
+        font-size: var(--ui-text-sm);
+      }
+      .demo-focus {
+        margin-inline: var(--ui-space-lg);
+        max-width: 22rem;
+      }
+    </style>
+  </head>
+  <body>
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+      <!-- Demo icons, filled. Melui ships none: bring your own. -->
+      <symbol id="i-fish" viewBox="0 0 24 24"><path d="M2 12c2.6-4.6 8.4-6.4 13.4-3.4L20 5v14l-4.6-3.6C10.4 18.4 4.6 16.6 2 12Zm6.5-1.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z" /></symbol>
+      <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M21 3C10 3 4 8 4 15.5c0 1.6.4 3 1 4.5 1-5 4.6-8.6 9.5-10-4 2.4-6.8 5.6-7.8 9.6C17.4 20.4 21 13 21 3Z" /></symbol>
+      <symbol id="i-sun" viewBox="0 0 24 24"><path d="M12 6.5a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11ZM11 1h2v3.5h-2zM11 19.5h2V23h-2zM1 11h3.5v2H1zM19.5 11H23v2h-3.5zM4.2 5.6l1.4-1.4 2.5 2.5-1.4 1.4zM15.9 17.3l1.4-1.4 2.5 2.5-1.4 1.4zM4.2 18.4l2.5-2.5 1.4 1.4-2.5 2.5zM15.9 6.7l2.5-2.5 1.4 1.4-2.5 2.5z" /></symbol>
+      <symbol id="i-open" viewBox="0 0 24 24"><path d="M5 11h10.2l-4.6-4.6L12 5l7 7-7 7-1.4-1.4 4.6-4.6H5z" /></symbol>
+      <symbol id="i-save" viewBox="0 0 24 24"><path d="M6 2h12a1 1 0 0 1 1 1v19l-7-4.5L5 22V3a1 1 0 0 1 1-1Z" /></symbol>
+    </svg>
+
+    <header>
+      <h1>Card</h1>
+      <p>
+        A raised piece of solid by default. The symbol leads, then a title,
+        short text and actions at the end. Material and elevation are
+        separate classes, so any card can be any material at any height.
+      </p>
+      <pre><code>&lt;article class="ui-card"&gt;
+  &lt;div class="ui-card-symbol"&gt;&lt;svg&gt;…&lt;/svg&gt;&lt;/div&gt;
+  &lt;h3 class="ui-card-title"&gt;Koi&lt;/h3&gt;
+  &lt;p class="ui-card-text"&gt;…&lt;/p&gt;
+  &lt;div class="ui-card-actions"&gt;…&lt;/div&gt;
+&lt;/article&gt;</code></pre>
+    </header>
+
+    <section>
+      <h2>Parts</h2>
+      <p>
+        An icon card, a picture card (the picture bleeds to the edges) and a
+        whole-card link. Hover or tab to the link: it lifts one level, and
+        sinks to the surface while pressed.
+      </p>
+      <template id="parts">
+        <div class="demo-cards">
+          <article class="ui-card">
+            <div class="ui-card-symbol"><svg><use href="#i-fish" /></svg></div>
+            <h3 class="ui-card-title">Koi</h3>
+            <p class="ui-card-text">Calm water, slow colour. Fed twice a day.</p>
+            <div class="ui-card-actions">
+              <a class="ui-button ui-button-sm" href="#"><svg><use href="#i-open" /></svg>Open</a>
+              <a class="ui-button ui-button-sm" href="#"><svg><use href="#i-save" /></svg>Save</a>
+            </div>
+          </article>
+          <article class="ui-card">
+            <img class="ui-card-symbol" width="400" height="200" alt="" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%238FB1BE'/%3E%3Cpath d='M0 120c60-30 120-30 200 0s140 30 200 0v80H0z' fill='%23A0CBAD'/%3E%3Cpath d='M0 150c70-20 130-20 200 0s130 20 200 0v50H0z' fill='%2300012A'/%3E%3Ccircle cx='300' cy='60' r='28' fill='%23FCC560'/%3E%3Cpath d='M90 80c12-12 34-14 50-4l12-8v28l-12-8c-16 10-38 8-50-8z' fill='%23D53302'/%3E%3C/svg%3E" />
+            <h3 class="ui-card-title">Pond</h3>
+            <p class="ui-card-text">Sage reeds, dusty water.</p>
+            <div class="ui-card-actions">
+              <a class="ui-button ui-button-sm" href="#"><svg><use href="#i-open" /></svg>Visit</a>
+            </div>
+          </article>
+          <a class="ui-card" href="#">
+            <div class="ui-card-symbol"><svg><use href="#i-leaf" /></svg></div>
+            <h3 class="ui-card-title">Garden</h3>
+            <p class="ui-card-text">The whole card is a link. Hover to lift.</p>
+          </a>
+        </div>
+      </template>
+      <div class="demo-pair">
+        <div class="demo-panel" data-theme="light" data-fill="parts"></div>
+        <div class="demo-panel" data-theme="dark" data-fill="parts"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Materials</h2>
+      <p>
+        The same raised card in each material: <code>ui-material-solid</code>
+        (default), <code>-glass</code>, <code>-paper</code> and
+        <code>-ink</code>.
+      </p>
+      <template id="materials">
+        <div class="demo-backdrop">
+          <div class="demo-cards" data-materials></div>
+        </div>
+      </template>
+      <div class="demo-pair">
+        <div class="demo-panel" data-theme="light" data-fill="materials"></div>
+        <div class="demo-panel" data-theme="dark" data-fill="materials"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Elevation and states</h2>
+      <p>
+        <code>ui-elevation-&lt;level&gt;</code> sets the height. Selected
+        (<code>aria-current</code>) stays lifted. Disabled
+        (<code>aria-disabled</code>) goes flat and loses its material.
+      </p>
+      <template id="levels">
+        <div class="demo-cards">
+          <a class="ui-card ui-elevation-base" href="#">
+            <div class="ui-card-symbol"><svg><use href="#i-sun" /></svg></div>
+            <h3 class="ui-card-title">Base</h3>
+            <p class="ui-card-text">Flat on the page until hovered.</p>
+          </a>
+          <a class="ui-card" href="#">
+            <div class="ui-card-symbol"><svg><use href="#i-sun" /></svg></div>
+            <h3 class="ui-card-title">Raised</h3>
+            <p class="ui-card-text">The default.</p>
+          </a>
+          <a class="ui-card ui-elevation-floating" href="#">
+            <div class="ui-card-symbol"><svg><use href="#i-sun" /></svg></div>
+            <h3 class="ui-card-title">Floating</h3>
+            <p class="ui-card-text">For the card in focus.</p>
+          </a>
+          <a class="ui-card ui-material-paper" href="#" aria-current="true">
+            <div class="ui-card-symbol"><svg><use href="#i-sun" /></svg></div>
+            <h3 class="ui-card-title">Selected</h3>
+            <p class="ui-card-text">Paper, stays lifted.</p>
+          </a>
+          <a class="ui-card ui-material-paper" aria-disabled="true">
+            <div class="ui-card-symbol"><svg><use href="#i-sun" /></svg></div>
+            <h3 class="ui-card-title">Disabled</h3>
+            <p class="ui-card-text">Paper, flat, no grain.</p>
+          </a>
+        </div>
+      </template>
+      <div class="demo-pair">
+        <div class="demo-panel" data-theme="light" data-fill="levels"></div>
+        <div class="demo-panel" data-theme="dark" data-fill="levels"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Overlap</h2>
+      <p>
+        The card in focus may break out of its container.
+        <code>ui-overlap-start</code> pulls it over the header above by
+        <code>--ui-overlap</code>.
+      </p>
+      <template id="overlap">
+        <div>
+          <div class="demo-band">
+            <h3>Today</h3>
+            <p>Water 18°C · clear</p>
+          </div>
+          <article class="ui-card ui-elevation-floating ui-overlap-start demo-focus">
+            <div class="ui-card-symbol"><svg><use href="#i-fish" /></svg></div>
+            <h3 class="ui-card-title">Feeding at noon</h3>
+            <p class="ui-card-text">The card in focus sits over the header.</p>
+            <div class="ui-card-actions">
+              <a class="ui-button ui-button-sm" href="#"><svg><use href="#i-open" /></svg>Details</a>
+            </div>
+          </article>
+        </div>
+      </template>
+      <div class="demo-pair">
+        <div class="demo-panel" data-theme="light" data-fill="overlap"></div>
+        <div class="demo-panel" data-theme="dark" data-fill="overlap"></div>
+      </div>
+    </section>
+
+    <script>
+      const materials = ["solid", "glass", "paper", "ink"];
+      for (const panel of document.querySelectorAll("[data-fill]")) {
+        panel.insertAdjacentHTML(
+          "beforeend",
+          `<h3>${panel.dataset.theme === "light" ? "Light" : "Dark"}</h3>`,
+        );
+        const content = document
+          .getElementById(panel.dataset.fill)
+          .content.cloneNode(true);
+        const grid = content.querySelector("[data-materials]");
+        if (grid) {
+          for (const m of materials) {
+            grid.insertAdjacentHTML(
+              "beforeend",
+              `<article class="ui-card ui-material-${m}">
+                <div class="ui-card-symbol"><svg><use href="#i-fish" /></svg></div>
+                <h3 class="ui-card-title">${m[0].toUpperCase() + m.slice(1)}</h3>
+                <p class="ui-card-text">Raised, same parts.</p>
+                <div class="ui-card-actions"><a class="ui-button ui-button-sm" href="#"><svg><use href="#i-open" /></svg>Open</a></div>
+              </article>`,
+            );
+          }
+        }
+        panel.append(content);
+      }
+    </script>
+  </body>
+</html>

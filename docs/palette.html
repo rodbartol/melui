@@ -65,7 +65,7 @@
   </head>
   <body data-theme="light">
     <section>
-      <h2>Neutral primitives (chroma 0)</h2>
+      <h2>Neutral primitives (cool, blue hue)</h2>
       <div class="scale" id="scale"></div>
     </section>
     <section>
@@ -115,10 +115,14 @@
         d.innerHTML = `<b>${s.replace("gray-", "")}</b>${hex(d)}`;
       });
       const tokens = [
+        "light-tint",
         "bg",
+        "surface-sunken",
         "surface",
         "surface-raised",
-        "surface-sunken",
+        "surface-floating",
+        "surface-overlay",
+        "surface-top",
         "text",
         "text-muted",
         "text-disabled",

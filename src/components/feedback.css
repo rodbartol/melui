@@ -1,0 +1,302 @@
+/* COMPONENT. Feedback: badge, notice, toast, tooltip, progress.
+   Status variants on badge, notice, toast and progress: -success, -warning, -danger, -info,
+   e.g. ui-badge-success. Without one they're neutral. */
+@layer ui.components {
+  /* ---------- Badge: a short label, flat (it isn't interactive, so it has no height) ---------- */
+  .ui-badge {
+    --_fill: var(--ui-color-accent-soft);
+    --_on: var(--ui-color-text);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ui-space-xs);
+    min-block-size: var(--ui-icon-md);
+    padding-inline: var(--ui-space-sm);
+    border-radius: var(--ui-radius-full);
+    background: var(--_fill);
+    color: var(--_on);
+    font-size: var(--ui-text-xs);
+    font-weight: var(--ui-weight-semibold);
+    line-height: var(--ui-leading-tight);
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+  .ui-badge > svg {
+    flex: none;
+    inline-size: var(--ui-icon-sm);
+    block-size: var(--ui-icon-sm);
+    margin-inline-start: calc(-1 * var(--ui-space-2xs));
+    fill: currentColor;
+  }
+  .ui-badge-success {
+    --_fill: var(--ui-color-success);
+    --_on: var(--ui-color-success-contrast);
+  }
+  .ui-badge-warning {
+    --_fill: var(--ui-color-warning);
+    --_on: var(--ui-color-warning-contrast);
+  }
+  .ui-badge-danger {
+    --_fill: var(--ui-color-danger);
+    --_on: var(--ui-color-danger-contrast);
+  }
+  .ui-badge-info {
+    --_fill: var(--ui-color-info);
+    --_on: var(--ui-color-info-contrast);
+  }
+
+  /* ---------- Notice and toast: symbol on the start side, then title, text, actions ---------- */
+  .ui-notice,
+  .ui-toast {
+    display: grid;
+    grid-template-columns: 1fr;
+    column-gap: var(--ui-space-sm);
+    align-items: start;
+    padding: var(--ui-space-md);
+    border-radius: var(--ui-radius-lg);
+    font-size: var(--ui-text-sm);
+  }
+  :is(.ui-notice, .ui-toast):has(> :is(.ui-notice-symbol, .ui-toast-symbol)) {
+    grid-template-columns: auto 1fr;
+  }
+  :is(.ui-notice, .ui-toast)
+    > :not(:is(.ui-notice-symbol, .ui-toast-symbol)):not(:only-child) {
+    grid-column: -2;
+  }
+  :is(.ui-notice-symbol, .ui-toast-symbol) {
+    grid-row: span 3;
+    inline-size: var(--ui-icon-md);
+    block-size: var(--ui-icon-md);
+    fill: currentColor;
+    color: var(--_ink, inherit);
+  }
+  :is(.ui-notice-title, .ui-toast-title) {
+    font-size: var(--ui-text-md);
+    font-weight: var(--ui-weight-semibold);
+    line-height: var(--ui-leading-tight);
+    padding-block-start: var(--ui-space-2xs);
+  }
+  :is(.ui-notice-text, .ui-toast-text) {
+    margin-block-start: var(--ui-space-2xs);
+  }
+  :is(.ui-notice-actions, .ui-toast-actions) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--ui-space-sm);
+    margin-block-start: var(--ui-space-sm);
+  }
+
+  /* Notice: inline, on the page (base level), in a status's soft colours. All its text is AAA. */
+  .ui-notice {
+    --_soft: var(--ui-color-accent-soft);
+    --_ink: var(--ui-color-text);
+    background: var(--_soft);
+    color: var(--_ink);
+    border: var(--ui-border-width) solid
+      color-mix(in oklch, var(--_ink) 25%, transparent);
+  }
+  .ui-notice-success {
+    --_soft: var(--ui-color-success-soft);
+    --_ink: var(--ui-color-success-text);
+  }
+  .ui-notice-warning {
+    --_soft: var(--ui-color-warning-soft);
+    --_ink: var(--ui-color-warning-text);
+  }
+  .ui-notice-danger {
+    --_soft: var(--ui-color-danger-soft);
+    --_ink: var(--ui-color-danger-text);
+  }
+  .ui-notice-info {
+    --_soft: var(--ui-color-info-soft);
+    --_ink: var(--ui-color-info-text);
+  }
+
+  /* Toast: a short-lived message, solid, at the top level. A status colours only its symbol.
+     <div class="ui-toast" popover="manual"> shows one in the end corner; for several, put
+     plain ui-toast elements in <div class="ui-toasts" popover="manual">. Showing, timing and
+     hiding them is the app's job (showPopover(), hidePopover()). */
+  .ui-toast {
+    /* Default elevation: top. */
+    --_shadow: var(--ui-shadow-top);
+    --_light: var(--ui-light-top);
+    --_z: var(--ui-z-top);
+    --_up-shadow: var(--ui-shadow-top);
+    --_up-light: var(--ui-light-top);
+    --_up-z: var(--ui-z-top);
+    inline-size: min(24rem, 100vw - 2 * var(--ui-space-md));
+  }
+  .ui-toast-success {
+    --_ink: var(--ui-color-success-text);
+  }
+  .ui-toast-warning {
+    --_ink: var(--ui-color-warning-text);
+  }
+  .ui-toast-danger {
+    --_ink: var(--ui-color-danger-text);
+  }
+  .ui-toast-info {
+    --_ink: var(--ui-color-info-text);
+  }
+  .ui-toast[popover],
+  .ui-toasts {
+    position: fixed;
+    inset: auto var(--ui-space-md) var(--ui-space-md) auto;
+    margin: 0;
+  }
+  .ui-toast[popover]:not(:popover-open),
+  .ui-toasts:not(:popover-open) {
+    display: none;
+  }
+  .ui-toasts {
+    flex-direction: column;
+    gap: var(--ui-space-sm);
+    padding: 0;
+    border: 0;
+    background: none;
+    overflow: visible;
+  }
+  .ui-toasts:popover-open {
+    display: flex;
+  }
+  :is(.ui-toast[popover], .ui-toasts > .ui-toast) {
+    animation: ui-toast-in var(--ui-duration-slow) var(--ui-ease-out);
+  }
+  @keyframes ui-toast-in {
+    from {
+      opacity: 0;
+      translate: 0 var(--ui-space-md);
+    }
+  }
+
+  /* ---------- Tooltip: extra detail, never a replacement for a label ----------
+     <span class="ui-tooltip"><button …>…</button><span class="ui-tooltip-text" role="tooltip"
+     id="t">…</span></span>, and aria-describedby="t" on the control. Ink, at the top level.
+     Shows above the control on hover or focus, aligned to its start edge (it never spills
+     past the start of the container); ui-tooltip-below puts it below. */
+  .ui-tooltip {
+    position: relative;
+    display: inline-flex;
+  }
+  .ui-tooltip-text {
+    color-scheme: dark;
+    --ui-mat-fill: var(--ui-material-ink-fill);
+    --ui-mat-edge: var(--ui-material-ink-edge);
+    --ui-mat-texture: none;
+    --ui-mat-grain: 0%;
+    --ui-mat-opacity: 100%;
+    --ui-mat-backdrop: none;
+    --ui-level-light: var(--ui-light-top);
+    position: absolute;
+    inset-block-end: calc(100% + var(--ui-space-xs));
+    inset-inline-start: 0;
+    z-index: var(--ui-z-top);
+    inline-size: max-content;
+    max-inline-size: 16rem;
+    padding: var(--ui-space-xs) var(--ui-space-sm);
+    border-radius: var(--ui-radius-md);
+    /* A small shadow: a top-level one would darken the control right below it. */
+    box-shadow: var(--ui-shadow-floating);
+    font-size: var(--ui-text-xs);
+    font-weight: var(--ui-weight-medium);
+    line-height: var(--ui-leading-normal);
+    white-space: normal;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      opacity var(--ui-duration-fast) var(--ui-ease-out),
+      visibility var(--ui-duration-fast);
+  }
+  .ui-tooltip-below > .ui-tooltip-text {
+    inset-block: calc(100% + var(--ui-space-xs)) auto;
+  }
+  .ui-tooltip:is(:hover, :focus-within) > .ui-tooltip-text {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: var(--ui-tooltip-delay);
+  }
+  /* Keyboard focus shows it at once. */
+  .ui-tooltip:has(:focus-visible) > .ui-tooltip-text {
+    transition-delay: 0s;
+  }
+
+  /* ---------- Progress: a sunken track, filled with the accent ---------- */
+  .ui-progress {
+    --_fill: var(--ui-color-accent-text);
+    appearance: none;
+    display: block;
+    inline-size: 100%;
+    block-size: var(--ui-progress-size);
+    border: 0;
+    border-radius: var(--ui-radius-full);
+    background: var(--ui-color-border);
+    box-shadow: var(--ui-shadow-sunken);
+    color: var(--_fill);
+    overflow: hidden;
+  }
+  .ui-progress::-webkit-progress-bar {
+    background: transparent;
+  }
+  .ui-progress::-webkit-progress-value {
+    background: var(--_fill);
+    border-radius: var(--ui-radius-full);
+    transition: inline-size var(--ui-duration-normal) var(--ui-ease-standard);
+  }
+  .ui-progress::-moz-progress-bar {
+    background: var(--_fill);
+    border-radius: var(--ui-radius-full);
+  }
+  /* Status variants use the -text shades: strong enough (3:1) against the track. */
+  .ui-progress-success {
+    --_fill: var(--ui-color-success-text);
+  }
+  .ui-progress-warning {
+    --_fill: var(--ui-color-warning-text);
+  }
+  .ui-progress-danger {
+    --_fill: var(--ui-color-danger-text);
+  }
+  .ui-progress-info {
+    --_fill: var(--ui-color-info-text);
+  }
+  /* No value: a segment slides along the track. */
+  .ui-progress:indeterminate {
+    background:
+      linear-gradient(90deg, transparent 0 35%, var(--_fill) 35% 65%, transparent 65%)
+        0 0 / 250% 100% no-repeat,
+      var(--ui-color-border);
+    animation: ui-progress-slide calc(var(--ui-duration-slow) * 4) var(--ui-ease-standard)
+      infinite;
+  }
+  .ui-progress:indeterminate::-moz-progress-bar {
+    background: transparent;
+  }
+  @keyframes ui-progress-slide {
+    from {
+      background-position: 100% 0, 0 0;
+    }
+    to {
+      background-position: 0 0, 0 0;
+    }
+  }
+
+  /* High contrast: a notice's edge is solid. */
+  @media (prefers-contrast: more), (forced-colors: active) {
+    .ui-notice {
+      border-color: var(--_ink);
+    }
+  }
+
+  /* Forced colours: give the bar and badge system colours. */
+  @media (forced-colors: active) {
+    .ui-progress::-webkit-progress-value {
+      background: Highlight;
+    }
+    .ui-progress::-moz-progress-bar {
+      background: Highlight;
+    }
+    .ui-badge {
+      border: var(--ui-border-width) solid;
+    }
+  }
+}

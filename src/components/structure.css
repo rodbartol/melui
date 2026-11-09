@@ -1,0 +1,231 @@
+/* COMPONENT. Navigation and structure: tabs, toolbar, list, avatar. (The drawer is in dialog.css.) */
+@layer ui.components {
+  /* ---------- Tabs and segmented control ----------
+     <div class="ui-tabs" role="tablist"> with <button class="ui-tab" role="tab" aria-selected>.
+     A segmented control is the same track: buttons with aria-pressed, or, with no JavaScript,
+     <label class="ui-tab"><input type="radio" name="…" />Day</label>.
+     The track is sunken; tabs are flat until selected, when one stays raised. Switching
+     panels is the app's job. */
+  .ui-tabs {
+    display: inline-flex;
+    gap: var(--ui-space-2xs);
+    max-inline-size: 100%;
+    padding: var(--ui-space-xs);
+    border-radius: var(--ui-radius-lg);
+    background: light-dark(
+      var(--ui-color-accent-soft),
+      var(--ui-color-surface-sunken)
+    );
+    /* An edge, so the track reads on a page of the same colour (dark mode). */
+    border: var(--ui-border-width) solid var(--ui-color-border);
+    box-shadow: var(--ui-shadow-sunken);
+  }
+  .ui-tab {
+    /* Flat at rest; selected, it is raised. It doesn't move: it stays in its track. */
+    --_shadow: var(--ui-shadow-base);
+    --_light: var(--ui-light-base);
+    --_z: var(--ui-z-base);
+    --_up-shadow: var(--ui-shadow-base);
+    --_up-light: var(--ui-light-base);
+    --_up-z: var(--ui-z-base);
+    --_lift: 0px;
+    --ui-state-fill: transparent;
+    --ui-state-edge: transparent;
+    --ui-state-texture: none;
+    --ui-state-backdrop: none;
+    --ui-state-text: var(--ui-color-text-muted);
+
+    position: relative;
+    display: inline-flex;
+    flex: 1 0 auto;
+    align-items: center;
+    justify-content: center;
+    gap: var(--ui-space-xs);
+    min-block-size: calc(var(--ui-control-height-md) - 2 * var(--ui-space-xs));
+    padding-inline: calc(var(--ui-space-sm) + var(--ui-space-xs));
+    border-radius: var(--ui-radius-md);
+    font-size: var(--ui-text-sm);
+    font-weight: var(--ui-weight-medium);
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .ui-tab > svg {
+    flex: none;
+    inline-size: var(--ui-icon-sm);
+    block-size: var(--ui-icon-sm);
+    fill: currentColor;
+  }
+  .ui-tab:hover {
+    --ui-state-text: var(--ui-color-text);
+  }
+  .ui-tab:is(
+      [aria-selected="true"],
+      [aria-pressed="true"],
+      [aria-current]:not([aria-current="false"]),
+      :has(> input:checked)
+    ) {
+    --_up-shadow: var(--ui-shadow-raised);
+    --_up-light: var(--ui-light-raised);
+    --_up-z: var(--ui-z-raised);
+    --ui-state-fill: initial;
+    --ui-state-edge: initial;
+    --ui-state-texture: initial;
+    --ui-state-backdrop: initial;
+    --ui-state-text: initial;
+  }
+  /* A radio or checkbox inside a tab is hidden; the tab shows its state and focus. */
+  .ui-tab > input {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .ui-tab:has(> input:focus-visible) {
+    outline: var(--ui-focus-ring-width) solid var(--ui-color-focus);
+    outline-offset: var(--ui-focus-ring-offset);
+  }
+
+  /* ---------- Toolbar: glass, floating; groups symbol buttons ----------
+     <div class="ui-toolbar" role="toolbar" aria-label="…">, with ui-toolbar-divider between groups. */
+  .ui-toolbar {
+    --_shadow: var(--ui-shadow-floating);
+    --_light: var(--ui-light-floating);
+    --_z: var(--ui-z-floating);
+    --_up-shadow: var(--ui-shadow-floating);
+    --_up-light: var(--ui-light-floating);
+    --_up-z: var(--ui-z-floating);
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--ui-space-xs);
+    inline-size: fit-content;
+    max-inline-size: 100%;
+    padding: var(--ui-space-xs);
+    border-radius: var(--ui-radius-lg);
+  }
+  .ui-toolbar-divider {
+    align-self: stretch;
+    inline-size: var(--ui-border-width);
+    margin-block: var(--ui-space-xs);
+    margin-inline: var(--ui-space-2xs);
+    background: var(--ui-color-border-strong);
+  }
+
+  /* ---------- List: rows with a symbol, a title and text, and actions ----------
+     <ul class="ui-list"> with <li class="ui-list-item"> or, for a row that is a link,
+     <li><a class="ui-list-item" href>. Parts: ui-list-symbol, ui-list-title, ui-list-text,
+     ui-list-actions. Link rows are flat until hovered or focused, then lift to raised. */
+  .ui-list {
+    display: grid;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .ui-list > li:not(:last-child) {
+    border-block-end: var(--ui-border-width) solid var(--ui-color-border);
+  }
+  .ui-list-item {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas:
+      "symbol title actions"
+      "symbol text actions";
+    align-items: center;
+    inline-size: 100%;
+    padding: var(--ui-space-sm);
+    border-radius: var(--ui-radius-md);
+    color: var(--ui-color-text);
+    text-align: start;
+    text-decoration: none;
+  }
+  :is(a, button).ui-list-item {
+    --_shadow: var(--ui-shadow-base);
+    --_light: var(--ui-light-base);
+    --_z: var(--ui-z-base);
+    --_up-shadow: var(--ui-shadow-raised);
+    --_up-light: var(--ui-light-raised);
+    --_up-z: var(--ui-z-raised);
+    --_lift: 0px;
+    --ui-state-fill: transparent;
+    --ui-state-edge: transparent;
+    --ui-state-texture: none;
+    --ui-state-backdrop: none;
+    cursor: pointer;
+  }
+  :is(a, button).ui-list-item:is(
+      :hover,
+      :focus-visible,
+      [aria-current]:not([aria-current="false"]),
+      [aria-selected="true"]
+    ) {
+    --ui-state-fill: initial;
+    --ui-state-edge: initial;
+    --ui-state-texture: initial;
+    --ui-state-backdrop: initial;
+  }
+  .ui-list-symbol {
+    grid-area: symbol;
+    margin-inline-end: var(--ui-space-sm);
+  }
+  svg.ui-list-symbol,
+  .ui-list-symbol > svg {
+    inline-size: var(--ui-icon-md);
+    block-size: var(--ui-icon-md);
+    fill: currentColor;
+  }
+  .ui-list-title {
+    grid-area: title;
+    font-weight: var(--ui-weight-medium);
+    line-height: var(--ui-leading-tight);
+  }
+  .ui-list-text {
+    grid-area: text;
+    color: var(--ui-color-text-muted);
+    font-size: var(--ui-text-sm);
+  }
+  .ui-list-actions {
+    grid-area: actions;
+    display: flex;
+    gap: var(--ui-space-xs);
+    margin-inline-start: var(--ui-space-sm);
+  }
+
+  /* ---------- Avatar: a person as a symbol, solid and raised ----------
+     <img class="ui-avatar" alt="…"> or initials: <span class="ui-avatar" role="img" aria-label="…">KO</span>.
+     Sizes: ui-avatar-sm, ui-avatar-lg. */
+  .ui-avatar {
+    --_shadow: var(--ui-shadow-raised);
+    --_light: var(--ui-light-raised);
+    --_z: var(--ui-z-raised);
+    --_up-shadow: var(--ui-shadow-floating);
+    --_up-light: var(--ui-light-floating);
+    --_up-z: var(--ui-z-floating);
+
+    display: inline-grid;
+    flex: none;
+    place-content: center;
+    inline-size: var(--ui-avatar-md);
+    block-size: var(--ui-avatar-md);
+    border-radius: var(--ui-radius-full);
+    overflow: hidden;
+    object-fit: cover;
+    font-size: var(--ui-text-sm);
+    font-weight: var(--ui-weight-semibold);
+    line-height: 1;
+    text-transform: uppercase;
+    user-select: none;
+  }
+  .ui-avatar-sm {
+    inline-size: var(--ui-avatar-sm);
+    block-size: var(--ui-avatar-sm);
+    font-size: var(--ui-text-xs);
+  }
+  .ui-avatar-lg {
+    inline-size: var(--ui-avatar-lg);
+    block-size: var(--ui-avatar-lg);
+    font-size: var(--ui-text-md);
+  }
+}

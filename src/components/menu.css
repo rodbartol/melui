@@ -1,0 +1,95 @@
+/* COMPONENT. Menu: a solid, floating list that opens below its button. No JavaScript.
+   <details class="ui-menu">
+     <summary class="ui-button">…</summary>
+     <div class="ui-menu-list">
+       <a class="ui-menu-item" href>…</a> or <button class="ui-menu-item">…</button>
+       <hr class="ui-menu-divider" />
+     </div>
+   </details>
+   ui-menu-end opens it aligned to the button's end edge. While open, the button stays lifted.
+   It sits above everything at the floating level, but an ancestor with overflow: hidden clips it.
+   Closing on an outside click or Escape is the app's job. */
+@layer ui.components {
+  .ui-menu {
+    position: relative;
+    display: inline-block;
+  }
+  .ui-menu > summary {
+    list-style: none;
+  }
+  .ui-menu > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .ui-menu-list {
+    /* Default elevation: floating. */
+    --_shadow: var(--ui-shadow-floating);
+    --_light: var(--ui-light-floating);
+    --_z: var(--ui-z-floating);
+    --_up-shadow: var(--ui-shadow-floating);
+    --_up-light: var(--ui-light-floating);
+    --_up-z: var(--ui-z-floating);
+
+    position: absolute;
+    inset-block-start: calc(100% + var(--ui-space-xs));
+    inset-inline-start: 0;
+    display: grid;
+    min-inline-size: max(100%, 12rem);
+    padding: var(--ui-space-xs);
+    border-radius: var(--ui-radius-lg);
+    animation: ui-menu-in var(--ui-duration-normal) var(--ui-ease-out);
+  }
+  .ui-menu-end > .ui-menu-list {
+    inset-inline-start: auto;
+    inset-inline-end: 0;
+  }
+
+  .ui-menu-item {
+    display: flex;
+    align-items: center;
+    gap: var(--ui-space-sm);
+    inline-size: 100%;
+    min-block-size: var(--ui-control-height-sm);
+    padding-inline: var(--ui-space-sm);
+    border-radius: var(--ui-radius-md);
+    color: inherit;
+    font-size: var(--ui-text-sm);
+    text-align: start;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .ui-menu-item > svg {
+    flex: none;
+    inline-size: var(--ui-icon-sm);
+    block-size: var(--ui-icon-sm);
+    fill: currentColor;
+  }
+  /* The item under the pointer or focus is tinted with the text colour, so it works on any material. */
+  .ui-menu-item:is(:hover, :focus-visible) {
+    background: color-mix(in oklch, currentColor 10%, transparent);
+    color: inherit;
+  }
+  .ui-menu-item:focus-visible {
+    outline-offset: calc(-1 * var(--ui-focus-ring-width));
+  }
+  .ui-menu-item:is(:disabled, [aria-disabled="true"]) {
+    background: none;
+    color: var(--ui-color-text-disabled);
+    cursor: not-allowed;
+  }
+
+  .ui-menu-divider {
+    block-size: var(--ui-border-width);
+    margin-block: var(--ui-space-xs);
+    border: 0;
+    background: var(--ui-color-border);
+  }
+
+  @keyframes ui-menu-in {
+    from {
+      opacity: 0;
+      translate: 0 calc(-1 * var(--ui-lift));
+    }
+  }
+}

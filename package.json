@@ -2,7 +2,7 @@
   "name": "melui",
   "version": "0.1.0",
   "description": "A small UI toolkit. Plain CSS.",
-  "style": "./dist/mel.ui.css",
+  "style": "./dist/melui.css",
   "files": [
     "dist",
     "src"

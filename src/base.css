@@ -8,10 +8,10 @@
     background: var(--ui-color-bg);
   }
   a {
-    color: var(--ui-color-accent);
+    color: var(--ui-color-accent-text);
   }
   a:hover {
-    color: var(--ui-color-accent-hover);
+    text-decoration-thickness: var(--ui-border-width-thick);
   }
 
   :focus-visible {

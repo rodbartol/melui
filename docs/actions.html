@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Actions</title>
+    <link rel="stylesheet" href="../src/index.css" />
+    <style>
+      /* Demo page styles only. Everything visual on the components comes from Melui. */
+      body {
+        max-width: 72rem;
+        margin-inline: auto;
+        padding: var(--ui-space-xl) var(--ui-space-md);
+        display: grid;
+        gap: var(--ui-space-3xl);
+      }
+      h1 {
+        font-size: var(--ui-text-4xl);
+        font-weight: var(--ui-weight-bold);
+        letter-spacing: var(--ui-tracking-tight);
+        line-height: var(--ui-leading-tight);
+      }
+      h2 {
+        font-size: var(--ui-text-2xl);
+        font-weight: var(--ui-weight-semibold);
+        line-height: var(--ui-leading-tight);
+        margin-bottom: var(--ui-space-xs);
+      }
+      .demo-panel > h3,
+      .demo-band h3 {
+        font-size: var(--ui-text-sm);
+        font-weight: var(--ui-weight-semibold);
+        color: var(--ui-color-text-muted);
+      }
+      section > p,
+      header > p {
+        color: var(--ui-color-text-muted);
+        max-width: 40rem;
+        margin-bottom: var(--ui-space-lg);
+      }
+      code {
+        font-family: var(--ui-font-code);
+        font-size: var(--ui-text-xs);
+      }
+      pre {
+        font-family: var(--ui-font-code);
+        font-size: var(--ui-text-xs);
+        background: var(--ui-color-surface-sunken);
+        border: var(--ui-border-width) solid var(--ui-color-border);
+        border-radius: var(--ui-radius-md);
+        padding: var(--ui-space-md);
+        overflow-x: auto;
+        max-width: 40rem;
+      }
+
+      .demo-pair {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr));
+        border: var(--ui-border-width) solid var(--ui-color-border-strong);
+        border-radius: var(--ui-radius-lg);
+      }
+      /* No overflow: hidden here, so open menus aren't clipped. */
+      .demo-panel:first-child {
+        border-start-start-radius: inherit;
+        border-end-start-radius: inherit;
+      }
+      .demo-panel:last-child {
+        border-start-end-radius: inherit;
+        border-end-end-radius: inherit;
+      }
+      .demo-panel {
+        background: var(--ui-color-bg);
+        color: var(--ui-color-text);
+        padding: var(--ui-space-lg);
+        display: grid;
+        gap: var(--ui-space-lg);
+        align-content: start;
+      }
+      .demo-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: var(--ui-space-sm);
+      }
+      .demo-menus {
+        min-block-size: 15rem;
+        align-items: start;
+        justify-content: space-between;
+      }
+
+    </style>
+  </head>
+  <body>
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+      <!-- Demo icons, filled. Melui ships none: bring your own. -->
+      <symbol id="i-fish" viewBox="0 0 24 24"><path d="M2 12c2.6-4.6 8.4-6.4 13.4-3.4L20 5v14l-4.6-3.6C10.4 18.4 4.6 16.6 2 12Zm6.5-1.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z" /></symbol>
+      <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M21 3C10 3 4 8 4 15.5c0 1.6.4 3 1 4.5 1-5 4.6-8.6 9.5-10-4 2.4-6.8 5.6-7.8 9.6C17.4 20.4 21 13 21 3Z" /></symbol>
+      <symbol id="i-sun" viewBox="0 0 24 24"><path d="M12 6.5a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11ZM11 1h2v3.5h-2zM11 19.5h2V23h-2zM1 11h3.5v2H1zM19.5 11H23v2h-3.5zM4.2 5.6l1.4-1.4 2.5 2.5-1.4 1.4zM15.9 17.3l1.4-1.4 2.5 2.5-1.4 1.4zM4.2 18.4l2.5-2.5 1.4 1.4-2.5 2.5zM15.9 6.7l2.5-2.5 1.4 1.4-2.5 2.5z" /></symbol>
+      <symbol id="i-open" viewBox="0 0 24 24"><path d="M5 11h10.2l-4.6-4.6L12 5l7 7-7 7-1.4-1.4 4.6-4.6H5z" /></symbol>
+      <symbol id="i-save" viewBox="0 0 24 24"><path d="M6 2h12a1 1 0 0 1 1 1v19l-7-4.5L5 22V3a1 1 0 0 1 1-1Z" /></symbol>
+      <symbol id="i-edit" viewBox="0 0 24 24"><path d="M3 17.3V21h3.7L17.8 9.9l-3.7-3.7zM20.7 7a1 1 0 0 0 0-1.4l-2.3-2.3a1 1 0 0 0-1.4 0l-1.8 1.8 3.7 3.7z" /></symbol>
+      <symbol id="i-copy" viewBox="0 0 24 24"><path d="M8 2h11a2 2 0 0 1 2 2v13h-2V4H8zM4 6h11a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1Z" /></symbol>
+      <symbol id="i-trash" viewBox="0 0 24 24"><path d="M9 2h6l1 2h5v2H3V4h5zM5 8h14l-1 13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1z" /></symbol>
+      <symbol id="i-more" viewBox="0 0 24 24"><path d="M5 10a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm7 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm7 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4Z" /></symbol>
+    </svg>
+
+    <header>
+      <h1>Actions</h1>
+      <p>
+        Symbol buttons, menus and dialogs. Buttons are raised: hover lifts
+        them, press sinks them. A menu floats; a dialog sits at the overlay
+        level and covers everything. No JavaScript: menus use
+        <code>&lt;details&gt;</code>, dialogs open as popovers or with
+        <code>showModal()</code>.
+      </p>
+      <pre><code>&lt;button class="ui-button ui-button-accent"&gt;&lt;svg&gt;…&lt;/svg&gt;Save&lt;/button&gt;
+
+&lt;details class="ui-menu"&gt;
+  &lt;summary class="ui-button"&gt;&lt;svg&gt;…&lt;/svg&gt;More&lt;/summary&gt;
+  &lt;div class="ui-menu-list"&gt;
+    &lt;button class="ui-menu-item"&gt;&lt;svg&gt;…&lt;/svg&gt;Edit&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/details&gt;
+
+&lt;button class="ui-button" popovertarget="d"&gt;Open&lt;/button&gt;
+&lt;dialog class="ui-dialog" popover id="d"&gt;…&lt;/dialog&gt;</code></pre>
+    </header>
+
+    <section>
+      <h2>Symbol button</h2>
+      <p>
+        An icon leads, a short label always follows. Default, accent and
+        danger; small, medium and large; disabled goes flat.
+      </p>
+      <template id="buttons">
+        <div class="demo-row">
+          <button class="ui-button"><svg><use href="#i-edit" /></svg>Edit</button>
+          <button class="ui-button ui-button-accent"><svg><use href="#i-save" /></svg>Save</button>
+          <button class="ui-button ui-button-danger"><svg><use href="#i-trash" /></svg>Delete</button>
+          <a class="ui-button" href="#"><svg><use href="#i-open" /></svg>Link</a>
+          <button class="ui-button" disabled><svg><use href="#i-copy" /></svg>Disabled</button>
+        </div>
+        <div class="demo-row">
+          <button class="ui-button ui-button-sm"><svg><use href="#i-fish" /></svg>Small</button>
+          <button class="ui-button"><svg><use href="#i-fish" /></svg>Medium</button>
+          <button class="ui-button ui-button-lg"><svg><use href="#i-fish" /></svg>Large</button>
+          <button class="ui-button ui-material-glass"><svg><use href="#i-leaf" /></svg>Glass</button>
+          <button class="ui-button ui-material-paper"><svg><use href="#i-leaf" /></svg>Paper</button>
+          <button class="ui-button ui-material-ink"><svg><use href="#i-leaf" /></svg>Ink</button>
+        </div>
+      </template>
+      <div class="demo-pair">
+        <div class="demo-panel" data-theme="light" data-fill="buttons"></div>
+        <div class="demo-panel" data-theme="dark" data-fill="buttons"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Menu</h2>
+      <p>
+        A floating list below its button. While it's open the button stays
+        lifted. <code>ui-menu-end</code> aligns it to the button's end.
+      </p>
+      <template id="menus">
+        <div class="demo-row demo-menus">
+          <details class="ui-menu" data-open>
+            <summary class="ui-button"><svg><use href="#i-more" /></svg>Pond</summary>
+            <div class="ui-menu-list">
+              <button class="ui-menu-item"><svg><use href="#i-edit" /></svg>Rename</button>
+              <button class="ui-menu-item"><svg><use href="#i-copy" /></svg>Duplicate</button>
+              <a class="ui-menu-item" href="#"><svg><use href="#i-open" /></svg>Open map</a>
+              <button class="ui-menu-item" disabled><svg><use href="#i-save" /></svg>Archive</button>
+              <hr class="ui-menu-divider" />
+              <button class="ui-menu-item"><svg><use href="#i-trash" /></svg>Delete</button>
+            </div>
+          </details>
+          <details class="ui-menu ui-menu-end">
+            <summary class="ui-button ui-material-glass"><svg><use href="#i-more" /></svg>Glass</summary>
+            <div class="ui-menu-list ui-material-glass">
+              <button class="ui-menu-item"><svg><use href="#i-edit" /></svg>Rename</button>
+              <button class="ui-menu-item"><svg><use href="#i-copy" /></svg>Duplicate</button>
+            </div>
+          </details>
+        </div>
+      </template>
+      <div class="demo-pair">
+        <div class="demo-panel" data-theme="light" data-fill="menus"></div>
+        <div class="demo-panel" data-theme="dark" data-fill="menus"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Dialog</h2>
+      <p>
+        A card at the overlay level, with the card's parts. The first button
+        opens it as a popover (no JavaScript); the second as a modal with
+        <code>showModal()</code>, which also makes the page behind it inert.
+      </p>
+      <template id="dialogs">
+        <div class="demo-row">
+          <button class="ui-button ui-button-accent" popovertarget="pop"><svg><use href="#i-open" /></svg>Open popover</button>
+          <button class="ui-button" data-modal="modal"><svg><use href="#i-open" /></svg>Open modal</button>
+        </div>
+        <dialog class="ui-dialog" popover id="pop">
+          <div class="ui-dialog-symbol"><svg><use href="#i-fish" /></svg></div>
+          <h3 class="ui-dialog-title">Feed the koi?</h3>
+          <p class="ui-dialog-text">They were last fed four hours ago. Feeding logs the time.</p>
+          <div class="ui-dialog-actions">
+            <button class="ui-button" popovertarget="pop" popovertargetaction="hide">Later</button>
+            <button class="ui-button ui-button-accent" popovertarget="pop" popovertargetaction="hide"><svg><use href="#i-fish" /></svg>Feed</button>
+          </div>
+        </dialog>
+        <dialog class="ui-dialog" id="modal">
+          <form method="dialog">
+            <div class="ui-dialog-symbol"><svg><use href="#i-trash" /></svg></div>
+            <h3 class="ui-dialog-title">Delete this pond?</h3>
+            <p class="ui-dialog-text">Its fish and notes go too. This can't be undone.</p>
+            <div class="ui-dialog-actions">
+              <button class="ui-button" value="cancel">Cancel</button>
+              <button class="ui-button ui-button-danger" value="delete"><svg><use href="#i-trash" /></svg>Delete</button>
+            </div>
+          </form>
+        </dialog>
+      </template>
+      <div class="demo-pair">
+        <div class="demo-panel" data-theme="light" data-fill="dialogs"></div>
+        <div class="demo-panel" data-theme="dark" data-fill="dialogs"></div>
+      </div>
+    </section>
+
+    <script>
+      // Demo only: fill both panels, give each its own ids, open the first menu.
+      for (const panel of document.querySelectorAll("[data-fill]")) {
+        const suffix = "-" + panel.dataset.theme;
+        panel.insertAdjacentHTML(
+          "beforeend",
+          `<h3>${panel.dataset.theme === "light" ? "Light" : "Dark"}</h3>`,
+        );
+        const content = document
+          .getElementById(panel.dataset.fill)
+          .content.cloneNode(true);
+        for (const el of content.querySelectorAll("[id]")) el.id += suffix;
+        for (const el of content.querySelectorAll("[popovertarget]"))
+          el.setAttribute("popovertarget", el.getAttribute("popovertarget") + suffix);
+        for (const el of content.querySelectorAll("[data-modal]"))
+          el.dataset.modal += suffix;
+        for (const el of content.querySelectorAll("[data-open]")) el.open = true;
+        panel.append(content);
+      }
+      // Opening a modal needs one line of JavaScript: the app's job, not Melui's.
+      for (const button of document.querySelectorAll("[data-modal]"))
+        button.addEventListener("click", () =>
+          document.getElementById(button.dataset.modal).showModal(),
+        );
+    </script>
+  </body>
+</html>

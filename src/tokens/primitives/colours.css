@@ -1,69 +1,73 @@
 /* PRIMITIVE. Raw palette. Internal components must never use --ui-ref-* directly. */
 @layer ui.tokens {
-  :root {
+  :root,
+  [data-ui-theme] {
     /* Pure white and black */
     --ui-ref-white: oklch(100% 0 0);
     --ui-ref-black: oklch(0% 0 0);
 
-    /* Gray */
-    --ui-ref-gray-50: oklch(98.5% 0 0);
-    --ui-ref-gray-100: oklch(97% 0 0);
-    --ui-ref-gray-200: oklch(92.5% 0 0);
-    --ui-ref-gray-300: oklch(87% 0 0);
-    --ui-ref-gray-400: oklch(71% 0 0);
-    --ui-ref-gray-500: oklch(55.5% 0 0);
-    --ui-ref-gray-600: oklch(44% 0 0);
-    --ui-ref-gray-700: oklch(37% 0 0);
-    --ui-ref-gray-800: oklch(27% 0 0);
-    --ui-ref-gray-900: oklch(20.5% 0 0);
-    --ui-ref-gray-950: oklch(14.5% 0 0);
+    /* Navy: near-black ink for text on light status fills (Japan Fish #00012A) */
+    --ui-ref-navy: oklch(13.27% 0.0866 264.2);
 
-    /* Blue */
-    --ui-ref-blue-50: oklch(97% 0.02 255);
-    --ui-ref-blue-100: oklch(93% 0.04 255);
-    --ui-ref-blue-200: oklch(87% 0.08 255);
-    --ui-ref-blue-300: oklch(78% 0.12 255);
-    --ui-ref-blue-400: oklch(68% 0.16 255);
-    --ui-ref-blue-500: oklch(58% 0.19 255);
-    --ui-ref-blue-600: oklch(51% 0.19 255);
-    --ui-ref-blue-700: oklch(44% 0.17 255);
-    --ui-ref-blue-800: oklch(37% 0.14 255);
-    --ui-ref-blue-900: oklch(29% 0.1 255);
+    /* Gray: cool, with a faint blue hue (255). */
+    --ui-ref-gray-50: oklch(98.5% 0.003 255);
+    --ui-ref-gray-100: oklch(97% 0.005 255);
+    --ui-ref-gray-200: oklch(92.5% 0.008 255);
+    --ui-ref-gray-300: oklch(87% 0.012 255);
+    --ui-ref-gray-400: oklch(71% 0.016 255);
+    --ui-ref-gray-500: oklch(55.5% 0.018 255);
+    --ui-ref-gray-600: oklch(44% 0.018 255);
+    --ui-ref-gray-700: oklch(37% 0.017 255);
+    --ui-ref-gray-800: oklch(27% 0.015 255);
+    --ui-ref-gray-900: oklch(20.5% 0.012 255);
+    --ui-ref-gray-950: oklch(14.5% 0.01 255);
 
-    /* Green */
-    --ui-ref-green-50: oklch(97% 0.03 150);
-    --ui-ref-green-100: oklch(93% 0.06 150);
-    --ui-ref-green-200: oklch(87% 0.1 150);
-    --ui-ref-green-300: oklch(79% 0.14 150);
-    --ui-ref-green-400: oklch(70% 0.16 150);
-    --ui-ref-green-500: oklch(60% 0.15 150);
-    --ui-ref-green-600: oklch(50% 0.13 150);
-    --ui-ref-green-700: oklch(43% 0.11 150);
-    --ui-ref-green-800: oklch(35% 0.09 150);
-    --ui-ref-green-900: oklch(28% 0.07 150);
+    /* Blue: dusty blue at 400 (Japan Fish #8FB1BE) */
+    --ui-ref-blue-50: oklch(97% 0.012 223.12);
+    --ui-ref-blue-100: oklch(94% 0.022 223.12);
+    --ui-ref-blue-200: oklch(89% 0.036 223.12);
+    --ui-ref-blue-300: oklch(82% 0.033 223.12);
+    --ui-ref-blue-400: oklch(73.96% 0.0415 223.12);
+    --ui-ref-blue-500: oklch(64% 0.041 223.12);
+    --ui-ref-blue-600: oklch(55% 0.041 223.12);
+    --ui-ref-blue-700: oklch(45% 0.035 223.12);
+    --ui-ref-blue-800: oklch(37% 0.04 223.12);
+    --ui-ref-blue-900: oklch(29% 0.036 223.12);
 
-    /* Yellow */
-    --ui-ref-yellow-50: oklch(98% 0.03 95);
-    --ui-ref-yellow-100: oklch(95% 0.07 95);
-    --ui-ref-yellow-200: oklch(91% 0.12 95);
-    --ui-ref-yellow-300: oklch(86% 0.16 95);
-    --ui-ref-yellow-400: oklch(80% 0.17 95);
-    --ui-ref-yellow-500: oklch(74% 0.17 95);
-    --ui-ref-yellow-600: oklch(64% 0.16 95);
-    --ui-ref-yellow-700: oklch(54% 0.14 95);
-    --ui-ref-yellow-800: oklch(45% 0.11 95);
-    --ui-ref-yellow-900: oklch(37% 0.08 95);
+    /* Green: sage at 300 (Japan Fish #A0CBAD) */
+    --ui-ref-green-50: oklch(97% 0.012 154.39);
+    --ui-ref-green-100: oklch(94% 0.022 154.39);
+    --ui-ref-green-200: oklch(89% 0.036 154.39);
+    --ui-ref-green-300: oklch(80.3% 0.062 154.39);
+    --ui-ref-green-400: oklch(72% 0.062 154.39);
+    --ui-ref-green-500: oklch(62% 0.062 154.39);
+    --ui-ref-green-600: oklch(52% 0.062 154.39);
+    --ui-ref-green-700: oklch(43% 0.053 154.39);
+    --ui-ref-green-800: oklch(35% 0.045 154.39);
+    --ui-ref-green-900: oklch(28% 0.037 154.39);
 
-    /* Red */
-    --ui-ref-red-50: oklch(97% 0.02 25);
-    --ui-ref-red-100: oklch(94% 0.04 25);
-    --ui-ref-red-200: oklch(88% 0.08 25);
-    --ui-ref-red-300: oklch(80% 0.12 25);
-    --ui-ref-red-400: oklch(70% 0.17 25);
-    --ui-ref-red-500: oklch(62% 0.21 25);
-    --ui-ref-red-600: oklch(54% 0.21 25);
-    --ui-ref-red-700: oklch(47% 0.18 25);
-    --ui-ref-red-800: oklch(39% 0.14 25);
-    --ui-ref-red-900: oklch(31% 0.1 25);
+    /* Yellow: mustard at 300 (Japan Fish #FCC560) */
+    --ui-ref-yellow-50: oklch(98% 0.018 80.5);
+    --ui-ref-yellow-100: oklch(95.5% 0.04 80.5);
+    --ui-ref-yellow-200: oklch(92% 0.073 80.5);
+    --ui-ref-yellow-300: oklch(85.36% 0.1334 80.5);
+    --ui-ref-yellow-400: oklch(79% 0.133 80.5);
+    --ui-ref-yellow-500: oklch(72% 0.133 80.5);
+    --ui-ref-yellow-600: oklch(63% 0.13 80.5);
+    --ui-ref-yellow-700: oklch(54% 0.112 80.5);
+    --ui-ref-yellow-800: oklch(45% 0.093 80.5);
+    --ui-ref-yellow-900: oklch(37% 0.077 80.5);
+
+    /* Red: vermilion at 600 (Japan Fish #D53302); brick red at 700 for white text */
+    --ui-ref-red-50: oklch(97% 0.015 34.2);
+    --ui-ref-red-100: oklch(94% 0.03 34.2);
+    --ui-ref-red-200: oklch(88% 0.064 34.2);
+    --ui-ref-red-300: oklch(80% 0.116 34.2);
+    --ui-ref-red-400: oklch(72% 0.176 34.2);
+    --ui-ref-red-500: oklch(65% 0.204 34.2);
+    --ui-ref-red-600: oklch(57.2% 0.2037 34.2);
+    --ui-ref-red-700: oklch(47% 0.1685 34.13);
+    --ui-ref-red-800: oklch(38% 0.137 34.2);
+    --ui-ref-red-900: oklch(31% 0.113 34.2);
   }
 }

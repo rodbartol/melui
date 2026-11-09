@@ -1,6 +1,7 @@
 /* SEMANTIC. Typography. */
 @layer ui.tokens {
-  :root {
+  :root,
+  [data-ui-theme] {
     --ui-font-body: var(--ui-ref-font-sans);
     --ui-font-heading: var(--ui-ref-font-sans);
     --ui-font-code: var(--ui-ref-font-mono);

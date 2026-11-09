@@ -1,0 +1,134 @@
+/* MATERIALS. What a component is made of: class="ui-material-<name>".
+   Without a class, a component is made of the default material (--ui-material-default-*:
+   solid, unless a theme picks another). Sits after components.
+   Applies only to the element with the class; children keep their own material.
+   Pairs with elevation: set --ui-level-light: var(--ui-light-<level>) on the same element
+   and, in dark mode, the material catches that much light. */
+@layer ui.materials {
+  /* Shared recipe for every material, including your own ui-material-<name>.
+     Components that are solid by default join this list. */
+  :where(
+      [class*="ui-material-"],
+      .ui-card,
+      .ui-input,
+      .ui-select > select,
+      .ui-choice > input,
+      .ui-button,
+      .ui-menu-list,
+      .ui-dialog,
+      .ui-toast,
+      .ui-tooltip-text,
+      .ui-tab,
+      :is(a, button).ui-list-item,
+      .ui-toolbar,
+      .ui-avatar
+    ) {
+    /* The recipe. Each part comes from a state slot, then the element's material class,
+       then the default material. */
+    --_mfill: var(
+      --ui-state-fill,
+      var(--ui-mat-fill, var(--ui-material-default-fill))
+    );
+    /* Fill lit by the light tint, in dark mode only. */
+    --_lit: color-mix(
+      in oklch,
+      var(--_mfill),
+      light-dark(var(--_mfill), var(--ui-color-light-tint))
+        calc(var(--ui-level-light) * var(--ui-state-catch, 1))
+    );
+    --_grain: var(--ui-mat-grain, var(--ui-material-default-grain));
+    --_reveal: var(--ui-mat-reveal, var(--ui-material-default-reveal));
+    /* The body: the lit fill, see-through by the material's opacity (glass). */
+    --_body: color-mix(
+      in oklab,
+      var(--_lit),
+      transparent
+        calc(
+          100% -
+            var(
+              --ui-state-opacity,
+              var(--ui-mat-opacity, var(--ui-material-default-opacity))
+            )
+        )
+    );
+    /* A veil of fill over the texture: the more see-through, the more texture shows.
+       In dark mode, light reveals more. Text never sits on raw texture.
+       A material with no texture and no veil (glass) sets grain to 100%. */
+    --_veil: light-dark(
+      color-mix(in oklab, var(--_lit), transparent var(--_grain)),
+      color-mix(
+        in oklab,
+        var(--_lit),
+        transparent
+          min(100%, calc(var(--_grain) + var(--ui-level-light) * var(--_reveal)))
+      )
+    );
+
+    color: var(--ui-state-text, var(--ui-color-text));
+    background-color: transparent;
+    background-image:
+      linear-gradient(var(--_veil), var(--_veil)),
+      var(
+        --ui-state-texture,
+        var(--ui-mat-texture, var(--ui-material-default-texture))
+      ),
+      linear-gradient(var(--_body), var(--_body));
+    --_backdrop: var(
+      --ui-state-backdrop,
+      var(--ui-mat-backdrop, var(--ui-material-default-backdrop))
+    );
+    -webkit-backdrop-filter: var(--_backdrop);
+    backdrop-filter: var(--_backdrop);
+    border: var(--ui-border-width) solid
+      var(
+        --ui-state-edge,
+        var(--ui-mat-edge, var(--ui-material-default-edge))
+      );
+  }
+
+  /* Each material sets the whole recipe, so it holds whatever the default material is. */
+  .ui-material-solid {
+    --ui-mat-fill: var(--ui-material-solid-fill);
+    --ui-mat-edge: var(--ui-material-solid-edge);
+    --ui-mat-texture: none;
+    --ui-mat-grain: 0%;
+    --ui-mat-reveal: 0;
+    --ui-mat-opacity: 100%;
+    --ui-mat-backdrop: none;
+  }
+
+  .ui-material-paper {
+    --ui-mat-fill: var(--ui-material-paper-fill);
+    --ui-mat-edge: var(--ui-material-paper-edge);
+    --ui-mat-texture: var(--ui-material-paper-texture);
+    --ui-mat-grain: var(--ui-material-paper-grain);
+    --ui-mat-reveal: var(--ui-material-paper-reveal);
+    --ui-mat-opacity: 100%;
+    --ui-mat-backdrop: none;
+  }
+
+  /* Ink is a piece of dark mode: everything inside it uses the dark tokens. */
+  .ui-material-ink {
+    color-scheme: dark;
+    --ui-mat-fill: var(--ui-material-ink-fill);
+    --ui-mat-edge: var(--ui-material-ink-edge);
+    --ui-mat-texture: none;
+    --ui-mat-grain: 0%;
+    --ui-mat-reveal: 0;
+    --ui-mat-opacity: 100%;
+    --ui-mat-backdrop: none;
+  }
+
+  /* Glass: see-through and blurred at every height, light or not. The toolbar is glass by
+     default. Where blur isn't available, the user asks for less transparency, or in high
+     contrast, the glass tokens make it solid (see the tokens file). */
+  :is(.ui-material-glass, .ui-toolbar:not([class*="ui-material-"])) {
+    --ui-mat-fill: var(--ui-material-glass-fill);
+    --ui-mat-edge: var(--ui-material-glass-edge);
+    --ui-mat-texture: none;
+    --ui-mat-grain: 100%;
+    --ui-mat-reveal: 0;
+    --ui-mat-opacity: var(--ui-material-glass-opacity);
+    --ui-mat-backdrop: var(--ui-material-glass-backdrop);
+  }
+}
