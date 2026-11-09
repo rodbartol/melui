@@ -169,7 +169,7 @@
     }
   }
 
-  /* ---------- Tooltip: extra detail, never a replacement for a label ----------
+  /* ---------- Tooltip: extra detail, or the name of a symbol-only control ----------
      <span class="ui-tooltip"><button …>…</button><span class="ui-tooltip-text" role="tooltip"
      id="t">…</span></span>, and aria-describedby="t" on the control. Ink, at the top level.
      Shows above the control on hover or focus, aligned to its start edge (it never spills

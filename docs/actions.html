@@ -121,7 +121,7 @@
 
     <section>
       <h2>Symbol button</h2>
-      <p>Icon first, short label after.</p>
+      <p>Icon first. Label optional.</p>
       <template id="buttons">
         <div class="demo-row">
           <button class="ui-button"><svg><use href="#i-edit" /></svg>Edit</button>
@@ -137,6 +137,13 @@
           <button class="ui-button ui-material-glass"><svg><use href="#i-leaf" /></svg>Glass</button>
           <button class="ui-button ui-material-paper"><svg><use href="#i-leaf" /></svg>Paper</button>
           <button class="ui-button ui-material-ink"><svg><use href="#i-leaf" /></svg>Ink</button>
+        </div>
+        <div class="demo-row">
+          <button class="ui-button ui-button-icon ui-button-sm" aria-label="Edit"><svg><use href="#i-edit" /></svg></button>
+          <button class="ui-button ui-button-icon" aria-label="Copy"><svg><use href="#i-copy" /></svg></button>
+          <button class="ui-button ui-button-icon ui-button-accent" aria-label="Save"><svg><use href="#i-save" /></svg></button>
+          <button class="ui-button ui-button-icon ui-button-danger" aria-label="Delete"><svg><use href="#i-trash" /></svg></button>
+          <button class="ui-button ui-button-icon ui-button-lg ui-material-glass" aria-label="Fish"><svg><use href="#i-fish" /></svg></button>
         </div>
       </template>
       <div class="demo-pair">

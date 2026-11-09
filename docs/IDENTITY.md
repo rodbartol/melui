@@ -30,7 +30,7 @@ Symbols carry the message.
 
 - Icons, images, materials and arrangement speak first.
 - Type is limited: four sizes, two weights.
-- Labels are short, but always there.
+- Labels are optional. Your call.
 - Icons are filled.
 
 ## Bring your own
