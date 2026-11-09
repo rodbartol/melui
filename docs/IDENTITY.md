@@ -1,5 +1,7 @@
 # Identity
 
+**Depth. Material. Symbol. Bring your own.**
+
 Melui is plain CSS. Neutral, so your product shows.
 
 ## Depth
@@ -22,20 +24,24 @@ Surfaces are material.
 - Ink: dark and bold.
 - Make your own.
 
-## Symbols
+## Symbol
 
 Symbols carry the message.
 
 - Icons, images, materials and arrangement speak first.
 - Type is limited: four sizes, two weights.
 - Labels are short, but always there.
-- Icons are filled. Bring your own.
+- Icons are filled.
 
-## Themes
+## Bring your own
 
-Themes carry your CI: colours and font. Nothing else.
+Melui brings depth, material and symbol. You bring the rest.
 
-Depth, material and symbols stay Melui's.
+- Your colours.
+- Your font.
+- Your icons.
+
+A theme is your CI: colours and font. Nothing else.
 
 ## Rules
 

@@ -1,6 +1,8 @@
 # Melui
 
-Plain CSS. Depth, material, symbols.
+**Depth. Material. Symbol. Bring your own.**
+
+Plain CSS.
 
 ## Use
 
