@@ -1,6 +1,6 @@
-/* COMPONENT. Feedback: badge, notice, toast, tooltip, progress.
+/* COMPONENT. Feedback: badge, indicator, notice, toast, tooltip, progress, skeleton, spinner.
    Status variants on badge, notice, toast and progress: -success, -warning, -danger, -info,
-   e.g. ui-badge-success. Without one they're neutral. */
+   e.g. ui-badge-success. Without one they're neutral. ui-badge-accent takes the accent fill. */
 @layer ui.components {
   /* ---------- Badge: a short label, flat (it isn't interactive, so it has no height) ---------- */
   .ui-badge {
@@ -42,6 +42,34 @@
   .ui-badge-info {
     --_fill: var(--ui-color-info);
     --_on: var(--ui-color-info-contrast);
+  }
+  .ui-badge-accent {
+    --_fill: var(--ui-color-accent);
+    --_on: var(--ui-color-accent-contrast);
+  }
+
+  /* ---------- Indicator: pins a badge to a symbol's end corner ----------
+     <span class="ui-indicator"><button …>…</button><span class="ui-badge ui-indicator-item">3</span></span>,
+     or ui-indicator on the button itself. The badge shrinks to a count. */
+  .ui-indicator {
+    position: relative;
+    display: inline-flex;
+  }
+  .ui-indicator-item {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-end: 0;
+    z-index: var(--ui-z-floating);
+    min-inline-size: calc(var(--ui-icon-sm) + var(--ui-space-xs));
+    min-block-size: calc(var(--ui-icon-sm) + var(--ui-space-xs));
+    justify-content: center;
+    padding-inline: var(--ui-space-xs);
+    font-size: 0.75rem;
+    translate: 35% -35%;
+    pointer-events: none;
+  }
+  .ui-indicator-item:dir(rtl) {
+    translate: -35% -35%;
   }
 
   /* ---------- Notice and toast: symbol on the start side, then title, text, actions ---------- */
@@ -173,7 +201,9 @@
      <span class="ui-tooltip"><button …>…</button><span class="ui-tooltip-text" role="tooltip"
      id="t">…</span></span>, and aria-describedby="t" on the control. Ink, at the top level.
      Shows above the control on hover or focus, aligned to its start edge (it never spills
-     past the start of the container); ui-tooltip-below puts it below. */
+     past the start of the container); ui-tooltip-below puts it below. ui-tooltip-end aligns
+     it to the end edge (near the end of a bar), ui-tooltip-center centres it.
+     ui-tooltip-interactive lets the pointer travel into it, so it can hold a link. */
   .ui-tooltip {
     position: relative;
     display: inline-flex;
@@ -210,6 +240,31 @@
   }
   .ui-tooltip-below > .ui-tooltip-text {
     inset-block: calc(100% + var(--ui-space-xs)) auto;
+  }
+  .ui-tooltip-end > .ui-tooltip-text {
+    inset-inline: auto 0;
+  }
+  .ui-tooltip-center > .ui-tooltip-text {
+    inset-inline-start: 50%;
+    translate: -50% 0;
+  }
+  .ui-tooltip-center:dir(rtl) > .ui-tooltip-text {
+    translate: 50% 0;
+  }
+  .ui-tooltip-text :is(a, button) {
+    color: inherit;
+    font-weight: var(--ui-weight-bold);
+    text-decoration: underline;
+  }
+  /* Interactive: it takes the pointer while shown, and a pad bridges the gap to the control. */
+  .ui-tooltip-interactive > .ui-tooltip-text::before {
+    content: "";
+    position: absolute;
+    inset: calc(-1 * var(--ui-space-sm)) 0;
+    z-index: -1;
+  }
+  .ui-tooltip-interactive:is(:hover, :focus-within) > .ui-tooltip-text {
+    pointer-events: auto;
   }
   .ui-tooltip:is(:hover, :focus-within) > .ui-tooltip-text {
     opacity: 1;
@@ -298,6 +353,68 @@
     }
     .ui-badge {
       border: var(--ui-border-width) solid;
+    }
+  }
+
+  /* ---------- Skeleton: a sunken placeholder while content loads ----------
+     <div class="ui-skeleton" aria-hidden="true"> sized by the app. A faint tint of the text
+     colour, so it works on any material, with a slow shimmer that stops for reduced motion. */
+  .ui-skeleton {
+    display: block;
+    border-radius: var(--ui-radius-md);
+    background-color: color-mix(in oklab, var(--ui-color-text) 8%, transparent);
+    background-image: linear-gradient(
+      105deg,
+      transparent 0% 40%,
+      color-mix(in oklab, var(--ui-color-surface) 35%, transparent) 50%,
+      transparent 60% 100%
+    );
+    background-size: 250% 100%;
+    background-repeat: no-repeat;
+    box-shadow: var(--ui-shadow-sunken);
+    animation: ui-skeleton-shimmer 1.6s linear infinite;
+  }
+  @keyframes ui-skeleton-shimmer {
+    from {
+      background-position: 100% 0;
+    }
+    to {
+      background-position: -50% 0;
+    }
+  }
+
+  /* ---------- Spinner: an indeterminate ring in the current colour ----------
+     <span class="ui-spinner" role="status" aria-label="Loading"></span>, or aria-hidden next
+     to a label (in a ui-button, say). ui-spinner-md is the larger size. It keeps turning
+     under reduced motion, slower: it says that something is happening. */
+  .ui-spinner {
+    display: inline-block;
+    flex: none;
+    inline-size: var(--ui-icon-sm);
+    block-size: var(--ui-icon-sm);
+    border: var(--ui-border-width-thick) solid currentColor;
+    border-inline-end-color: transparent;
+    border-radius: var(--ui-radius-full);
+    vertical-align: middle;
+    animation: ui-spin 0.8s linear infinite;
+  }
+  .ui-spinner-md {
+    inline-size: var(--ui-icon-md);
+    block-size: var(--ui-icon-md);
+    border-width: calc(var(--ui-border-width-thick) * 1.5);
+  }
+  @keyframes ui-spin {
+    to {
+      rotate: 1turn;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ui-skeleton {
+      animation: none;
+    }
+    .ui-spinner {
+      animation-duration: 2.4s;
     }
   }
 }

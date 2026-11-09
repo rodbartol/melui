@@ -179,6 +179,66 @@
       </div>
     </section>
 
+    <section>
+      <h2>Symbol in a field</h2>
+      <p>A symbol leads; a clear button can end it.</p>
+      <template id="groups">
+        <div class="demo-form">
+          <label class="ui-field">
+            <span class="ui-field-label">Search</span>
+            <span class="ui-input-group">
+              <svg viewBox="0 0 24 24"><path d="M10 3a7 7 0 0 1 5.6 11.2l5.1 5.1-1.4 1.4-5.1-5.1A7 7 0 1 1 10 3Zm0 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10Z" /></svg>
+              <input class="ui-input ui-input-round" type="search" placeholder="Koi, lilies, ponds" />
+            </span>
+          </label>
+          <label class="ui-field">
+            <span class="ui-field-label">Filter</span>
+            <span class="ui-input-group">
+              <svg viewBox="0 0 24 24"><path d="M10 3a7 7 0 0 1 5.6 11.2l5.1 5.1-1.4 1.4-5.1-5.1A7 7 0 1 1 10 3Zm0 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10Z" /></svg>
+              <input class="ui-input" value="koi" />
+              <button class="ui-input-end ui-button ui-button-flat ui-button-icon ui-button-round ui-button-sm" aria-label="Clear"><svg viewBox="0 0 24 24"><path d="m6.4 5 5.6 5.6L17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6L6.4 19 5 17.6l5.6-5.6L5 6.4z" /></svg></button>
+            </span>
+          </label>
+          <label class="ui-field">
+            <span class="ui-field-label">Pond</span>
+            <span class="ui-input-group">
+              <svg viewBox="0 0 24 24"><path d="M10 3a7 7 0 0 1 5.6 11.2l5.1 5.1-1.4 1.4-5.1-5.1A7 7 0 1 1 10 3Zm0 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10Z" /></svg>
+              <span class="ui-select"><select><option>Koi pond</option><option>Lily pond</option></select></span>
+            </span>
+          </label>
+        </div>
+      </template>
+      <div class="demo-pair">
+        <div class="demo-panel" data-theme="light" data-fill="groups"></div>
+        <div class="demo-panel" data-theme="dark" data-fill="groups"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Range</h2>
+      <p>A sunken track, filled; the thumb lifts.</p>
+      <template id="ranges">
+        <div class="demo-form">
+          <label class="ui-field">
+            <span class="ui-field-label">Flow</span>
+            <input class="ui-range" type="range" value="40" style="--ui-range-fill: 40%" />
+          </label>
+          <label class="ui-field">
+            <span class="ui-field-label">Light</span>
+            <input class="ui-range" type="range" value="75" style="--ui-range-fill: 75%" />
+          </label>
+          <label class="ui-field">
+            <span class="ui-field-label">Heater (off)</span>
+            <input class="ui-range" type="range" value="20" style="--ui-range-fill: 20%" disabled />
+          </label>
+        </div>
+      </template>
+      <div class="demo-pair">
+        <div class="demo-panel" data-theme="light" data-fill="ranges"></div>
+        <div class="demo-panel" data-theme="dark" data-fill="ranges"></div>
+      </div>
+    </section>
+
     <script>
       for (const panel of document.querySelectorAll("[data-fill]")) {
         const suffix = "-" + panel.dataset.theme;

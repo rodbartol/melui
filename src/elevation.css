@@ -69,7 +69,7 @@
       .ui-select > select,
       .ui-choice > input,
       .ui-button,
-      .ui-menu-list,
+      .ui-menu-list, .ui-popover-panel,
       .ui-dialog,
       .ui-toast,
       .ui-tab,
@@ -90,22 +90,22 @@
      publishes its total (--_l0 to --_l2) for the next, up to four surfaces deep.
      Dialogs and popovers live in the top layer, so they start again from zero.
      Light never exceeds the top level's, where every text colour is checked for AAA. */
-  :where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar):not(:where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar) *) {
+  :where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-popover-panel, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar):not(:where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-popover-panel, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar) *) {
     --_base: 0%;
     --_l0: calc(var(--_base) + var(--_light));
   }
-  :where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar) :where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar):not(:where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar) :where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar) *) {
+  :where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-popover-panel, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar) :where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-popover-panel, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar):not(:where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-popover-panel, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar) :where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-popover-panel, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar) *) {
     --_base: var(--_l0);
     --_l1: calc(var(--_base) + var(--_light));
   }
-  :where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar) :where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar) :where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar):not(:where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar) :where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar) :where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar) *) {
+  :where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-popover-panel, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar) :where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-popover-panel, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar) :where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-popover-panel, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar):not(:where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-popover-panel, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar) :where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-popover-panel, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar) :where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-popover-panel, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar) *) {
     --_base: var(--_l1);
     --_l2: calc(var(--_base) + var(--_light));
   }
-  :where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar) :where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar) :where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar) :where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar) {
+  :where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-popover-panel, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar) :where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-popover-panel, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar) :where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-popover-panel, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar) :where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-popover-panel, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar) {
     --_base: var(--_l2);
   }
-  :where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar):where(dialog, [popover]) {
+  :where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-popover-panel, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar):where(dialog, [popover]) {
     --_base: 0%;
   }
 
@@ -117,7 +117,7 @@
       .ui-select > select,
       .ui-choice > input,
       .ui-button,
-      .ui-menu-list,
+      .ui-menu-list, .ui-popover-panel,
       .ui-dialog,
       .ui-toast,
       .ui-tab,
@@ -132,7 +132,7 @@
       .ui-select > select,
       .ui-choice > input,
       .ui-button,
-      .ui-menu-list,
+      .ui-menu-list, .ui-popover-panel,
       .ui-dialog,
       .ui-toast,
       .ui-tab,
@@ -160,7 +160,7 @@
       .ui-select > select,
       .ui-choice > input,
       .ui-button,
-      .ui-menu-list,
+      .ui-menu-list, .ui-popover-panel,
       .ui-dialog,
       .ui-toast,
       .ui-tab,
@@ -181,7 +181,7 @@
       .ui-select > select,
       .ui-choice > input,
       .ui-button,
-      .ui-menu-list,
+      .ui-menu-list, .ui-popover-panel,
       .ui-dialog,
       .ui-toast,
       .ui-tab,
@@ -202,7 +202,7 @@
       .ui-select > select,
       .ui-choice > input,
       .ui-button,
-      .ui-menu-list,
+      .ui-menu-list, .ui-popover-panel,
       .ui-dialog,
       .ui-toast,
       .ui-tab,
@@ -233,7 +233,7 @@
       .ui-select > select,
       .ui-choice > input,
       .ui-button,
-      .ui-menu-list,
+      .ui-menu-list, .ui-popover-panel,
       .ui-dialog,
       .ui-toast,
       .ui-tab,

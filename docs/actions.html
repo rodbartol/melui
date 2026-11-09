@@ -227,6 +227,30 @@
       </div>
     </section>
 
+    <section>
+      <h2>Popover</h2>
+      <p>A small card that holds actions.</p>
+      <template id="popovers">
+        <div class="demo-row demo-menus">
+          <div class="ui-popover">
+            <button class="ui-button ui-button-flat" aria-expanded="true"><svg><use href="#i-fish" /></svg>Koi</button>
+            <div class="ui-popover-panel">
+              <strong>Koi</strong>
+              <span>Twelve fish, fed at noon.</span>
+              <div class="ui-cluster">
+                <button class="ui-button ui-button-accent ui-button-sm">Follow</button>
+                <button class="ui-button ui-button-sm">Open</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </template>
+      <div class="demo-pair">
+        <div class="demo-panel" data-theme="light" data-fill="popovers"></div>
+        <div class="demo-panel" data-theme="dark" data-fill="popovers"></div>
+      </div>
+    </section>
+
     <script>
       // Demo only: fill both panels, give each its own ids, open the first menu.
       for (const panel of document.querySelectorAll("[data-fill]")) {

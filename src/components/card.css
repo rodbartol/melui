@@ -78,3 +78,52 @@
     padding-block-start: var(--ui-space-xs);
   }
 }
+
+/* Empty: what a list or page says when there is nothing in it. Centred, flat, on the page.
+   <div class="ui-empty">: ui-empty-symbol (a sunken circle with an icon), ui-empty-title,
+   ui-empty-text, ui-empty-actions. */
+@layer ui.components {
+  .ui-empty {
+    display: grid;
+    justify-items: center;
+    gap: var(--ui-space-sm);
+    padding: var(--ui-space-2xl) var(--ui-space-lg);
+    text-align: center;
+  }
+  .ui-empty-symbol {
+    display: grid;
+    place-content: center;
+    inline-size: calc(var(--ui-icon-md) * 2.25);
+    block-size: calc(var(--ui-icon-md) * 2.25);
+    margin-block-end: var(--ui-space-sm);
+    border-radius: var(--ui-radius-full);
+    border: var(--ui-border-width) solid var(--ui-color-border);
+    background: var(--ui-color-surface-sunken);
+    box-shadow: var(--ui-shadow-sunken);
+    color: var(--ui-color-text-muted);
+  }
+  .ui-empty-symbol > svg {
+    inline-size: var(--ui-icon-md);
+    block-size: var(--ui-icon-md);
+    fill: currentColor;
+  }
+  .ui-empty-title {
+    margin: 0;
+    font-size: var(--ui-text-md);
+    font-weight: var(--ui-weight-bold);
+    line-height: var(--ui-leading-tight);
+  }
+  .ui-empty-text {
+    max-inline-size: 24rem;
+    margin: 0;
+    color: var(--ui-color-text-muted);
+    font-size: var(--ui-text-sm);
+  }
+  .ui-empty-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--ui-space-sm);
+    margin-block-start: var(--ui-space-md);
+  }
+}
