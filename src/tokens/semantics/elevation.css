@@ -1,24 +1,67 @@
-/* SEMANTIC. Shadows and stacking order. */
+/* SEMANTIC. Elevation: six named levels on the Z axis, low to high.
+   Each level sets its stacking order, shadow and light (how much light falls on it in dark mode).
+   Its solid surface colour is --ui-color-surface-<level>; for materials, put
+   --ui-level-light: var(--ui-light-<level>) on the element.
+   Never use a raw z-index or a shadow outside these levels.
+   Higher = larger, softer shadow. Shadows remain in dark mode, where surfaces also brighten. */
 @layer ui.tokens {
-  :root {
+  :root,
+  [data-ui-theme] {
     --ui-shadow-color: light-dark(
-      oklch(20% 0.02 260 / 0.1),
-      oklch(0% 0 0 / 0.45)
+      oklch(20% 0.02 255 / 0.12),
+      oklch(0% 0 0 / 0.5)
     );
 
-    --ui-shadow-sm: 0 1px 2px var(--ui-shadow-color);
-    --ui-shadow-md:
-      0 2px 4px var(--ui-shadow-color), 0 4px 12px var(--ui-shadow-color);
-    --ui-shadow-lg:
-      0 4px 8px var(--ui-shadow-color), 0 12px 32px var(--ui-shadow-color);
+    /* Sunken: wells, inputs */
+    --ui-light-sunken: 0%;
+    --ui-z-sunken: 0;
+    --ui-shadow-sunken: inset 0 1px 2px var(--ui-shadow-color);
 
+    /* Base: the page surface */
+    --ui-light-base: 0%;
     --ui-z-base: 0;
-    --ui-z-dropdown: 1000;
-    --ui-z-sticky: 1100;
-    --ui-z-overlay: 1200;
-    --ui-z-modal: 1300;
-    --ui-z-popover: 1400;
-    --ui-z-toast: 1500;
-    --ui-z-tooltip: 1600;
+    --ui-shadow-base: none;
+
+    /* Raised: cards, tiles */
+    --ui-light-raised: 3%;
+    --ui-z-raised: 1;
+    --ui-shadow-raised:
+      0 1px 2px var(--ui-shadow-color), 0 1px 4px var(--ui-shadow-color);
+
+    /* Floating: menus, popovers, the element in primary focus */
+    --ui-light-floating: 6%;
+    --ui-z-floating: 100;
+    --ui-shadow-floating:
+      0 1px 3px var(--ui-shadow-color), 0 4px 12px var(--ui-shadow-color);
+
+    /* Overlay: dialogs, drawers */
+    --ui-light-overlay: 9%;
+    --ui-z-overlay: 200;
+    --ui-shadow-overlay:
+      0 2px 6px var(--ui-shadow-color), 0 10px 24px var(--ui-shadow-color);
+
+    /* Top: toasts, tooltips */
+    --ui-light-top: 12%;
+    --ui-z-top: 300;
+    --ui-shadow-top:
+      0 3px 8px var(--ui-shadow-color), 0 14px 32px var(--ui-shadow-color);
+
+    /* How far an element rises when it lifts one level (hover). */
+    --ui-lift: calc(var(--ui-space-xs) / 2); /* 2px */
+    /* How far ui-overlap-<side> pulls an element over its neighbour. */
+    --ui-overlap: var(--ui-space-xl);
+  }
+
+  /* High contrast: borders replace shadows (see src/elevation.css). */
+  @media (prefers-contrast: more), (forced-colors: active) {
+    :root:root,
+    [data-ui-theme][data-ui-theme] {
+      --ui-shadow-sunken: none;
+      --ui-shadow-base: none;
+      --ui-shadow-raised: none;
+      --ui-shadow-floating: none;
+      --ui-shadow-overlay: none;
+      --ui-shadow-top: none;
+    }
   }
 }

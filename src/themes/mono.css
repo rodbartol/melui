@@ -1,0 +1,61 @@
+/* THEME: Mono. Strict black and white, square corners, hard shadows. Fonts: IBM Plex Mono (Google Fonts).
+   Tokens only: no component CSS. Use with data-ui-theme on <html> or any element. */
+@layer ui.tokens {
+  [data-ui-theme="mono"] {
+    /* No hue at all */
+    --ui-ref-gray-50: oklch(98% 0 0);
+    --ui-ref-gray-100: oklch(96% 0 0);
+    --ui-ref-gray-200: oklch(90% 0 0);
+    --ui-ref-gray-300: oklch(82% 0 0);
+    --ui-ref-gray-400: oklch(64% 0 0);
+    --ui-ref-gray-500: oklch(50% 0 0);
+    --ui-ref-gray-600: oklch(40% 0 0);
+    --ui-ref-gray-700: oklch(32% 0 0);
+    --ui-ref-gray-800: oklch(22% 0 0);
+    --ui-ref-gray-900: oklch(15% 0 0);
+    --ui-ref-gray-950: oklch(9% 0 0);
+
+    /* Lines are ink */
+    --ui-color-border: light-dark(var(--ui-ref-gray-950), var(--ui-ref-gray-300));
+    --ui-color-border-strong: light-dark(var(--ui-ref-gray-950), var(--ui-ref-gray-300));
+
+    /* Status: near greyscale. The icon tells them apart. */
+    --ui-color-success: oklch(90% 0.03 155);
+    --ui-color-success-soft: light-dark(oklch(97% 0.008 155), oklch(22% 0.01 155));
+    --ui-color-success-contrast: var(--ui-ref-black);
+    --ui-color-success-text: light-dark(oklch(30% 0.03 155), oklch(88% 0.03 155));
+    --ui-color-warning: oklch(93% 0.04 95);
+    --ui-color-warning-soft: light-dark(oklch(97.5% 0.01 95), oklch(22% 0.012 95));
+    --ui-color-warning-contrast: var(--ui-ref-black);
+    --ui-color-warning-text: light-dark(oklch(32% 0.035 95), oklch(90% 0.035 95));
+    --ui-color-danger: oklch(20% 0 0);
+    --ui-color-danger-hover: oklch(32% 0 0);
+    --ui-color-danger-soft: light-dark(oklch(95% 0 0), oklch(24% 0 0));
+    --ui-color-danger-contrast: var(--ui-ref-white);
+    --ui-color-danger-text: light-dark(oklch(15% 0 0), oklch(96% 0 0));
+    --ui-color-info: oklch(88% 0.025 245);
+    --ui-color-info-soft: light-dark(oklch(97% 0.008 245), oklch(22% 0.012 245));
+    --ui-color-info-contrast: var(--ui-ref-black);
+    --ui-color-info-text: light-dark(oklch(30% 0.03 245), oklch(88% 0.03 245));
+
+    /* Shape: square */
+    --ui-radius-sm: 0;
+    --ui-radius-md: 0;
+    --ui-radius-lg: 0;
+    --ui-radius-xl: 0;
+
+    /* Shadows: hard offsets, longer as it rises */
+    --ui-shadow-color: light-dark(var(--ui-ref-black), var(--ui-ref-gray-500));
+    --ui-shadow-sunken: inset 2px 2px 0 color-mix(in oklch, var(--ui-shadow-color) 15%, transparent);
+    --ui-shadow-raised: 2px 2px 0 var(--ui-shadow-color);
+    --ui-shadow-floating: 4px 4px 0 var(--ui-shadow-color);
+    --ui-shadow-overlay: 6px 6px 0 var(--ui-shadow-color);
+    --ui-shadow-top: 8px 8px 0 var(--ui-shadow-color);
+
+    /* Type: one monospace for everything */
+    --ui-font-body: "IBM Plex Mono", monospace;
+    --ui-font-heading: "IBM Plex Mono", monospace;
+    --ui-font-code: "IBM Plex Mono", monospace;
+    --ui-tracking-tight: 0;
+  }
+}

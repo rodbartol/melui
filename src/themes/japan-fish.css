@@ -1,0 +1,54 @@
+/* THEME: Japan Fish. Washi paper and night indigo, sage and vermilion. Fonts: Shippori Mincho (Google Fonts).
+   Tokens only: no component CSS. Use with data-ui-theme on <html> or any element. */
+@layer ui.tokens {
+  [data-ui-theme="japan-fish"] {
+    /* Washi light, indigo night; the grays run from warm paper to indigo */
+    --ui-ref-white: oklch(98.2% 0.012 85);
+    --ui-ref-black: oklch(12% 0.055 268);
+    --ui-ref-gray-50: oklch(96.5% 0.014 85);
+    --ui-ref-gray-100: oklch(94% 0.018 85);
+    --ui-ref-gray-200: oklch(89% 0.022 85);
+    --ui-ref-gray-300: oklch(83% 0.025 85);
+    --ui-ref-gray-400: oklch(66% 0.035 268);
+    --ui-ref-gray-500: oklch(53% 0.045 268);
+    --ui-ref-gray-600: oklch(42% 0.055 268);
+    --ui-ref-gray-700: oklch(34% 0.06 268);
+    --ui-ref-gray-800: oklch(26% 0.06 268);
+    --ui-ref-gray-900: oklch(20% 0.06 268);
+    --ui-ref-gray-950: oklch(15.5% 0.065 268);
+
+    /* Accent: indigo by day, sage by night; vermilion focus ring */
+    --ui-color-accent: light-dark(var(--ui-ref-gray-950), var(--ui-ref-green-300));
+    --ui-color-accent-hover: light-dark(var(--ui-ref-gray-700), var(--ui-ref-green-200));
+    --ui-color-accent-soft: light-dark(var(--ui-ref-green-50), var(--ui-ref-gray-900));
+    --ui-color-focus: var(--ui-ref-red-600);
+    --ui-color-light-tint: oklch(96% 0.035 80);
+
+    /* Status: the default Japan Fish set, with darker text for the warm paper */
+    --ui-color-success-text: light-dark(var(--ui-ref-green-800), var(--ui-ref-green-200));
+    --ui-color-info-text: light-dark(var(--ui-ref-blue-800), var(--ui-ref-blue-200));
+
+    /* Paper is the default material */
+    --ui-material-paper-grain: 9%;
+    --ui-material-default-fill: var(--ui-material-paper-fill);
+    --ui-material-default-edge: var(--ui-material-paper-edge);
+    --ui-material-default-texture: var(--ui-material-paper-texture);
+    --ui-material-default-grain: var(--ui-material-paper-grain);
+    --ui-material-default-reveal: var(--ui-material-paper-reveal);
+    --ui-material-default-opacity: 100%;
+    --ui-material-default-backdrop: none;
+
+    /* Shape: soft */
+    --ui-radius-sm: 6px;
+    --ui-radius-md: 10px;
+    --ui-radius-lg: 14px;
+    --ui-radius-xl: 20px;
+
+    /* Type: a Mincho serif */
+    --ui-font-body: "Shippori Mincho", serif;
+    --ui-font-heading: "Shippori Mincho", serif;
+
+    /* Shadow: indigo */
+    --ui-shadow-color: light-dark(oklch(25% 0.06 268 / 0.16), oklch(5% 0.03 268 / 0.6));
+  }
+}

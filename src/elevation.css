@@ -1,0 +1,250 @@
+/* ELEVATION. How high an element sits: class="ui-elevation-<level>".
+   Levels, low to high: sunken, base, raised, floating, overlay, top.
+   Sets shadow, stacking order and light (--ui-level-light, which materials catch in dark mode).
+   Light is relative: an element adds its level's light to the surface it sits on.
+   Sits after materials, so a disabled element can lose its material.
+   z-index only works on positioned elements and flex or grid children; ui-overlap-* positions for you.
+
+   States move on Z. Hover (or keyboard focus) on a link, button or label lifts it one level;
+   a focused form control lifts one level in place;
+   pressing sinks it to the surface; selected (aria-selected, aria-pressed, aria-current,
+   aria-expanded, the summary of an open details, a label around a checked input) stays
+   lifted; disabled (:disabled, aria-disabled) goes flat and loses its material. */
+@layer ui.elevation {
+  /* Each level names itself and the level above it. */
+  .ui-elevation-sunken {
+    --_shadow: var(--ui-shadow-sunken);
+    --_light: var(--ui-light-sunken);
+    --_z: var(--ui-z-sunken);
+    --_up-shadow: var(--ui-shadow-base);
+    --_up-light: var(--ui-light-base);
+    --_up-z: var(--ui-z-base);
+  }
+  .ui-elevation-base {
+    --_shadow: var(--ui-shadow-base);
+    --_light: var(--ui-light-base);
+    --_z: var(--ui-z-base);
+    --_up-shadow: var(--ui-shadow-raised);
+    --_up-light: var(--ui-light-raised);
+    --_up-z: var(--ui-z-raised);
+  }
+  .ui-elevation-raised {
+    --_shadow: var(--ui-shadow-raised);
+    --_light: var(--ui-light-raised);
+    --_z: var(--ui-z-raised);
+    --_up-shadow: var(--ui-shadow-floating);
+    --_up-light: var(--ui-light-floating);
+    --_up-z: var(--ui-z-floating);
+  }
+  .ui-elevation-floating {
+    --_shadow: var(--ui-shadow-floating);
+    --_light: var(--ui-light-floating);
+    --_z: var(--ui-z-floating);
+    --_up-shadow: var(--ui-shadow-overlay);
+    --_up-light: var(--ui-light-overlay);
+    --_up-z: var(--ui-z-overlay);
+  }
+  .ui-elevation-overlay {
+    --_shadow: var(--ui-shadow-overlay);
+    --_light: var(--ui-light-overlay);
+    --_z: var(--ui-z-overlay);
+    --_up-shadow: var(--ui-shadow-top);
+    --_up-light: var(--ui-light-top);
+    --_up-z: var(--ui-z-top);
+  }
+  .ui-elevation-top {
+    --_shadow: var(--ui-shadow-top);
+    --_light: var(--ui-light-top);
+    --_z: var(--ui-z-top);
+    --_up-shadow: var(--ui-shadow-top);
+    --_up-light: var(--ui-light-top);
+    --_up-z: var(--ui-z-top);
+  }
+
+  /* Shared recipe. Components with a default elevation join this list (and the ones below). */
+  :where(
+      [class*="ui-elevation-"],
+      .ui-card,
+      .ui-input,
+      .ui-select > select,
+      .ui-choice > input,
+      .ui-button,
+      .ui-menu-list,
+      .ui-dialog,
+      .ui-toast,
+      .ui-tab,
+      :is(a, button).ui-list-item,
+      .ui-toolbar,
+      .ui-avatar
+    ) {
+    --ui-level-light: min(calc(var(--_base, 0%) + var(--_light)), var(--ui-light-top));
+    box-shadow: var(--_shadow);
+    z-index: var(--_z);
+    transition-property: box-shadow, translate, --ui-level-light;
+    transition-duration: var(--ui-duration-normal);
+    transition-timing-function: var(--ui-ease-standard);
+  }
+
+  /* Relative light. An element catches its own level's light plus the light of the surface it
+     sits on: a raised button in an overlay dialog is brighter than the dialog. Each depth
+     publishes its total (--_l0 to --_l2) for the next, up to four surfaces deep.
+     Dialogs and popovers live in the top layer, so they start again from zero.
+     Light never exceeds the top level's, where every text colour is checked for AAA. */
+  :where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar):not(:where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar) *) {
+    --_base: 0%;
+    --_l0: calc(var(--_base) + var(--_light));
+  }
+  :where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar) :where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar):not(:where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar) :where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar) *) {
+    --_base: var(--_l0);
+    --_l1: calc(var(--_base) + var(--_light));
+  }
+  :where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar) :where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar) :where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar):not(:where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar) :where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar) :where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar) *) {
+    --_base: var(--_l1);
+    --_l2: calc(var(--_base) + var(--_light));
+  }
+  :where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar) :where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar) :where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar) :where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar) {
+    --_base: var(--_l2);
+  }
+  :where([class*="ui-elevation-"], .ui-card, .ui-input, .ui-select > select, .ui-choice > input, .ui-button, .ui-menu-list, .ui-dialog, .ui-toast, .ui-tab, :is(a, button).ui-list-item, .ui-toolbar, .ui-avatar):where(dialog, [popover]) {
+    --_base: 0%;
+  }
+
+  /* Hover lifts one level; selected stays there. */
+  :where(a[href], button, label, summary):where(
+      [class*="ui-elevation-"],
+      .ui-card,
+      .ui-input,
+      .ui-select > select,
+      .ui-choice > input,
+      .ui-button,
+      .ui-menu-list,
+      .ui-dialog,
+      .ui-toast,
+      .ui-tab,
+      :is(a, button).ui-list-item,
+      .ui-toolbar,
+      .ui-avatar
+    ):is(:hover, :focus-visible),
+  :where(
+      [class*="ui-elevation-"],
+      .ui-card,
+      .ui-input,
+      .ui-select > select,
+      .ui-choice > input,
+      .ui-button,
+      .ui-menu-list,
+      .ui-dialog,
+      .ui-toast,
+      .ui-tab,
+      :is(a, button).ui-list-item,
+      .ui-toolbar,
+      .ui-avatar
+    ):is(
+      [aria-selected="true"],
+      [aria-pressed="true"],
+      [aria-current]:not([aria-current="false"]),
+      [aria-expanded="true"],
+      details[open] > summary,
+      :has(> input:is([type="radio"], [type="checkbox"]):checked)
+    ) {
+    --ui-level-light: min(calc(var(--_base, 0%) + var(--_up-light)), var(--ui-light-top));
+    box-shadow: var(--_up-shadow);
+    z-index: var(--_up-z);
+    translate: 0 calc(-1 * var(--_lift, var(--ui-lift)));
+  }
+
+  /* Form controls lift one level while focused, without moving. */
+  :where(input, textarea, select):where(
+      [class*="ui-elevation-"],
+      .ui-input,
+      .ui-select > select,
+      .ui-choice > input,
+      .ui-button,
+      .ui-menu-list,
+      .ui-dialog,
+      .ui-toast,
+      .ui-tab,
+      :is(a, button).ui-list-item,
+      .ui-toolbar,
+      .ui-avatar
+    ):focus-visible {
+    --ui-level-light: min(calc(var(--_base, 0%) + var(--_up-light)), var(--ui-light-top));
+    box-shadow: var(--_up-shadow);
+    z-index: var(--_up-z);
+  }
+
+  /* Pressed sinks to the surface. */
+  :where(a[href], button, label, summary):where(
+      [class*="ui-elevation-"],
+      .ui-card,
+      .ui-input,
+      .ui-select > select,
+      .ui-choice > input,
+      .ui-button,
+      .ui-menu-list,
+      .ui-dialog,
+      .ui-toast,
+      .ui-tab,
+      :is(a, button).ui-list-item,
+      .ui-toolbar,
+      .ui-avatar
+    ):active {
+    --ui-level-light: min(calc(var(--_base, 0%) + var(--ui-light-base)), var(--ui-light-top));
+    box-shadow: var(--ui-shadow-base);
+    translate: none;
+  }
+
+  /* Disabled goes flat and loses its material: plain solid fill, no texture, no blur. */
+  :where(
+      [class*="ui-elevation-"],
+      .ui-card,
+      .ui-input,
+      .ui-select > select,
+      .ui-choice > input,
+      .ui-button,
+      .ui-menu-list,
+      .ui-dialog,
+      .ui-toast,
+      .ui-tab,
+      :is(a, button).ui-list-item,
+      .ui-toolbar,
+      .ui-avatar
+    ):is(
+      :disabled,
+      [aria-disabled="true"]
+    ) {
+    --ui-level-light: min(var(--_base, 0%), var(--ui-light-top));
+    box-shadow: none;
+    z-index: var(--_z);
+    translate: none;
+    background-color: var(--ui-material-solid-fill);
+    background-image: none;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    cursor: not-allowed;
+  }
+
+  /* High contrast: shadows are off (see tokens), so a strong border marks every raised level. */
+  @media (prefers-contrast: more), (forced-colors: active) {
+    :where(
+      [class*="ui-elevation-"],
+      .ui-card,
+      .ui-input,
+      .ui-select > select,
+      .ui-choice > input,
+      .ui-button,
+      .ui-menu-list,
+      .ui-dialog,
+      .ui-toast,
+      .ui-tab,
+      :is(a, button).ui-list-item,
+      .ui-toolbar,
+      .ui-avatar
+    ):not(
+        .ui-elevation-sunken,
+        .ui-elevation-base
+      ) {
+      border: var(--ui-border-width) solid var(--ui-color-border-strong);
+    }
+  }
+}

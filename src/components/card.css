@@ -1,0 +1,81 @@
+/* COMPONENT. Card: a raised piece of solid by default. The dialog shares its parts.
+   Parts, in order: ui-card-symbol (icon or picture, leads), ui-card-title, ui-card-text,
+   ui-card-actions (symbol buttons or links, at the end).
+   Change its material with ui-material-<name> and its height with ui-elevation-<level>.
+   A whole-card link: <a class="ui-card" href>. It lifts on hover; leave out actions then. */
+@layer ui.components {
+  .ui-card {
+    /* Default elevation: raised. A ui-elevation-<level> class overrides these. */
+    --_shadow: var(--ui-shadow-raised);
+    --_light: var(--ui-light-raised);
+    --_z: var(--ui-z-raised);
+    --_up-shadow: var(--ui-shadow-floating);
+    --_up-light: var(--ui-light-floating);
+    --_up-z: var(--ui-z-floating);
+    --_pad: var(--ui-space-md);
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--ui-space-sm);
+    padding: var(--_pad);
+    border-radius: var(--ui-radius-lg);
+    color: var(--ui-color-text);
+    text-align: start;
+    text-decoration: none;
+  }
+
+  /* Symbol: an icon leads at the large icon size, in the text colour. */
+  :is(.ui-card-symbol, .ui-dialog-symbol) {
+    display: flex;
+  }
+  :is(.ui-card-symbol, .ui-dialog-symbol) > svg,
+  svg:is(.ui-card-symbol, .ui-dialog-symbol) {
+    flex: none;
+    inline-size: var(--ui-icon-lg);
+    block-size: var(--ui-icon-lg);
+    fill: currentColor;
+  }
+
+  /* A picture bleeds to the card's edges. */
+  :is(img, picture, video):is(.ui-card-symbol, .ui-dialog-symbol),
+  :is(.ui-card-symbol, .ui-dialog-symbol):has(> :is(img, picture, video)) {
+    align-self: flex-start;
+    inline-size: calc(100% + 2 * var(--_pad));
+    max-inline-size: none;
+    margin-inline: calc(-1 * var(--_pad));
+    overflow: hidden;
+    object-fit: cover;
+  }
+  :is(img, picture, video):is(.ui-card-symbol, .ui-dialog-symbol):first-child,
+  :is(.ui-card-symbol, .ui-dialog-symbol):first-child:has(> :is(img, picture, video)) {
+    margin-block-start: calc(-1 * var(--_pad));
+    border-start-start-radius: calc(var(--_radius, var(--ui-radius-lg)) - var(--ui-border-width));
+    border-start-end-radius: calc(var(--_radius, var(--ui-radius-lg)) - var(--ui-border-width));
+  }
+  :is(.ui-card-symbol, .ui-dialog-symbol) > :is(img, picture, video) {
+    inline-size: 100%;
+    object-fit: cover;
+  }
+
+  :is(.ui-card-title, .ui-dialog-title) {
+    font-size: var(--ui-text-lg);
+    font-weight: var(--ui-weight-semibold);
+    line-height: var(--ui-leading-tight);
+    letter-spacing: var(--ui-tracking-tight);
+  }
+
+  :is(.ui-card-text, .ui-dialog-text) {
+    color: var(--ui-color-text-muted);
+    font-size: var(--ui-text-sm);
+  }
+
+  /* Actions sit at the end, even when cards in a row have different heights. */
+  :is(.ui-card-actions, .ui-dialog-actions) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--ui-space-sm);
+    margin-block-start: auto;
+    padding-block-start: var(--ui-space-xs);
+  }
+}

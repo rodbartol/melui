@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Materials</title>
+    <link rel="stylesheet" href="../src/index.css" />
+    <style>
+      /* Demo page styles only. Everything visual comes from Melui. */
+      body {
+        max-width: 72rem;
+        margin-inline: auto;
+        padding: var(--ui-space-xl) var(--ui-space-md);
+        display: grid;
+        gap: var(--ui-space-3xl);
+      }
+      h1 {
+        font-size: var(--ui-text-4xl);
+        font-weight: var(--ui-weight-bold);
+        letter-spacing: var(--ui-tracking-tight);
+        line-height: var(--ui-leading-tight);
+      }
+      h2 {
+        font-size: var(--ui-text-2xl);
+        font-weight: var(--ui-weight-semibold);
+        line-height: var(--ui-leading-tight);
+        margin-bottom: var(--ui-space-xs);
+      }
+      h3 {
+        font-size: var(--ui-text-sm);
+        font-weight: var(--ui-weight-semibold);
+        color: var(--ui-color-text-muted);
+      }
+      section > p,
+      header > p {
+        color: var(--ui-color-text-muted);
+        max-width: 40rem;
+        margin-bottom: var(--ui-space-lg);
+      }
+      code {
+        font-family: var(--ui-font-code);
+        font-size: var(--ui-text-xs);
+      }
+
+      .demo-pair {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr));
+        border: var(--ui-border-width) solid var(--ui-color-border-strong);
+        border-radius: var(--ui-radius-lg);
+        overflow: hidden;
+      }
+      .demo-panel {
+        background: var(--ui-color-bg);
+        color: var(--ui-color-text);
+        padding: var(--ui-space-lg);
+        display: grid;
+        gap: var(--ui-space-lg);
+        align-content: start;
+      }
+
+      /* Coloured shapes behind the grid, so glass has something to show through. */
+      .demo-backdrop {
+        position: relative;
+        isolation: isolate;
+        border-radius: var(--ui-radius-lg);
+        background: var(--ui-color-surface);
+        padding: var(--ui-space-md);
+        overflow: hidden;
+      }
+      .demo-backdrop::before,
+      .demo-backdrop::after {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        border-radius: var(--ui-radius-full);
+      }
+      .demo-backdrop::before {
+        width: 45%;
+        aspect-ratio: 1;
+        top: 8%;
+        left: 30%;
+        background: var(--ui-color-info);
+      }
+      .demo-backdrop::after {
+        width: 26%;
+        aspect-ratio: 1;
+        top: 40%;
+        right: 4%;
+        background: var(--ui-color-warning);
+      }
+
+      .demo-grid {
+        display: grid;
+        grid-template-columns: 4.5rem repeat(4, minmax(0, 1fr));
+        gap: var(--ui-space-sm) var(--ui-space-sm);
+        align-items: center;
+      }
+      .demo-grid > b {
+        font-size: var(--ui-text-xs);
+        font-weight: var(--ui-weight-semibold);
+      }
+      .demo-head {
+        font-size: var(--ui-text-xs);
+        color: var(--ui-color-text-muted);
+        text-align: center;
+      }
+      .demo-tile {
+        min-height: 4.5rem;
+        padding: var(--ui-space-sm);
+        border-radius: var(--ui-radius-md);
+        display: grid;
+        align-content: space-between;
+        font-size: var(--ui-text-xs);
+      }
+      .demo-tile span {
+        color: var(--ui-color-text-muted);
+      }
+
+      /* Levels: light (dark mode), shadow, stacking order. */
+      .demo-base {
+        --ui-level-light: var(--ui-light-base);
+        box-shadow: var(--ui-shadow-base);
+        z-index: var(--ui-z-base);
+      }
+      .demo-raised {
+        --ui-level-light: var(--ui-light-raised);
+        box-shadow: var(--ui-shadow-raised);
+        z-index: var(--ui-z-raised);
+      }
+      .demo-floating {
+        --ui-level-light: var(--ui-light-floating);
+        box-shadow: var(--ui-shadow-floating);
+        z-index: var(--ui-z-floating);
+      }
+      .demo-top {
+        --ui-level-light: var(--ui-light-top);
+        box-shadow: var(--ui-shadow-top);
+        z-index: var(--ui-z-top);
+      }
+
+      /* No inheritance */
+      .demo-nest {
+        padding: var(--ui-space-md);
+        border-radius: var(--ui-radius-lg);
+        display: grid;
+        gap: var(--ui-space-sm);
+        font-size: var(--ui-text-sm);
+      }
+      .demo-nest > div {
+        padding: var(--ui-space-sm) var(--ui-space-md);
+        border-radius: var(--ui-radius-md);
+      }
+      .demo-plain {
+        border: var(--ui-border-width) dashed var(--ui-color-border-strong);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Materials</h1>
+      <p>
+        What a component is made of. Add <code>ui-material-&lt;name&gt;</code>
+        to any element. Height is separate: the same material at a higher level
+        catches more light in dark mode. Paper reveals its texture as it
+        rises; glass stays see-through; ink and solid only
+        brighten.
+      </p>
+    </header>
+
+    <section>
+      <h2>Four materials, four heights</h2>
+      <p>Coloured shapes sit behind each grid, so you can see through glass.</p>
+      <template id="grid">
+        <div class="demo-backdrop">
+          <div class="demo-grid">
+            <span></span>
+            <span class="demo-head">Base</span>
+            <span class="demo-head">Raised</span>
+            <span class="demo-head">Floating</span>
+            <span class="demo-head">Top</span>
+          </div>
+        </div>
+      </template>
+      <div class="demo-pair">
+        <div class="demo-panel" data-theme="light" data-fill="grid"></div>
+        <div class="demo-panel" data-theme="dark" data-fill="grid"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Only the element with the class</h2>
+      <p>
+        Materials never pass down. Inside a paper card, a plain element stays
+        plain and a solid card stays solid.
+      </p>
+      <template id="nest">
+        <div class="demo-nest ui-material-paper demo-raised">
+          <b>Paper card</b>
+          <div class="demo-plain">Plain element: no material</div>
+          <div class="ui-material-solid demo-raised">Solid card inside</div>
+          <div class="ui-material-ink demo-raised">Ink inside: always dark</div>
+        </div>
+      </template>
+      <div class="demo-pair">
+        <div class="demo-panel" data-theme="light" data-fill="nest"></div>
+        <div class="demo-panel" data-theme="dark" data-fill="nest"></div>
+      </div>
+    </section>
+
+    <script>
+      const materials = ["solid", "glass", "paper", "ink"];
+      const levels = ["base", "raised", "floating", "top"];
+      for (const panel of document.querySelectorAll("[data-fill]")) {
+        panel.insertAdjacentHTML(
+          "beforeend",
+          `<h3>${panel.dataset.theme === "light" ? "Light" : "Dark"}</h3>`,
+        );
+        const content = document
+          .getElementById(panel.dataset.fill)
+          .content.cloneNode(true);
+        const grid = content.querySelector(".demo-grid");
+        if (grid) {
+          for (const m of materials) {
+            grid.insertAdjacentHTML("beforeend", `<b>${m[0].toUpperCase() + m.slice(1)}</b>`);
+            for (const l of levels) {
+              grid.insertAdjacentHTML(
+                "beforeend",
+                `<div class="demo-tile ui-material-${m} demo-${l}"><b>Aa</b><span>${l}</span></div>`,
+              );
+            }
+          }
+        }
+        panel.append(content);
+      }
+    </script>
+  </body>
+</html>

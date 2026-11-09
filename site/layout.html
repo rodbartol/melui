@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{title}} · Melui</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800;900&family=IBM+Plex+Mono:wght@400;500;600;700&family=Shippori+Mincho:wght@400;500;600;700;800&display=swap" />
+    <link rel="stylesheet" href="melui.css" />
+    <link rel="stylesheet" href="themes/japan-fish.css" />
+    <link rel="stylesheet" href="themes/mono.css" />
+    <link rel="stylesheet" href="themes/loud.css" />
+    <link rel="stylesheet" href="site.css" />
+    <script>
+      // Apply the saved theme before the page paints.
+      try {
+        const t = localStorage.getItem("melui-theme");
+        if (t) document.documentElement.dataset.uiTheme = t;
+      } catch {}
+    </script>
+    {{style}}
+  </head>
+  <body>
+    <div class="ui-toolbar site-bar" role="toolbar" aria-label="Site">
+      <div class="site-brand">
+        <button class="ui-button ui-button-sm site-menu" popovertarget="site-drawer"><svg viewBox="0 0 24 24"><path d="M3 5h18v2.5H3zm0 5.75h18v2.5H3zm0 5.75h18V19H3z" /></svg>Menu</button>
+        <a class="site-wordmark" href="index.html">Melui</a>
+      </div>
+      <div class="ui-tabs" role="radiogroup" aria-label="Theme" data-theme-switch>
+        <label class="ui-tab"><input type="radio" name="site-theme" value="" />Default</label>
+        <label class="ui-tab"><input type="radio" name="site-theme" value="japan-fish" />Japan Fish</label>
+        <label class="ui-tab"><input type="radio" name="site-theme" value="mono" />Mono</label>
+        <label class="ui-tab"><input type="radio" name="site-theme" value="loud" />Loud</label>
+      </div>
+    </div>
+
+    <div class="site-layout">
+      <nav class="site-nav" aria-label="Pages">{{nav}}</nav>
+      <main class="site-main">
+{{content}}
+        <footer class="site-footer">Melui: neutral surfaces, real materials, true depth. Plain CSS, no JavaScript.</footer>
+      </main>
+    </div>
+
+    <dialog class="ui-dialog ui-dialog-drawer ui-dialog-drawer-start site-drawer" popover id="site-drawer" aria-label="Pages">
+      {{nav}}
+      <div class="ui-dialog-actions">
+        <button class="ui-button" popovertarget="site-drawer" popovertargetaction="hide">Close</button>
+      </div>
+    </dialog>
+
+    <script>
+      // The theme switcher: the docs site's only script of its own.
+      {
+      const root = document.documentElement;
+      for (const input of document.querySelectorAll("[data-theme-switch] input")) {
+        input.checked = (root.dataset.uiTheme || "") === input.value;
+        input.addEventListener("change", () => {
+          if (input.value) root.dataset.uiTheme = input.value;
+          else delete root.dataset.uiTheme;
+          try { localStorage.setItem("melui-theme", input.value); } catch {}
+        });
+      }
+      }
+    </script>
+  </body>
+</html>

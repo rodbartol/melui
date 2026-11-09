@@ -1,0 +1,79 @@
+/* COMPONENT. Symbol button: an icon leads, a short visible label always follows.
+   On <button>, <a> or <summary>. Solid and raised by default: hover lifts it, press sinks it.
+   Variants: ui-button-accent (the accent fill), ui-button-danger (brick red).
+   Sizes: ui-button-sm, ui-button-lg (medium is the default). Heights grow on touch screens. */
+@layer ui.components {
+  .ui-button {
+    /* Default elevation: raised. */
+    --_shadow: var(--ui-shadow-raised);
+    --_light: var(--ui-light-raised);
+    --_z: var(--ui-z-raised);
+    --_up-shadow: var(--ui-shadow-floating);
+    --_up-light: var(--ui-light-floating);
+    --_up-z: var(--ui-z-floating);
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--ui-space-xs);
+    min-block-size: var(--ui-control-height-md);
+    padding-inline: calc(var(--ui-space-sm) + var(--ui-space-xs));
+    border-radius: var(--ui-radius-md);
+    font-size: var(--ui-text-sm);
+    font-weight: var(--ui-weight-medium);
+    line-height: var(--ui-leading-tight);
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+  }
+  .ui-button > svg {
+    flex: none;
+    inline-size: var(--ui-icon-sm);
+    block-size: var(--ui-icon-sm);
+    fill: currentColor;
+  }
+  summary.ui-button {
+    list-style: none;
+  }
+  summary.ui-button::-webkit-details-marker {
+    display: none;
+  }
+
+  /* Sizes */
+  .ui-button-sm {
+    min-block-size: var(--ui-control-height-sm);
+    padding-inline: var(--ui-space-sm);
+  }
+  .ui-button-lg {
+    min-block-size: var(--ui-control-height-lg);
+    padding-inline: var(--ui-space-md);
+    font-size: var(--ui-text-md);
+  }
+  .ui-button-lg > svg {
+    inline-size: var(--ui-icon-md);
+    block-size: var(--ui-icon-md);
+  }
+
+  /* Variants use the state slots, so they hold on any material. */
+  .ui-button-accent {
+    --ui-state-fill: var(--ui-color-accent);
+    --ui-state-edge: var(--ui-color-accent);
+    --ui-state-text: var(--ui-color-accent-contrast);
+    --ui-state-opacity: 100%;
+  }
+  .ui-button-danger {
+    --ui-state-fill: var(--ui-color-danger);
+    --ui-state-edge: var(--ui-color-danger);
+    --ui-state-text: var(--ui-color-danger-contrast);
+    --ui-state-opacity: 100%;
+    /* Brick red keeps its exact AAA contrast with white text: it doesn't catch light. */
+    --ui-state-catch: 0;
+  }
+
+  /* Disabled goes flat (see elevation.css); its label fades. */
+  .ui-button:is(:disabled, [aria-disabled="true"]) {
+    --ui-state-edge: var(--ui-color-border);
+    --ui-state-text: var(--ui-color-text-disabled);
+  }
+}

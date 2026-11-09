@@ -1,0 +1,216 @@
+/* COMPONENT. Forms: field, input, select, choice. All sit sunken in solid by default,
+   and lift to base while focused. Materials and elevation classes work on them too.
+
+   ui-field         a label, the control, a hint and an error, stacked. Works on <fieldset> too
+                    (use <legend class="ui-field-label">). Parts: ui-field-label, ui-field-hint,
+                    ui-field-error. The label is required.
+   ui-input         on <input> (text-like types) and <textarea>.
+   ui-select        on a wrapper around <select>; it draws the chevron.
+   ui-choice        on a <label> around a checkbox, a radio, or a switch
+                    (<input type="checkbox" role="switch">). The label text follows the input.
+
+   Invalid (:user-invalid or aria-invalid="true") gets a danger edge. */
+@layer ui.components {
+  /* ---------- Field ---------- */
+  .ui-field {
+    display: grid;
+    gap: var(--ui-space-xs);
+    min-inline-size: 0;
+    padding: 0;
+    border: 0;
+  }
+  .ui-field-label {
+    padding: 0;
+    font-size: var(--ui-text-sm);
+    font-weight: var(--ui-weight-medium);
+  }
+  .ui-field-hint {
+    color: var(--ui-color-text-muted);
+    font-size: var(--ui-text-sm);
+  }
+  .ui-field-error {
+    color: var(--ui-color-danger-text);
+    font-size: var(--ui-text-sm);
+    font-weight: var(--ui-weight-medium);
+  }
+
+  /* ---------- Shared by every control ---------- */
+  .ui-input,
+  .ui-select > select,
+  .ui-choice > input {
+    /* Default elevation: sunken, lifting to base. */
+    --_shadow: var(--ui-shadow-sunken);
+    --_light: var(--ui-light-sunken);
+    --_z: var(--ui-z-sunken);
+    --_up-shadow: var(--ui-shadow-base);
+    --_up-light: var(--ui-light-base);
+    --_up-z: var(--ui-z-base);
+    /* A control's edge must read clearly (3:1) on any material, so it is a state edge. */
+    --ui-state-edge: var(--ui-color-border-strong);
+  }
+  :is(.ui-input, .ui-select > select, .ui-choice > input):is(
+      :user-invalid,
+      [aria-invalid="true"]
+    ) {
+    --ui-state-edge: var(--ui-color-danger-text);
+  }
+  :is(.ui-input, .ui-select > select):disabled {
+    color: var(--ui-color-text-disabled);
+  }
+
+  /* ---------- Input and select ---------- */
+  .ui-input,
+  .ui-select > select {
+    inline-size: 100%;
+    min-block-size: var(--ui-control-height-md);
+    padding-block: var(--ui-space-xs);
+    padding-inline: calc(var(--ui-space-sm) + var(--ui-space-xs));
+    border-radius: var(--ui-radius-md);
+    font-size: var(--ui-text-md);
+    line-height: var(--ui-leading-normal);
+  }
+  .ui-input::placeholder {
+    color: var(--ui-color-text-muted);
+    opacity: 1;
+  }
+  textarea.ui-input {
+    min-block-size: calc(var(--ui-control-height-md) * 2);
+    padding-block: var(--ui-space-sm);
+    resize: vertical;
+  }
+
+  .ui-select {
+    position: relative;
+    display: grid;
+    color: var(--ui-color-text);
+  }
+  .ui-select > select {
+    appearance: none;
+    padding-inline-end: calc(
+      var(--ui-space-sm) + var(--ui-space-xs) + var(--ui-icon-sm) +
+        var(--ui-space-xs)
+    );
+    cursor: pointer;
+  }
+  .ui-select::after {
+    content: "";
+    position: absolute;
+    inset-block: 0;
+    inset-inline-end: calc(var(--ui-space-sm) + var(--ui-space-xs));
+    margin-block: auto;
+    inline-size: var(--ui-icon-sm);
+    block-size: var(--ui-icon-sm);
+    background: currentColor;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.3 5.3 8 10l4.7-4.7 1.4 1.4L8 12.8 1.9 6.7z'/%3E%3C/svg%3E")
+      center / contain no-repeat;
+    pointer-events: none;
+  }
+  .ui-select:has(> select:disabled) {
+    color: var(--ui-color-text-disabled);
+  }
+  .ui-select:has(> select[multiple], > select[size]:not([size="1"]))::after {
+    display: none;
+  }
+
+  /* ---------- Choice: checkbox, radio, switch ---------- */
+  .ui-choice {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ui-space-sm);
+    min-block-size: var(--ui-control-height-sm);
+    font-size: var(--ui-text-md);
+    cursor: pointer;
+  }
+  .ui-choice:has(> input:disabled) {
+    color: var(--ui-color-text-disabled);
+    cursor: not-allowed;
+  }
+  .ui-choice > input {
+    appearance: none;
+    position: relative;
+    flex: none;
+    display: grid;
+    place-content: center;
+    inline-size: var(--ui-choice-size);
+    block-size: var(--ui-choice-size);
+    margin: 0;
+    border-radius: var(--ui-radius-sm);
+    cursor: inherit;
+  }
+  .ui-choice > input[type="radio"] {
+    border-radius: var(--ui-radius-full);
+  }
+  /* The mark: a check, a dash or a dot, in the accent's contrast colour. */
+  .ui-choice > input::before {
+    content: "";
+    inline-size: calc(var(--ui-choice-size) * 0.6);
+    block-size: calc(var(--ui-choice-size) * 0.6);
+    background: var(--ui-color-accent-contrast);
+    scale: 0;
+    transition: scale var(--ui-duration-fast) var(--ui-ease-out);
+  }
+  .ui-choice > input[type="checkbox"]::before {
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0, 43% 62%);
+  }
+  .ui-choice > input[type="checkbox"]:indeterminate::before {
+    clip-path: inset(40% 0);
+  }
+  .ui-choice > input[type="radio"]::before {
+    inline-size: calc(var(--ui-choice-size) * 0.4);
+    block-size: calc(var(--ui-choice-size) * 0.4);
+    border-radius: var(--ui-radius-full);
+  }
+  .ui-choice > input:is(:checked, :indeterminate) {
+    --ui-state-fill: var(--ui-color-accent);
+    --ui-state-edge: var(--ui-color-accent-text);
+    --ui-state-opacity: 100%;
+  }
+  .ui-choice > input:is(:checked, :indeterminate)::before {
+    scale: 1;
+  }
+  .ui-choice > input:disabled::before {
+    background: var(--ui-color-text-disabled);
+  }
+
+  /* Switch: a sunken track; the thumb is raised and slides. */
+  .ui-choice > input[role="switch"] {
+    display: block;
+    inline-size: calc(var(--ui-choice-size) * 1.8);
+    border-radius: var(--ui-radius-full);
+  }
+  .ui-choice > input[role="switch"]::before {
+    position: absolute;
+    inset-block: 2px;
+    inset-inline-start: 2px;
+    inline-size: auto;
+    block-size: auto;
+    aspect-ratio: 1;
+    clip-path: none;
+    border-radius: var(--ui-radius-full);
+    background: var(--ui-color-text-muted);
+    box-shadow: var(--ui-shadow-raised);
+    scale: 1;
+    transition: translate var(--ui-duration-normal) var(--ui-ease-standard);
+  }
+  .ui-choice > input[role="switch"]:checked::before {
+    background: var(--ui-color-accent-contrast);
+    translate: calc(var(--ui-choice-size) * 0.8) 0;
+  }
+  .ui-choice > input[role="switch"]:dir(rtl):checked::before {
+    translate: calc(var(--ui-choice-size) * -0.8) 0;
+  }
+  .ui-choice > input[role="switch"]:disabled::before {
+    background: var(--ui-color-text-disabled);
+    box-shadow: none;
+  }
+
+  /* Forced colours: hand checkboxes, radios and switches back to the system. */
+  @media (forced-colors: active) {
+    .ui-choice > input {
+      appearance: auto;
+    }
+    .ui-choice > input::before {
+      display: none;
+    }
+  }
+}

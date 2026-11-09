@@ -1,6 +1,7 @@
 /* SEMANTIC. Radii, borders, focus ring. */
 @layer ui.tokens {
-  :root {
+  :root,
+  [data-ui-theme] {
     --ui-radius-none: 0;
     --ui-radius-sm: var(--ui-ref-size-1);
     --ui-radius-md: var(--ui-ref-size-2);

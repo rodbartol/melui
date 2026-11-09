@@ -1,0 +1,87 @@
+/* COMPONENT. Dialog: a solid card at the overlay level. While open it covers everything.
+   <dialog class="ui-dialog"> with the card's parts: ui-dialog-symbol, ui-dialog-title,
+   ui-dialog-text, ui-dialog-actions (at the end, aligned to the end edge).
+   Open it as a modal with showModal() (the app's job), or with no JavaScript as a popover:
+   <dialog class="ui-dialog" popover id="d"> and <button popovertarget="d">.
+   Close it with <form method="dialog"> or popovertargetaction="hide". */
+@layer ui.components {
+  .ui-dialog {
+    /* Default elevation: overlay. */
+    --_shadow: var(--ui-shadow-overlay);
+    --_light: var(--ui-light-overlay);
+    --_z: var(--ui-z-overlay);
+    --_up-shadow: var(--ui-shadow-overlay);
+    --_up-light: var(--ui-light-overlay);
+    --_up-z: var(--ui-z-overlay);
+    --_pad: var(--ui-space-lg);
+    --_radius: var(--ui-radius-xl);
+
+    /* Centred in the viewport (the reset removes the browser's margin: auto). */
+    margin: auto;
+    inline-size: min(28rem, 100% - 2 * var(--ui-space-md));
+    max-block-size: calc(100% - 2 * var(--ui-space-md));
+    padding: var(--_pad);
+    border-radius: var(--_radius);
+    overflow: auto;
+  }
+  .ui-dialog:is([open], :popover-open) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ui-space-sm);
+    animation: ui-dialog-in var(--ui-duration-slow) var(--ui-ease-out);
+  }
+  .ui-dialog::backdrop {
+    background: var(--ui-color-scrim, oklch(14.5% 0.01 255 / 0.4));
+  }
+  .ui-dialog > form {
+    display: contents;
+  }
+  .ui-dialog-actions {
+    justify-content: flex-end;
+  }
+
+  @keyframes ui-dialog-in {
+    from {
+      opacity: 0;
+      translate: 0 var(--ui-space-md);
+    }
+  }
+}
+
+/* Drawer: a dialog from the edge. <dialog class="ui-dialog ui-dialog-drawer">, from the end
+   edge; add ui-dialog-drawer-start for the start edge. Full height, actions at the bottom. */
+@layer ui.components {
+  .ui-dialog-drawer {
+    --_from: 100%;
+    margin: 0;
+    inset-block: 0;
+    inset-inline: auto 0;
+    inline-size: min(24rem, 100% - var(--ui-space-2xl));
+    block-size: 100%;
+    max-block-size: none;
+    border-start-end-radius: 0;
+    border-end-end-radius: 0;
+  }
+  .ui-dialog-drawer-start {
+    --_from: -100%;
+    inset-inline: 0 auto;
+    border-start-start-radius: 0;
+    border-end-start-radius: 0;
+    border-start-end-radius: var(--_radius);
+    border-end-end-radius: var(--_radius);
+  }
+  .ui-dialog-drawer:dir(rtl) {
+    --_from: -100%;
+  }
+  .ui-dialog-drawer-start:dir(rtl) {
+    --_from: 100%;
+  }
+  .ui-dialog-drawer:is([open], :popover-open) {
+    animation-name: ui-drawer-in;
+  }
+  @keyframes ui-drawer-in {
+    from {
+      translate: var(--_from) 0;
+    }
+  }
+}
