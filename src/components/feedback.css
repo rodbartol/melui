@@ -14,8 +14,8 @@
     border-radius: var(--ui-radius-full);
     background: var(--_fill);
     color: var(--_on);
-    font-size: var(--ui-text-xs);
-    font-weight: var(--ui-weight-semibold);
+    font-size: var(--ui-text-sm);
+    font-weight: var(--ui-weight-bold);
     line-height: var(--ui-leading-tight);
     white-space: nowrap;
     vertical-align: middle;
@@ -71,7 +71,7 @@
   }
   :is(.ui-notice-title, .ui-toast-title) {
     font-size: var(--ui-text-md);
-    font-weight: var(--ui-weight-semibold);
+    font-weight: var(--ui-weight-bold);
     line-height: var(--ui-leading-tight);
     padding-block-start: var(--ui-space-2xs);
   }
@@ -85,14 +85,15 @@
     margin-block-start: var(--ui-space-sm);
   }
 
-  /* Notice: inline, on the page (base level), in a status's soft colours. All its text is AAA. */
+  /* Notice: inline, flat, a surface of any material in a status's soft colours.
+     The status sets the state slots, so it holds on any material. All its text is AAA. */
   .ui-notice {
     --_soft: var(--ui-color-accent-soft);
     --_ink: var(--ui-color-text);
-    background: var(--_soft);
-    color: var(--_ink);
-    border: var(--ui-border-width) solid
-      color-mix(in oklch, var(--_ink) 25%, transparent);
+    --ui-state-fill: var(--_soft);
+    --ui-state-edge: color-mix(in oklch, var(--_ink) 25%, transparent);
+    --ui-state-text: var(--_ink);
+    --ui-state-opacity: 100%;
   }
   .ui-notice-success {
     --_soft: var(--ui-color-success-soft);
@@ -168,7 +169,7 @@
     }
   }
 
-  /* ---------- Tooltip: extra detail, never a replacement for a label ----------
+  /* ---------- Tooltip: extra detail, or the name of a symbol-only control ----------
      <span class="ui-tooltip"><button …>…</button><span class="ui-tooltip-text" role="tooltip"
      id="t">…</span></span>, and aria-describedby="t" on the control. Ink, at the top level.
      Shows above the control on hover or focus, aligned to its start edge (it never spills
@@ -196,8 +197,8 @@
     border-radius: var(--ui-radius-md);
     /* A small shadow: a top-level one would darken the control right below it. */
     box-shadow: var(--ui-shadow-floating);
-    font-size: var(--ui-text-xs);
-    font-weight: var(--ui-weight-medium);
+    font-size: var(--ui-text-sm);
+    font-weight: var(--ui-weight-normal);
     line-height: var(--ui-leading-normal);
     white-space: normal;
     opacity: 0;
@@ -283,7 +284,7 @@
   /* High contrast: a notice's edge is solid. */
   @media (prefers-contrast: more), (forced-colors: active) {
     .ui-notice {
-      border-color: var(--_ink);
+      --ui-state-edge: var(--_ink);
     }
   }
 

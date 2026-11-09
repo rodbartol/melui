@@ -59,9 +59,8 @@
 
   :is(.ui-card-title, .ui-dialog-title) {
     font-size: var(--ui-text-lg);
-    font-weight: var(--ui-weight-semibold);
+    font-weight: var(--ui-weight-bold);
     line-height: var(--ui-leading-tight);
-    letter-spacing: var(--ui-tracking-tight);
   }
 
   :is(.ui-card-text, .ui-dialog-text) {

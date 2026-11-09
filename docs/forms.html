@@ -15,21 +15,20 @@
         gap: var(--ui-space-3xl);
       }
       h1 {
-        font-size: var(--ui-text-4xl);
+        font-size: var(--ui-text-xl);
         font-weight: var(--ui-weight-bold);
-        letter-spacing: var(--ui-tracking-tight);
         line-height: var(--ui-leading-tight);
       }
       h2 {
-        font-size: var(--ui-text-2xl);
-        font-weight: var(--ui-weight-semibold);
+        font-size: var(--ui-text-lg);
+        font-weight: var(--ui-weight-bold);
         line-height: var(--ui-leading-tight);
         margin-bottom: var(--ui-space-xs);
       }
       .demo-panel > h3,
       .demo-band h3 {
         font-size: var(--ui-text-sm);
-        font-weight: var(--ui-weight-semibold);
+        font-weight: var(--ui-weight-bold);
         color: var(--ui-color-text-muted);
       }
       section > p,
@@ -40,11 +39,11 @@
       }
       code {
         font-family: var(--ui-font-code);
-        font-size: var(--ui-text-xs);
+        font-size: var(--ui-text-sm);
       }
       pre {
         font-family: var(--ui-font-code);
-        font-size: var(--ui-text-xs);
+        font-size: var(--ui-text-sm);
         background: var(--ui-color-surface-sunken);
         border: var(--ui-border-width) solid var(--ui-color-border);
         border-radius: var(--ui-radius-md);
@@ -83,11 +82,7 @@
   <body>
     <header>
       <h1>Forms</h1>
-      <p>
-        Controls sit sunken in solid and lift to the surface while focused.
-        Every control has a visible label. Invalid controls get a danger edge;
-        checked ones fill with the accent.
-      </p>
+      <p>Controls sit sunken. Focus lifts them.</p>
       <pre><code>&lt;div class="ui-field"&gt;
   &lt;label class="ui-field-label" for="name"&gt;Name&lt;/label&gt;
   &lt;input class="ui-input" id="name" aria-describedby="name-hint" /&gt;
@@ -102,10 +97,7 @@
 
     <section>
       <h2>Fields</h2>
-      <p>
-        Text input, text area and select, each in a field with a label and a
-        hint or an error. Tab through them: each lifts while focused.
-      </p>
+      <p>Input, text area, select.</p>
       <template id="fields">
         <div class="demo-form">
           <div class="ui-field">
@@ -151,10 +143,7 @@
 
     <section>
       <h2>Choices</h2>
-      <p>
-        Checkboxes, radios and switches, each inside its label. Groups use a
-        <code>&lt;fieldset class="ui-field"&gt;</code> with a legend.
-      </p>
+      <p>Checkbox, radio, switch.</p>
       <template id="choices">
         <div class="demo-form">
           <fieldset class="ui-field">

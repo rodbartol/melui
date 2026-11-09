@@ -15,20 +15,19 @@
         gap: var(--ui-space-3xl);
       }
       h1 {
-        font-size: var(--ui-text-4xl);
+        font-size: var(--ui-text-xl);
         font-weight: var(--ui-weight-bold);
-        letter-spacing: var(--ui-tracking-tight);
         line-height: var(--ui-leading-tight);
       }
       h2 {
-        font-size: var(--ui-text-2xl);
-        font-weight: var(--ui-weight-semibold);
+        font-size: var(--ui-text-lg);
+        font-weight: var(--ui-weight-bold);
         line-height: var(--ui-leading-tight);
         margin-bottom: var(--ui-space-xs);
       }
       h3 {
         font-size: var(--ui-text-sm);
-        font-weight: var(--ui-weight-semibold);
+        font-weight: var(--ui-weight-bold);
         margin-bottom: var(--ui-space-sm);
       }
       section > p,
@@ -40,7 +39,7 @@
       code,
       .demo-value {
         font-family: var(--ui-font-code);
-        font-size: var(--ui-text-xs);
+        font-size: var(--ui-text-sm);
       }
       .demo-value {
         color: var(--ui-color-text-muted);
@@ -87,10 +86,10 @@
       }
       .demo-level b {
         font-size: var(--ui-text-sm);
-        font-weight: var(--ui-weight-semibold);
+        font-weight: var(--ui-weight-bold);
       }
       .demo-level span {
-        font-size: var(--ui-text-xs);
+        font-size: var(--ui-text-sm);
         color: var(--ui-color-text-muted);
       }
       .demo-sunken {
@@ -145,8 +144,8 @@
         right: calc(var(--ui-space-md) * -1);
         padding: var(--ui-space-xs) var(--ui-space-sm);
         border-radius: var(--ui-radius-md);
-        font-size: var(--ui-text-xs);
-        font-weight: var(--ui-weight-semibold);
+        font-size: var(--ui-text-sm);
+        font-weight: var(--ui-weight-bold);
       }
       .demo-cover {
         position: absolute;
@@ -176,7 +175,7 @@
         padding-inline: var(--ui-space-md);
         border-radius: var(--ui-radius-md);
         font-size: var(--ui-text-sm);
-        font-weight: var(--ui-weight-medium);
+        font-weight: var(--ui-weight-normal);
       }
       .demo-soft {
         display: grid;
@@ -248,7 +247,7 @@
         background: var(--ui-color-accent);
         color: var(--ui-color-accent-contrast);
         font-size: var(--ui-text-sm);
-        font-weight: var(--ui-weight-medium);
+        font-weight: var(--ui-weight-normal);
       }
       .demo-control .demo-value {
         color: inherit;
@@ -333,21 +332,13 @@
   <body>
     <header>
       <h1>Semantics</h1>
-      <p>
-        Every semantic token in use. These are the public tokens: apps override
-        them to theme Melui. Light and dark are shown side by side where they
-        differ.
-      </p>
+      <p>The public tokens.</p>
     </header>
 
     <!-- ELEVATION -->
     <section>
       <h2>Elevation</h2>
-      <p>
-        Six named levels on the Z axis. Each sets a surface, a shadow and a
-        stacking order. Light mode: objects cast shadows. Dark mode: objects
-        catch light, so higher surfaces are brighter.
-      </p>
+      <p>Six levels on the Z axis. Light: shadows. Dark: light.</p>
       <div class="demo-pair">
         <div class="demo-panel" data-theme="light">
           <h3>Light</h3>
@@ -376,10 +367,7 @@
 
     <section>
       <h2>Overlap</h2>
-      <p>
-        Only the element in primary focus may break out of its container. In
-        use, like a dialog, it can cover everything beneath it.
-      </p>
+      <p>Only the element in focus may break out.</p>
       <div class="demo-pair">
         <div class="demo-panel" data-theme="light">
           <h3>Breaks out: floating over raised</h3>
@@ -425,10 +413,7 @@
     <!-- COLOUR -->
     <section>
       <h2>Colour</h2>
-      <p>
-        Colours by role. Every text pair meets WCAG AAA (7:1) on every surface
-        level.
-      </p>
+      <p>By role. AAA everywhere.</p>
       <div class="demo-pair">
         <template id="colour-panel">
           <div class="demo-group">
@@ -490,71 +475,30 @@
     <!-- TYPOGRAPHY -->
     <section>
       <h2>Typography</h2>
-      <p>System font, restrained weights. Type serves the content.</p>
+      <p>Little type. Symbols speak.</p>
       <div class="demo-type">
-        <div><code>--ui-text-5xl</code><span style="font-size: var(--ui-text-5xl); line-height: var(--ui-leading-tight)">Materials and depth</span></div>
-        <div><code>--ui-text-4xl</code><span style="font-size: var(--ui-text-4xl); line-height: var(--ui-leading-tight)">Materials and depth</span></div>
-        <div><code>--ui-text-3xl</code><span style="font-size: var(--ui-text-3xl); line-height: var(--ui-leading-tight)">Materials and depth</span></div>
-        <div><code>--ui-text-2xl</code><span style="font-size: var(--ui-text-2xl)">Materials and depth</span></div>
-        <div><code>--ui-text-xl</code><span style="font-size: var(--ui-text-xl)">Materials and depth</span></div>
-        <div><code>--ui-text-lg</code><span style="font-size: var(--ui-text-lg)">Materials and depth</span></div>
-        <div><code>--ui-text-md</code><span style="font-size: var(--ui-text-md)">Materials and depth</span></div>
-        <div><code>--ui-text-sm</code><span style="font-size: var(--ui-text-sm)">Materials and depth</span></div>
-        <div><code>--ui-text-xs</code><span style="font-size: var(--ui-text-xs)">Materials and depth</span></div>
+        <div><code>--ui-text-xl</code><span style="font-size: var(--ui-text-xl); line-height: var(--ui-leading-tight)">Depth</span></div>
+        <div><code>--ui-text-lg</code><span style="font-size: var(--ui-text-lg)">Depth</span></div>
+        <div><code>--ui-text-md</code><span style="font-size: var(--ui-text-md)">Depth</span></div>
+        <div><code>--ui-text-sm</code><span style="font-size: var(--ui-text-sm)">Depth</span></div>
       </div>
-    </section>
-
-    <section>
-      <h3>Weights</h3>
       <div class="demo-columns">
-        <span style="font-size: var(--ui-text-xl); font-weight: var(--ui-weight-normal)">Normal <code>--ui-weight-normal</code></span>
-        <span style="font-size: var(--ui-text-xl); font-weight: var(--ui-weight-medium)">Medium <code>--ui-weight-medium</code></span>
-        <span style="font-size: var(--ui-text-xl); font-weight: var(--ui-weight-semibold)">Semibold <code>--ui-weight-semibold</code></span>
-        <span style="font-size: var(--ui-text-xl); font-weight: var(--ui-weight-bold)">Bold <code>--ui-weight-bold</code></span>
-      </div>
-    </section>
-
-    <section>
-      <h3>Leading</h3>
-      <div class="demo-columns">
-        <div>
-          <code>--ui-leading-tight</code>
-          <p style="line-height: var(--ui-leading-tight)">Components are made of materials, sit at a clear height, and speak through symbols. The product's identity shows, not Melui's.</p>
-        </div>
-        <div>
-          <code>--ui-leading-normal</code>
-          <p style="line-height: var(--ui-leading-normal)">Components are made of materials, sit at a clear height, and speak through symbols. The product's identity shows, not Melui's.</p>
-        </div>
-        <div>
-          <code>--ui-leading-loose</code>
-          <p style="line-height: var(--ui-leading-loose)">Components are made of materials, sit at a clear height, and speak through symbols. The product's identity shows, not Melui's.</p>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <h3>Tracking</h3>
-      <div class="demo-columns">
-        <div><code>--ui-tracking-tight</code><p style="font-size: var(--ui-text-xl); letter-spacing: var(--ui-tracking-tight)">Neutral surfaces</p></div>
-        <div><code>--ui-tracking-normal</code><p style="font-size: var(--ui-text-xl); letter-spacing: var(--ui-tracking-normal)">Neutral surfaces</p></div>
-        <div><code>--ui-tracking-wide</code><p style="font-size: var(--ui-text-xl); letter-spacing: var(--ui-tracking-wide)">Neutral surfaces</p></div>
+        <span style="font-size: var(--ui-text-lg); font-weight: var(--ui-weight-normal)">Normal <code>--ui-weight-normal</code></span>
+        <span style="font-size: var(--ui-text-lg); font-weight: var(--ui-weight-bold)">Bold <code>--ui-weight-bold</code></span>
       </div>
     </section>
 
     <!-- SPACE -->
     <section>
       <h2>Space</h2>
-      <p>Padding, gaps and margins. Compact by default.</p>
+      <p>Compact.</p>
       <div class="demo-bars" id="space"></div>
     </section>
 
     <!-- SIZING -->
     <section>
       <h2>Sizing</h2>
-      <p>
-        Control heights. On touch screens they grow so fingers can hit them:
-        medium becomes 44px. Values below are live for this device.
-      </p>
+      <p>Controls grow on touch screens.</p>
       <div class="demo-controls">
         <div class="demo-control" style="height: var(--ui-control-height-sm)"><span>Small <span class="demo-value" data-var="--ui-control-height-sm"></span></span></div>
         <div class="demo-control" style="height: var(--ui-control-height-md)"><span>Medium <span class="demo-value" data-var="--ui-control-height-md"></span></span></div>
@@ -565,7 +509,7 @@
     <!-- SHAPE -->
     <section>
       <h2>Shape</h2>
-      <p>Radii, border widths and the focus ring.</p>
+      <p>Radii, borders, focus ring.</p>
       <div class="demo-shapes">
         <div class="demo-shape"><div style="border-radius: var(--ui-radius-none)"></div><code>radius-none</code></div>
         <div class="demo-shape"><div style="border-radius: var(--ui-radius-sm)"></div><code>radius-sm</code></div>
@@ -584,10 +528,7 @@
     <!-- MOTION -->
     <section>
       <h2>Motion</h2>
-      <p>
-        Elevation changes are the main thing that moves. Hover to lift, press
-        to sink. Durations drop to zero when reduced motion is on.
-      </p>
+      <p>Lift and sink. Off with reduced motion.</p>
       <div class="demo-motion">
         <div class="demo-lift" tabindex="0" style="transition-duration: var(--ui-duration-fast)"><b>Fast</b><br /><span class="demo-value" data-var="--ui-duration-fast"></span></div>
         <div class="demo-lift" tabindex="0" style="transition-duration: var(--ui-duration-normal)"><b>Normal</b><br /><span class="demo-value" data-var="--ui-duration-normal"></span></div>

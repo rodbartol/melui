@@ -1,5 +1,4 @@
-/* THEME: Mono. Strict black and white, square corners, hard shadows. Fonts: IBM Plex Mono (Google Fonts).
-   Tokens only: no component CSS. Use with data-ui-theme on <html> or any element. */
+/* THEME: Mono. CI only: colours and font. Font: IBM Plex Mono (Google Fonts). */
 @layer ui.tokens {
   [data-ui-theme="mono"] {
     /* No hue at all */
@@ -38,24 +37,7 @@
     --ui-color-info-contrast: var(--ui-ref-black);
     --ui-color-info-text: light-dark(oklch(30% 0.03 245), oklch(88% 0.03 245));
 
-    /* Shape: square */
-    --ui-radius-sm: 0;
-    --ui-radius-md: 0;
-    --ui-radius-lg: 0;
-    --ui-radius-xl: 0;
-
-    /* Shadows: hard offsets, longer as it rises */
-    --ui-shadow-color: light-dark(var(--ui-ref-black), var(--ui-ref-gray-500));
-    --ui-shadow-sunken: inset 2px 2px 0 color-mix(in oklch, var(--ui-shadow-color) 15%, transparent);
-    --ui-shadow-raised: 2px 2px 0 var(--ui-shadow-color);
-    --ui-shadow-floating: 4px 4px 0 var(--ui-shadow-color);
-    --ui-shadow-overlay: 6px 6px 0 var(--ui-shadow-color);
-    --ui-shadow-top: 8px 8px 0 var(--ui-shadow-color);
-
-    /* Type: one monospace for everything */
+    /* Font */
     --ui-font-body: "IBM Plex Mono", monospace;
-    --ui-font-heading: "IBM Plex Mono", monospace;
-    --ui-font-code: "IBM Plex Mono", monospace;
-    --ui-tracking-tight: 0;
   }
 }

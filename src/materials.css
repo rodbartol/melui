@@ -1,6 +1,5 @@
 /* MATERIALS. What a component is made of: class="ui-material-<name>".
-   Without a class, a component is made of the default material (--ui-material-default-*:
-   solid, unless a theme picks another). Sits after components.
+   Every surface is material. Without a class, a component is solid. Sits after components.
    Applies only to the element with the class; children keep their own material.
    Pairs with elevation: set --ui-level-light: var(--ui-light-<level>) on the same element
    and, in dark mode, the material catches that much light. */
@@ -18,16 +17,18 @@
       .ui-dialog,
       .ui-toast,
       .ui-tooltip-text,
+      .ui-tabs,
       .ui-tab,
       :is(a, button).ui-list-item,
       .ui-toolbar,
-      .ui-avatar
+      .ui-avatar,
+      .ui-notice
     ) {
     /* The recipe. Each part comes from a state slot, then the element's material class,
-       then the default material. */
+       then solid. */
     --_mfill: var(
       --ui-state-fill,
-      var(--ui-mat-fill, var(--ui-material-default-fill))
+      var(--ui-mat-fill, var(--ui-material-solid-fill))
     );
     /* Fill lit by the light tint, in dark mode only. */
     --_lit: color-mix(
@@ -36,8 +37,8 @@
       light-dark(var(--_mfill), var(--ui-color-light-tint))
         calc(var(--ui-level-light) * var(--ui-state-catch, 1))
     );
-    --_grain: var(--ui-mat-grain, var(--ui-material-default-grain));
-    --_reveal: var(--ui-mat-reveal, var(--ui-material-default-reveal));
+    --_grain: var(--ui-mat-grain, 0%);
+    --_reveal: var(--ui-mat-reveal, 0);
     /* The body: the lit fill, see-through by the material's opacity (glass). */
     --_body: color-mix(
       in oklab,
@@ -47,7 +48,7 @@
           100% -
             var(
               --ui-state-opacity,
-              var(--ui-mat-opacity, var(--ui-material-default-opacity))
+              var(--ui-mat-opacity, 100%)
             )
         )
     );
@@ -70,23 +71,23 @@
       linear-gradient(var(--_veil), var(--_veil)),
       var(
         --ui-state-texture,
-        var(--ui-mat-texture, var(--ui-material-default-texture))
+        var(--ui-mat-texture, none)
       ),
       linear-gradient(var(--_body), var(--_body));
     --_backdrop: var(
       --ui-state-backdrop,
-      var(--ui-mat-backdrop, var(--ui-material-default-backdrop))
+      var(--ui-mat-backdrop, none)
     );
     -webkit-backdrop-filter: var(--_backdrop);
     backdrop-filter: var(--_backdrop);
     border: var(--ui-border-width) solid
       var(
         --ui-state-edge,
-        var(--ui-mat-edge, var(--ui-material-default-edge))
+        var(--ui-mat-edge, var(--ui-material-solid-edge))
       );
   }
 
-  /* Each material sets the whole recipe, so it holds whatever the default material is. */
+  /* Each material sets the whole recipe. */
   .ui-material-solid {
     --ui-mat-fill: var(--ui-material-solid-fill);
     --ui-mat-edge: var(--ui-material-solid-edge);

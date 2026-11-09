@@ -1,7 +1,8 @@
-/* COMPONENT. Symbol button: an icon leads, a short visible label always follows.
+/* COMPONENT. Symbol button: an icon leads. A label is optional: your call.
    On <button>, <a> or <summary>. Solid and raised by default: hover lifts it, press sinks it.
    Variants: ui-button-accent (the accent fill), ui-button-danger (brick red).
-   Sizes: ui-button-sm, ui-button-lg (medium is the default). Heights grow on touch screens. */
+   Sizes: ui-button-sm, ui-button-lg (medium is the default). Heights grow on touch screens.
+   Symbol only: ui-button-icon makes it square. Name it with aria-label or a tooltip. */
 @layer ui.components {
   .ui-button {
     /* Default elevation: raised. */
@@ -20,7 +21,7 @@
     padding-inline: calc(var(--ui-space-sm) + var(--ui-space-xs));
     border-radius: var(--ui-radius-md);
     font-size: var(--ui-text-sm);
-    font-weight: var(--ui-weight-medium);
+    font-weight: var(--ui-weight-normal);
     line-height: var(--ui-leading-tight);
     text-decoration: none;
     white-space: nowrap;
@@ -53,6 +54,10 @@
   .ui-button-lg > svg {
     inline-size: var(--ui-icon-md);
     block-size: var(--ui-icon-md);
+  }
+  .ui-button-icon {
+    aspect-ratio: 1;
+    padding-inline: 0;
   }
 
   /* Variants use the state slots, so they hold on any material. */

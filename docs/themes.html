@@ -22,9 +22,8 @@
         gap: var(--ui-space-xl);
       }
       body > header h1 {
-        font-size: var(--ui-text-4xl);
+        font-size: var(--ui-text-xl);
         font-weight: var(--ui-weight-bold);
-        letter-spacing: var(--ui-tracking-tight);
         line-height: var(--ui-leading-tight);
       }
       body > header p {
@@ -34,7 +33,7 @@
       }
       code {
         font-family: var(--ui-font-code);
-        font-size: var(--ui-text-xs);
+        font-size: var(--ui-text-sm);
       }
       .demo-screens {
         display: grid;
@@ -54,7 +53,7 @@
       }
       figcaption {
         font-size: var(--ui-text-sm);
-        font-weight: var(--ui-weight-semibold);
+        font-weight: var(--ui-weight-bold);
       }
       figcaption span {
         color: var(--ui-color-text-muted);
@@ -77,10 +76,9 @@
         gap: var(--ui-space-sm);
       }
       .demo-head h2 {
-        font-family: var(--ui-font-heading);
-        font-size: var(--ui-text-2xl);
+        font-family: var(--ui-font-body);
+        font-size: var(--ui-text-lg);
         font-weight: var(--ui-weight-bold);
-        letter-spacing: var(--ui-tracking-tight);
         line-height: var(--ui-leading-tight);
       }
       .demo-head p {
@@ -127,6 +125,7 @@
       <symbol id="i-list" viewBox="0 0 24 24"><path d="M4 5h3v3H4zm5 0h11v3H9zM4 10.5h3v3H4zm5 0h11v3H9zM4 16h3v3H4zm5 0h11v3H9z" /></symbol>
       <symbol id="i-image" viewBox="0 0 24 24"><path d="M4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Zm1 14h14l-4.5-6-3.5 4.5-2.5-3zM8.5 6a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z" /></symbol>
       <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 5h18v2.5H3zm0 5.75h18v2.5H3zm0 5.75h18V19H3z" /></symbol>
+      <symbol id="i-moon" viewBox="0 0 24 24"><path d="M14.5 2.5A9.5 9.5 0 1 0 21.5 15 7.5 7.5 0 0 1 14.5 2.5Z" /></symbol>
       <symbol id="i-check" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 1 0 20 10 10 0 0 1 0-20Zm-1.4 13.6 6.7-6.7-1.4-1.4-5.3 5.3-2.6-2.6-1.4 1.4z" /></symbol>
       <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 2 1 21h22zm-1 7h2v6h-2zm0 8h2v2h-2z" /></symbol>
     </svg>
@@ -134,15 +133,10 @@
 
     <header>
       <h1>Themes</h1>
-      <p>
-        One pond tracker, four times. Only the theme changes: each is a single
-        file that sets tokens (colour, type, shape, shadow and which material
-        things are made of) and no component CSS. If two of them look like
-        siblings, Melui's defaults are too strong.
-      </p>
+      <p>One screen, four themes. Only colours and font change.</p>
       <div class="ui-tabs" role="radiogroup" aria-label="Mode">
         <label class="ui-tab"><input type="radio" name="mode" id="mode-light" checked /><svg><use href="#i-sun" /></svg>Light</label>
-        <label class="ui-tab"><input type="radio" name="mode" id="mode-dark" /><svg><use href="#i-menu" /></svg>Dark</label>
+        <label class="ui-tab"><input type="radio" name="mode" id="mode-dark" /><svg><use href="#i-moon" /></svg>Dark</label>
       </div>
     </header>
 
@@ -222,10 +216,10 @@
     <script>
       // Demo only: the same screen once per theme.
       const themes = [
-        ["", "Default", "neutral, solid, system font"],
-        ["japan-fish", "Japan Fish", "washi paper, indigo, Shippori Mincho"],
-        ["mono", "Mono", "black and white, square, IBM Plex Mono"],
-        ["loud", "Loud", "hot magenta, glass, Archivo"],
+        ["", "Default", "neutral, system font"],
+        ["japan-fish", "Japan Fish", "indigo and sage, Shippori Mincho"],
+        ["mono", "Mono", "black and white, IBM Plex Mono"],
+        ["loud", "Loud", "hot magenta, Archivo"],
       ];
       const host = document.querySelector("[data-screens]");
       for (const [id, name, note] of themes) {

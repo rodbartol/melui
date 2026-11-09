@@ -15,21 +15,20 @@
         gap: var(--ui-space-3xl);
       }
       h1 {
-        font-size: var(--ui-text-4xl);
+        font-size: var(--ui-text-xl);
         font-weight: var(--ui-weight-bold);
-        letter-spacing: var(--ui-tracking-tight);
         line-height: var(--ui-leading-tight);
       }
       h2 {
-        font-size: var(--ui-text-2xl);
-        font-weight: var(--ui-weight-semibold);
+        font-size: var(--ui-text-lg);
+        font-weight: var(--ui-weight-bold);
         line-height: var(--ui-leading-tight);
         margin-bottom: var(--ui-space-xs);
       }
       .demo-panel > h3,
       .demo-band h3 {
         font-size: var(--ui-text-sm);
-        font-weight: var(--ui-weight-semibold);
+        font-weight: var(--ui-weight-bold);
         color: var(--ui-color-text-muted);
       }
       section > p,
@@ -40,11 +39,11 @@
       }
       code {
         font-family: var(--ui-font-code);
-        font-size: var(--ui-text-xs);
+        font-size: var(--ui-text-sm);
       }
       pre {
         font-family: var(--ui-font-code);
-        font-size: var(--ui-text-xs);
+        font-size: var(--ui-text-sm);
         background: var(--ui-color-surface-sunken);
         border: var(--ui-border-width) solid var(--ui-color-border);
         border-radius: var(--ui-radius-md);
@@ -106,13 +105,7 @@
 
     <header>
       <h1>Actions</h1>
-      <p>
-        Symbol buttons, menus and dialogs. Buttons are raised: hover lifts
-        them, press sinks them. A menu floats; a dialog sits at the overlay
-        level and covers everything. No JavaScript: menus use
-        <code>&lt;details&gt;</code>, dialogs open as popovers or with
-        <code>showModal()</code>.
-      </p>
+      <p>Buttons, menus, dialogs. Hover lifts, press sinks.</p>
       <pre><code>&lt;button class="ui-button ui-button-accent"&gt;&lt;svg&gt;…&lt;/svg&gt;Save&lt;/button&gt;
 
 &lt;details class="ui-menu"&gt;
@@ -128,10 +121,7 @@
 
     <section>
       <h2>Symbol button</h2>
-      <p>
-        An icon leads, a short label always follows. Default, accent and
-        danger; small, medium and large; disabled goes flat.
-      </p>
+      <p>Icon first. Label optional.</p>
       <template id="buttons">
         <div class="demo-row">
           <button class="ui-button"><svg><use href="#i-edit" /></svg>Edit</button>
@@ -148,6 +138,13 @@
           <button class="ui-button ui-material-paper"><svg><use href="#i-leaf" /></svg>Paper</button>
           <button class="ui-button ui-material-ink"><svg><use href="#i-leaf" /></svg>Ink</button>
         </div>
+        <div class="demo-row">
+          <button class="ui-button ui-button-icon ui-button-sm" aria-label="Edit"><svg><use href="#i-edit" /></svg></button>
+          <button class="ui-button ui-button-icon" aria-label="Copy"><svg><use href="#i-copy" /></svg></button>
+          <button class="ui-button ui-button-icon ui-button-accent" aria-label="Save"><svg><use href="#i-save" /></svg></button>
+          <button class="ui-button ui-button-icon ui-button-danger" aria-label="Delete"><svg><use href="#i-trash" /></svg></button>
+          <button class="ui-button ui-button-icon ui-button-lg ui-material-glass" aria-label="Fish"><svg><use href="#i-fish" /></svg></button>
+        </div>
       </template>
       <div class="demo-pair">
         <div class="demo-panel" data-theme="light" data-fill="buttons"></div>
@@ -157,10 +154,7 @@
 
     <section>
       <h2>Menu</h2>
-      <p>
-        A floating list below its button. While it's open the button stays
-        lifted. <code>ui-menu-end</code> aligns it to the button's end.
-      </p>
+      <p>Floats below its button.</p>
       <template id="menus">
         <div class="demo-row demo-menus">
           <details class="ui-menu" data-open>
@@ -191,11 +185,7 @@
 
     <section>
       <h2>Dialog</h2>
-      <p>
-        A card at the overlay level, with the card's parts. The first button
-        opens it as a popover (no JavaScript); the second as a modal with
-        <code>showModal()</code>, which also makes the page behind it inert.
-      </p>
+      <p>Sits on the overlay level.</p>
       <template id="dialogs">
         <div class="demo-row">
           <button class="ui-button ui-button-accent" popovertarget="pop"><svg><use href="#i-open" /></svg>Open popover</button>

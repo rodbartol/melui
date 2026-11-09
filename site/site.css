@@ -21,10 +21,9 @@ body {
 .site-wordmark {
   padding-inline: var(--ui-space-sm);
   color: var(--ui-color-text);
-  font-family: var(--ui-font-heading);
+  font-family: var(--ui-font-body);
   font-size: var(--ui-text-lg);
   font-weight: var(--ui-weight-bold);
-  letter-spacing: var(--ui-tracking-tight);
   text-decoration: none;
 }
 .site-menu {
@@ -58,10 +57,8 @@ body {
 .site-drawer h2 {
   margin: var(--ui-space-md) var(--ui-space-sm) var(--ui-space-xs);
   color: var(--ui-color-text-muted);
-  font-size: var(--ui-text-xs);
-  font-weight: var(--ui-weight-semibold);
-  letter-spacing: var(--ui-tracking-wide);
-  text-transform: uppercase;
+  font-size: var(--ui-text-sm);
+  font-weight: var(--ui-weight-bold);
 }
 .site-main {
   min-inline-size: 0;
@@ -95,24 +92,23 @@ body {
   max-inline-size: 46rem;
 }
 .site-prose h1 {
-  font-family: var(--ui-font-heading);
-  font-size: var(--ui-text-4xl);
+  font-family: var(--ui-font-body);
+  font-size: var(--ui-text-xl);
   font-weight: var(--ui-weight-bold);
-  letter-spacing: var(--ui-tracking-tight);
   line-height: var(--ui-leading-tight);
 }
 .site-prose h2 {
   margin-block-start: var(--ui-space-xl);
-  font-family: var(--ui-font-heading);
-  font-size: var(--ui-text-2xl);
-  font-weight: var(--ui-weight-semibold);
+  font-family: var(--ui-font-body);
+  font-size: var(--ui-text-lg);
+  font-weight: var(--ui-weight-bold);
   line-height: var(--ui-leading-tight);
 }
 .site-prose h3 {
   margin-block-start: var(--ui-space-md);
-  font-family: var(--ui-font-heading);
+  font-family: var(--ui-font-body);
   font-size: var(--ui-text-lg);
-  font-weight: var(--ui-weight-semibold);
+  font-weight: var(--ui-weight-bold);
 }
 .site-prose ul,
 .site-prose ol {
@@ -122,7 +118,7 @@ body {
 }
 .site-prose code {
   font-family: var(--ui-font-code);
-  font-size: 0.9em;
+  font-size: var(--ui-text-sm);
   padding: 0 var(--ui-space-2xs);
   border-radius: var(--ui-radius-sm);
   background: var(--ui-color-accent-soft);
@@ -154,7 +150,7 @@ body {
   vertical-align: top;
 }
 .site-prose th {
-  font-weight: var(--ui-weight-semibold);
+  font-weight: var(--ui-weight-bold);
 }
 
 /* Home */
@@ -164,10 +160,9 @@ body {
   max-inline-size: 46rem;
 }
 .site-hero h1 {
-  font-family: var(--ui-font-heading);
-  font-size: var(--ui-text-5xl);
+  font-family: var(--ui-font-body);
+  font-size: var(--ui-text-xl);
   font-weight: var(--ui-weight-bold);
-  letter-spacing: var(--ui-tracking-tight);
   line-height: var(--ui-leading-tight);
 }
 .site-hero p {
@@ -178,4 +173,9 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 14rem), 1fr));
   gap: var(--ui-space-md);
+}
+.site-nav svg.ui-list-symbol,
+.site-drawer svg.ui-list-symbol {
+  inline-size: var(--ui-icon-sm);
+  block-size: var(--ui-icon-sm);
 }
