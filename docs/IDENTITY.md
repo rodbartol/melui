@@ -48,4 +48,4 @@ A theme is your CI: colours and font. Nothing else.
 - Text meets AAA contrast.
 - Colour is for status and accent only.
 - Plain CSS. No JavaScript.
-- Small: under 15 KB.
+- Small: under 30 KB, gzipped.

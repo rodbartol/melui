@@ -82,7 +82,7 @@
   <body>
     <header>
       <h1>Forms</h1>
-      <p>Controls sit sunken. Focus lifts them.</p>
+      <p>Controls sit sunken. Focus lifts them. A symbol can sit inside a field.</p>
       <pre><code>&lt;div class="ui-field"&gt;
   &lt;label class="ui-field-label" for="name"&gt;Name&lt;/label&gt;
   &lt;input class="ui-input" id="name" aria-describedby="name-hint" /&gt;
@@ -92,7 +92,20 @@
 &lt;div class="ui-select"&gt;&lt;select&gt;…&lt;/select&gt;&lt;/div&gt;
 
 &lt;label class="ui-choice"&gt;&lt;input type="checkbox" /&gt;Morning&lt;/label&gt;
-&lt;label class="ui-choice"&gt;&lt;input type="checkbox" role="switch" /&gt;Pump&lt;/label&gt;</code></pre>
+&lt;label class="ui-choice"&gt;&lt;input type="checkbox" role="switch" /&gt;Pump&lt;/label&gt;
+
+&lt;label class="ui-input-group"&gt;
+  &lt;svg&gt;…&lt;/svg&gt;
+  &lt;input class="ui-input ui-input-round" type="search" /&gt;
+&lt;/label&gt;
+
+&lt;input class="ui-range" type="range" value="40" style="--ui-range-fill: 40%" /&gt;
+
+&lt;label class="ui-dropzone"&gt;
+  &lt;svg class="ui-dropzone-symbol"&gt;…&lt;/svg&gt;
+  &lt;span class="ui-dropzone-title"&gt;Drop a map here&lt;/span&gt;
+  &lt;input type="file" /&gt;
+&lt;/label&gt;</code></pre>
     </header>
 
     <section>

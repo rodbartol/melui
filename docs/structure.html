@@ -142,7 +142,7 @@
 
     <header>
       <h1>Structure</h1>
-      <p>Tabs, toolbars, lists, avatars, drawers.</p>
+      <p>Tabs, chips, grids, toolbars, app bars, lists, avatars, drawers.</p>
       <pre><code>&lt;div class="ui-tabs" role="tablist"&gt;
   &lt;button class="ui-tab" role="tab" aria-selected="true"&gt;Fish&lt;/button&gt;
   &lt;button class="ui-tab" role="tab" aria-selected="false"&gt;Plants&lt;/button&gt;
@@ -158,7 +158,16 @@
   &lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;dialog class="ui-dialog ui-dialog-drawer"&gt;…&lt;/dialog&gt;</code></pre>
+&lt;dialog class="ui-dialog ui-dialog-drawer"&gt;…&lt;/dialog&gt;
+
+&lt;div class="ui-chips" role="group" aria-label="Mood"&gt;
+  &lt;button class="ui-chip" aria-pressed="true" style="--ui-chip-color: …; --ui-chip-text: …"&gt;Calm&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;div class="ui-grid" style="--ui-grid-min: 12rem; --ui-grid-max-cols: 4"&gt;…&lt;/div&gt;
+
+&lt;header class="ui-appbar"&gt;…&lt;/header&gt;
+&lt;footer class="ui-appbar ui-appbar-bottom"&gt;…&lt;/footer&gt;</code></pre>
     </header>
 
     <section>

@@ -133,13 +133,28 @@
 
     <header>
       <h1>Card</h1>
-      <p>Solid and raised by default. Symbol first.</p>
+      <p>Solid and raised by default. Symbol first. Media on top; an empty state when there is nothing.</p>
       <pre><code>&lt;article class="ui-card"&gt;
   &lt;div class="ui-card-symbol"&gt;&lt;svg&gt;…&lt;/svg&gt;&lt;/div&gt;
   &lt;h3 class="ui-card-title"&gt;Koi&lt;/h3&gt;
   &lt;p class="ui-card-text"&gt;…&lt;/p&gt;
   &lt;div class="ui-card-actions"&gt;…&lt;/div&gt;
-&lt;/article&gt;</code></pre>
+&lt;/article&gt;
+
+&lt;article class="ui-card"&gt;
+  &lt;div class="ui-card-media" style="aspect-ratio: 1"&gt;
+    &lt;img alt="" src="…" /&gt;
+    &lt;span class="ui-card-media-action" aria-hidden="true"&gt;&lt;svg&gt;…&lt;/svg&gt;&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;h3 class="ui-card-title"&gt;Koi at dawn&lt;/h3&gt;
+&lt;/article&gt;
+
+&lt;div class="ui-empty"&gt;
+  &lt;span class="ui-empty-symbol"&gt;&lt;svg&gt;…&lt;/svg&gt;&lt;/span&gt;
+  &lt;h3 class="ui-empty-title"&gt;No fish yet&lt;/h3&gt;
+  &lt;p class="ui-empty-text"&gt;…&lt;/p&gt;
+  &lt;div class="ui-empty-actions"&gt;…&lt;/div&gt;
+&lt;/div&gt;</code></pre>
     </header>
 
     <section>

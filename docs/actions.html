@@ -105,7 +105,7 @@
 
     <header>
       <h1>Actions</h1>
-      <p>Buttons, menus, dialogs. Hover lifts, press sinks.</p>
+      <p>Buttons, menus, popovers, dialogs. Hover lifts, press sinks.</p>
       <pre><code>&lt;button class="ui-button ui-button-accent"&gt;&lt;svg&gt;…&lt;/svg&gt;Save&lt;/button&gt;
 
 &lt;details class="ui-menu"&gt;
@@ -114,6 +114,13 @@
     &lt;button class="ui-menu-item"&gt;&lt;svg&gt;…&lt;/svg&gt;Edit&lt;/button&gt;
   &lt;/div&gt;
 &lt;/details&gt;
+
+&lt;button class="ui-button ui-button-flat ui-button-icon ui-button-round" aria-label="Edit"&gt;&lt;svg&gt;…&lt;/svg&gt;&lt;/button&gt;
+
+&lt;div class="ui-popover ui-popover-end"&gt;
+  &lt;button class="ui-button" aria-expanded="true"&gt;Koi&lt;/button&gt;
+  &lt;div class="ui-popover-panel"&gt;…&lt;/div&gt;
+&lt;/div&gt;
 
 &lt;button class="ui-button" popovertarget="d"&gt;Open&lt;/button&gt;
 &lt;dialog class="ui-dialog" popover id="d"&gt;…&lt;/dialog&gt;</code></pre>
