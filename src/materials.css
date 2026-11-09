@@ -20,7 +20,7 @@
       .ui-tabs,
       .ui-tab,
       :is(a, button).ui-list-item,
-      .ui-toolbar,
+      .ui-toolbar, .ui-appbar, .ui-chip, .ui-card-media-action,
       .ui-avatar,
       .ui-notice
     ) {
@@ -121,9 +121,9 @@
   }
 
   /* Glass: see-through and blurred at every height, light or not. The toolbar is glass by
-     default. Where blur isn't available, the user asks for less transparency, or in high
+     default, and so are the app bar and a card media action. Where blur isn't available, the user asks for less transparency, or in high
      contrast, the glass tokens make it solid (see the tokens file). */
-  :is(.ui-material-glass, .ui-toolbar:not([class*="ui-material-"])) {
+  :is(.ui-material-glass, :is(.ui-toolbar, .ui-appbar, .ui-card-media-action):not([class*="ui-material-"])) {
     --ui-mat-fill: var(--ui-material-glass-fill);
     --ui-mat-edge: var(--ui-material-glass-edge);
     --ui-mat-texture: none;

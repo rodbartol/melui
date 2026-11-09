@@ -1,4 +1,4 @@
-/* COMPONENT. Navigation and structure: tabs, toolbar, list, avatar. (The drawer is in dialog.css.) */
+/* COMPONENT. Navigation and structure: tabs, toolbar, app bar, list, avatar. (The drawer is in dialog.css.) */
 @layer ui.components {
   /* ---------- Tabs and segmented control ----------
      <div class="ui-tabs" role="tablist"> with <button class="ui-tab" role="tab" aria-selected>.
@@ -130,6 +130,29 @@
     background: var(--ui-color-border-strong);
   }
 
+  /* ---------- App bar: the bar fixed to the top (or bottom) of the page, glass, floating ----------
+     <header class="ui-appbar">…</header>; ui-appbar-bottom fixes it to the bottom, above the
+     safe area. Its height is --ui-appbar-height (default 4rem). It lays nothing out inside:
+     that is the app's (or a ui-cluster's). The page leaves room for it. */
+  .ui-appbar {
+    --_shadow: var(--ui-shadow-floating);
+    --_light: var(--ui-light-floating);
+    --_z: var(--ui-z-floating);
+    --_up-shadow: var(--ui-shadow-floating);
+    --_up-light: var(--ui-light-floating);
+    --_up-z: var(--ui-z-floating);
+    position: fixed;
+    inset: 0 0 auto;
+    display: flex;
+    align-items: center;
+    block-size: var(--ui-appbar-height, 4rem);
+  }
+  .ui-appbar-bottom {
+    inset: auto 0 0;
+    block-size: calc(var(--ui-appbar-height, 4rem) + env(safe-area-inset-bottom, 0px));
+    padding-block-end: env(safe-area-inset-bottom, 0px);
+  }
+
   /* ---------- List: rows with a symbol, a title and text, and actions ----------
      <ul class="ui-list"> with <li class="ui-list-item"> or, for a row that is a link,
      <li><a class="ui-list-item" href>. Parts: ui-list-symbol, ui-list-title, ui-list-text,
@@ -211,7 +234,7 @@
 
   /* ---------- Avatar: a person as a symbol, solid and raised. Prefer a picture. ----------
      <img class="ui-avatar" alt="…"> or initials: <span class="ui-avatar" role="img" aria-label="…">KO</span>.
-     Sizes: ui-avatar-sm, ui-avatar-lg. */
+     Sizes: ui-avatar-sm, ui-avatar-lg, or any size with style="--ui-avatar-size: 5rem". */
   .ui-avatar {
     --_shadow: var(--ui-shadow-raised);
     --_light: var(--ui-light-raised);
@@ -223,8 +246,8 @@
     display: inline-grid;
     flex: none;
     place-content: center;
-    inline-size: var(--ui-avatar-md);
-    block-size: var(--ui-avatar-md);
+    inline-size: var(--ui-avatar-size, var(--ui-avatar-md));
+    block-size: var(--ui-avatar-size, var(--ui-avatar-md));
     border-radius: var(--ui-radius-full);
     overflow: hidden;
     object-fit: cover;
@@ -234,13 +257,25 @@
     user-select: none;
   }
   .ui-avatar-sm {
-    inline-size: var(--ui-avatar-sm);
-    block-size: var(--ui-avatar-sm);
+    --ui-avatar-size: var(--ui-avatar-sm);
     font-size: var(--ui-text-sm);
   }
   .ui-avatar-lg {
-    inline-size: var(--ui-avatar-lg);
-    block-size: var(--ui-avatar-lg);
+    --ui-avatar-size: var(--ui-avatar-lg);
     font-size: var(--ui-text-md);
+  }
+  /* Any other size: set --ui-avatar-size; the initials scale with it. */
+  .ui-avatar[style*="--ui-avatar-size"] {
+    font-size: calc(var(--ui-avatar-size) * 0.4);
+  }
+}
+
+/* The app bar's material draws only the edge that faces the page. */
+@layer ui.materials {
+  .ui-appbar {
+    border-width: 0 0 var(--ui-border-width);
+  }
+  .ui-appbar-bottom {
+    border-width: var(--ui-border-width) 0 0;
   }
 }

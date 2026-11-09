@@ -1,0 +1,62 @@
+/* COMPONENT. Chip: a small toggle in a row of filters or tags. Flat at rest; hover lifts it,
+   pressed (aria-pressed="true") stays raised.
+   <div class="ui-chips" role="group" aria-label="…"><button class="ui-chip" aria-pressed="…">Calm</button></div>
+   ui-chips is one row that scrolls sideways, with no scrollbar; ui-chips-wrap wraps instead.
+   A chip takes its own colour from --ui-chip-color, and its text from --ui-chip-text
+   (pick one with AAA contrast on that colour). Without them it is the accent's soft tint. */
+@layer ui.components {
+  .ui-chips {
+    display: flex;
+    gap: var(--ui-space-sm);
+    padding-block: var(--ui-space-xs);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .ui-chips::-webkit-scrollbar {
+    display: none;
+  }
+  .ui-chips-wrap {
+    flex-wrap: wrap;
+    overflow: visible;
+  }
+  .ui-chip {
+    /* Default elevation: base, lifting to raised. */
+    --_shadow: var(--ui-shadow-base);
+    --_light: var(--ui-light-base);
+    --_z: var(--ui-z-base);
+    --_up-shadow: var(--ui-shadow-raised);
+    --_up-light: var(--ui-light-raised);
+    --_up-z: var(--ui-z-raised);
+    --ui-state-fill: var(--ui-chip-color, var(--ui-color-accent-soft));
+    --ui-state-edge: color-mix(in oklch, var(--ui-chip-text, var(--ui-color-text)) 20%, transparent);
+    --ui-state-text: var(--ui-chip-text, var(--ui-color-text));
+    --ui-state-opacity: 100%;
+    /* A chip's colour is its own: it doesn't catch light in dark mode. */
+    --ui-state-catch: 0;
+
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    gap: var(--ui-space-xs);
+    min-block-size: calc(var(--ui-control-height-sm) - var(--ui-space-xs));
+    padding-inline: calc(var(--ui-space-sm) + var(--ui-space-xs));
+    border-radius: var(--ui-radius-full);
+    font-size: var(--ui-text-sm);
+    font-weight: var(--ui-weight-normal);
+    line-height: var(--ui-leading-tight);
+    white-space: nowrap;
+    text-decoration: none;
+    cursor: pointer;
+    user-select: none;
+  }
+  .ui-chip[aria-pressed="true"] {
+    --ui-state-edge: var(--ui-chip-text, var(--ui-color-accent-text));
+    font-weight: var(--ui-weight-bold);
+  }
+  .ui-chip > svg {
+    flex: none;
+    inline-size: var(--ui-icon-sm);
+    block-size: var(--ui-icon-sm);
+    fill: currentColor;
+  }
+}

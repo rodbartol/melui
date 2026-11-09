@@ -289,6 +289,61 @@
       </div>
     </section>
 
+    <section>
+      <h2>Chips</h2>
+      <p>Small toggles. Pressed stays raised.</p>
+      <template id="chips">
+        <div class="demo-stack">
+          <div class="ui-chips" role="group" aria-label="Mood">
+            <button class="ui-chip" aria-pressed="true">All</button>
+            <button class="ui-chip" aria-pressed="false" style="--ui-chip-color: oklch(85% 0.1 230); --ui-chip-text: oklch(20% 0.05 250)">Calm</button>
+            <button class="ui-chip" aria-pressed="false" style="--ui-chip-color: oklch(85% 0.15 60); --ui-chip-text: oklch(25% 0.06 50)">Bright</button>
+            <button class="ui-chip" aria-pressed="false" style="--ui-chip-color: oklch(80% 0.12 330); --ui-chip-text: oklch(22% 0.06 330)">Dreamy</button>
+            <button class="ui-chip" aria-pressed="false"><svg><use href="#i-leaf" /></svg>Plants</button>
+          </div>
+        </div>
+      </template>
+      <div class="demo-pair">
+        <div class="demo-panel" data-theme="light" data-fill="chips"></div>
+        <div class="demo-panel" data-theme="dark" data-fill="chips"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Grid</h2>
+      <p>As many equal columns as fit, up to a limit.</p>
+      <template id="grids">
+        <div class="ui-grid" style="--ui-grid-min: 6rem; --ui-grid-max-cols: 4">
+          <div class="ui-card">1</div><div class="ui-card">2</div><div class="ui-card">3</div><div class="ui-card">4</div><div class="ui-card">5</div><div class="ui-card">6</div>
+        </div>
+      </template>
+      <div class="demo-pair">
+        <div class="demo-panel" data-theme="light" data-fill="grids"></div>
+        <div class="demo-panel" data-theme="dark" data-fill="grids"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>App bar</h2>
+      <p>Glass, fixed to the top or bottom of the page.</p>
+      <template id="appbars">
+        <div class="demo-stack">
+          <header class="ui-appbar" style="position: relative; padding-inline: 1rem; justify-content: space-between">
+            <strong>Pond</strong>
+            <button class="ui-button ui-button-flat ui-button-icon ui-button-round" aria-label="Menu"><svg><use href="#i-menu" /></svg></button>
+          </header>
+          <footer class="ui-appbar ui-appbar-bottom" style="position: relative; padding-inline: 1rem; gap: 0.5rem">
+            <button class="ui-button ui-button-accent ui-button-icon ui-button-round ui-button-sm" aria-label="Play"><svg><use href="#i-sun" /></svg></button>
+            <span>Morning feed</span>
+          </footer>
+        </div>
+      </template>
+      <div class="demo-pair">
+        <div class="demo-panel" data-theme="light" data-fill="appbars"></div>
+        <div class="demo-panel" data-theme="dark" data-fill="appbars"></div>
+      </div>
+    </section>
+
     <script>
       // Demo only: fill both panels and give each its own ids and radio groups.
       for (const panel of document.querySelectorAll("[data-fill]")) {
