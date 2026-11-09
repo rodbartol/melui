@@ -2,7 +2,7 @@
 
 **Depth. Material. Symbol. Bring your own.**
 
-Melui is plain CSS. Neutral, so your product shows.
+melui is plain CSS. Neutral, so your product shows.
 
 ## Depth
 
@@ -35,7 +35,7 @@ Symbols carry the message.
 
 ## Bring your own
 
-Melui brings depth, material and symbol. You bring the rest.
+melui brings depth, material and symbol. You bring the rest.
 
 - Your colours.
 - Your font.
