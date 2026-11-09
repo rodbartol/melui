@@ -252,29 +252,6 @@
       </div>
     </section>
 
-    <section>
-      <h2>Drop zone</h2>
-      <p>A sunken place to drop files.</p>
-      <template id="drops">
-        <div class="demo-form">
-          <label class="ui-dropzone">
-            <svg class="ui-dropzone-symbol" viewBox="0 0 24 24"><path d="M11 16V7.8l-3.6 3.6L6 10l6-6 6 6-1.4 1.4L13 7.8V16zm-7 4v-4h2v2h12v-2h2v4z" /></svg>
-            <span class="ui-dropzone-title">Drop a map here</span>
-            <span>or choose a file. PNG, up to 2 MB.</span>
-            <input type="file" />
-          </label>
-          <div class="ui-dropzone" data-active>
-            <svg class="ui-dropzone-symbol" viewBox="0 0 24 24"><path d="M11 16V7.8l-3.6 3.6L6 10l6-6 6 6-1.4 1.4L13 7.8V16zm-7 4v-4h2v2h12v-2h2v4z" /></svg>
-            <span class="ui-dropzone-title">Release to upload</span>
-          </div>
-        </div>
-      </template>
-      <div class="demo-pair">
-        <div class="demo-panel" data-theme="light" data-fill="drops"></div>
-        <div class="demo-panel" data-theme="dark" data-fill="drops"></div>
-      </div>
-    </section>
-
     <script>
       for (const panel of document.querySelectorAll("[data-fill]")) {
         const suffix = "-" + panel.dataset.theme;

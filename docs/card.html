@@ -286,33 +286,6 @@
       </div>
     </section>
 
-    <section>
-      <h2>Card media</h2>
-      <p>A picture first, a control over it.</p>
-      <template id="media">
-        <div class="demo-row" style="align-items: start">
-          <article class="ui-card" style="inline-size: 14rem">
-            <div class="ui-card-media" style="aspect-ratio: 1; background: linear-gradient(135deg, oklch(70% 0.15 200), oklch(55% 0.18 280))">
-              <span class="ui-card-media-action" aria-hidden="true"><svg><use href="#i-sun" /></svg></span>
-            </div>
-            <h3 class="ui-card-title">Koi at dawn</h3>
-            <p class="ui-card-text">Twelve fish.</p>
-          </article>
-          <article class="ui-card" style="inline-size: 14rem">
-            <div class="ui-card-media" style="aspect-ratio: 1; background: linear-gradient(135deg, oklch(85% 0.12 90), oklch(65% 0.15 30))">
-              <span class="ui-card-media-action ui-card-media-action-end" aria-hidden="true"><svg><use href="#i-leaf" /></svg></span>
-            </div>
-            <h3 class="ui-card-title">Lilies</h3>
-            <p class="ui-card-text">Playing.</p>
-          </article>
-        </div>
-      </template>
-      <div class="demo-pair">
-        <div class="demo-panel" data-theme="light" data-fill="media"></div>
-        <div class="demo-panel" data-theme="dark" data-fill="media"></div>
-      </div>
-    </section>
-
     <script>
       const materials = ["solid", "glass", "paper", "ink"];
       for (const panel of document.querySelectorAll("[data-fill]")) {
