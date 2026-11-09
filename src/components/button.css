@@ -1,8 +1,10 @@
 /* COMPONENT. Symbol button: an icon leads. A label is optional: your call.
    On <button>, <a> or <summary>. Solid and raised by default: hover lifts it, press sinks it.
-   Variants: ui-button-accent (the accent fill), ui-button-danger (brick red).
+   Variants: ui-button-accent (the accent fill), ui-button-danger (brick red),
+   ui-button-flat (no material and no height until hovered, focused, pressed or selected).
    Sizes: ui-button-sm, ui-button-lg (medium is the default). Heights grow on touch screens.
-   Symbol only: ui-button-icon makes it square. Name it with aria-label or a tooltip. */
+   Symbol only: ui-button-icon makes it square. Name it with aria-label or a tooltip.
+   Shape: ui-button-round makes it a pill; with ui-button-icon, a circle. */
 @layer ui.components {
   .ui-button {
     /* Default elevation: raised. */
@@ -59,6 +61,9 @@
     aspect-ratio: 1;
     padding-inline: 0;
   }
+  .ui-button-round {
+    border-radius: var(--ui-radius-full);
+  }
 
   /* Variants use the state slots, so they hold on any material. */
   .ui-button-accent {
@@ -76,9 +81,43 @@
     --ui-state-catch: 0;
   }
 
+  /* Flat: bare at rest, at the base level. Hover, focus or a selected state lift it to raised,
+     and its material shows. For neutral buttons in bars, menus and dense rows. */
+  .ui-button-flat {
+    --_shadow: var(--ui-shadow-base);
+    --_light: var(--ui-light-base);
+    --_z: var(--ui-z-base);
+    --_up-shadow: var(--ui-shadow-raised);
+    --_up-light: var(--ui-light-raised);
+    --_up-z: var(--ui-z-raised);
+    --ui-state-fill: transparent;
+    --ui-state-edge: transparent;
+    --ui-state-texture: none;
+    --ui-state-backdrop: none;
+  }
+  .ui-button-flat:is(
+      :hover,
+      :focus-visible,
+      [aria-selected="true"],
+      [aria-pressed="true"],
+      [aria-current]:not([aria-current="false"]),
+      [aria-expanded="true"],
+      details[open] > summary
+    ) {
+    --ui-state-fill: initial;
+    --ui-state-edge: initial;
+    --ui-state-texture: initial;
+    --ui-state-backdrop: initial;
+  }
+
   /* Disabled goes flat (see elevation.css); its label fades. */
   .ui-button:is(:disabled, [aria-disabled="true"]) {
     --ui-state-edge: var(--ui-color-border);
     --ui-state-text: var(--ui-color-text-disabled);
+  }
+  /* A flat button stays bare when disabled: no solid fill, no edge. */
+  .ui-button-flat:is(:disabled, [aria-disabled="true"]) {
+    --ui-state-edge: transparent;
+    --ui-material-solid-fill: transparent;
   }
 }

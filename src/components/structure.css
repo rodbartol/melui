@@ -5,7 +5,8 @@
      A segmented control is the same track: buttons with aria-pressed, or, with no JavaScript,
      <label class="ui-tab"><input type="radio" name="…" />Day</label>.
      The track is a sunken surface of any material. Tabs sit in it, bare; hover lifts one
-     to the surface, selected stays raised. Switching panels is the app's job. */
+     to the surface, selected stays raised. Switching panels is the app's job.
+     ui-tabs-sm makes the track and its tabs smaller. */
   .ui-tabs {
     --ui-state-fill: light-dark(
       var(--ui-color-accent-soft),
@@ -50,6 +51,15 @@
     text-decoration: none;
     white-space: nowrap;
     cursor: pointer;
+  }
+  /* Small: a tighter track for option pickers and dense bars. */
+  .ui-tabs-sm {
+    --_inset: calc(var(--ui-space-xs) / 2);
+    padding: var(--_inset);
+  }
+  .ui-tabs-sm > .ui-tab {
+    min-block-size: calc(var(--ui-control-height-sm) - 2 * var(--_inset));
+    padding-inline: var(--ui-space-sm);
   }
   .ui-tab > svg {
     flex: none;
