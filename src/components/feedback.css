@@ -85,14 +85,15 @@
     margin-block-start: var(--ui-space-sm);
   }
 
-  /* Notice: inline, on the page (base level), in a status's soft colours. All its text is AAA. */
+  /* Notice: inline, flat, a surface of any material in a status's soft colours.
+     The status sets the state slots, so it holds on any material. All its text is AAA. */
   .ui-notice {
     --_soft: var(--ui-color-accent-soft);
     --_ink: var(--ui-color-text);
-    background: var(--_soft);
-    color: var(--_ink);
-    border: var(--ui-border-width) solid
-      color-mix(in oklch, var(--_ink) 25%, transparent);
+    --ui-state-fill: var(--_soft);
+    --ui-state-edge: color-mix(in oklch, var(--_ink) 25%, transparent);
+    --ui-state-text: var(--_ink);
+    --ui-state-opacity: 100%;
   }
   .ui-notice-success {
     --_soft: var(--ui-color-success-soft);
@@ -283,7 +284,7 @@
   /* High contrast: a notice's edge is solid. */
   @media (prefers-contrast: more), (forced-colors: active) {
     .ui-notice {
-      border-color: var(--_ink);
+      --ui-state-edge: var(--_ink);
     }
   }
 

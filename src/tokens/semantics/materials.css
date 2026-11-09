@@ -11,8 +11,7 @@
      --ui-mat-opacity  how solid the body is, 0% to 100% (glass: 72%)
      --ui-mat-backdrop a backdrop-filter, or none (glass: blur)
    A see-through material without a veil (like glass) sets --ui-mat-grain to 100%.
-   The default material (--ui-material-default-*) is what a component without a class is
-   made of. It is solid. Themes leave it alone: material is Melui's, not CI. */
+   Without a class, a component is solid. Material is Melui's, not CI: themes never change it. */
 
 /* These never inherit: a material applies only to the element with its class. */
 @property --ui-mat-fill {
@@ -123,15 +122,6 @@
     /* Ink: dark and dense, in both modes. Only brightens under light. */
     --ui-material-ink-fill: var(--ui-ref-black);
     --ui-material-ink-edge: var(--ui-color-border);
-
-    /* Default: what a component is made of without a ui-material-<name> class. */
-    --ui-material-default-fill: var(--ui-material-solid-fill);
-    --ui-material-default-edge: var(--ui-material-solid-edge);
-    --ui-material-default-texture: none;
-    --ui-material-default-grain: 0%;
-    --ui-material-default-reveal: 0;
-    --ui-material-default-opacity: 100%;
-    --ui-material-default-backdrop: none;
 
   }
 

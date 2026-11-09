@@ -53,6 +53,22 @@ for (const name of themes)
   writeFileSync(join(site, "themes", name), bundle(join(root, "src/themes", name)));
 writeFileSync(join(site, "site.css"), readFileSync(join(root, "site/site.css"), "utf8"));
 
+// Each page has a symbol (filled, 24px grid), shown in the nav and on the home cards.
+const icons = {
+  "index.html": "M12 3 2 12h3v9h5v-6h4v6h5v-9h3z",
+  "identity.html": "M12 2l3 7h7l-5.5 4.5 2 7.5L12 16.5 5.5 21l2-7.5L2 9h7z",
+  "semantics.html": "M3 3h8v8H3zm10 0h8v8h-8zM3 13h8v8H3zm10 0h8v8h-8z",
+  "palette.html": "M12 2C8 7 5 10.5 5 14a7 7 0 0 0 14 0c0-3.5-3-7-7-12Z",
+  "materials.html": "M12 2 1 8l11 6 11-6zm-8.6 9.3L1 12.6l11 6 11-6-2.4-1.3L12 16z",
+  "card.html": "M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z",
+  "forms.html": "M3 17.3V21h3.7L17.8 9.9l-3.7-3.7zM20.7 7a1 1 0 0 0 0-1.4l-2.3-2.3a1 1 0 0 0-1.4 0l-1.8 1.8 3.7 3.7z",
+  "actions.html": "M5 11h10.2l-4.6-4.6L12 5l7 7-7 7-1.4-1.4 4.6-4.6H5z",
+  "feedback.html": "M12 2a10 10 0 1 1 0 20 10 10 0 0 1 0-20Zm-1 8v8h2v-8zm0-4v2h2V6z",
+  "structure.html": "M4 5h3v3H4zm5 0h11v3H9zM4 10.5h3v3H4zm5 0h11v3H9zM4 16h3v3H4zm5 0h11v3H9z",
+  "themes.html": "M12 2a10 10 0 1 1 0 20 10 10 0 0 1 0-20Zm0 2v16a8 8 0 0 0 0-16Z",
+};
+const symbol = (file, cls) => `<svg class="${cls}" viewBox="0 0 24 24" aria-hidden="true"><path d="${icons[file]}" /></svg>`;
+
 const pages = [
   ["Start", "index.html", "Home"],
   ["Start", "identity.html", "Identity"],
@@ -122,7 +138,7 @@ const nav = (current) => {
   for (const group of [...new Set(pages.map((p) => p[0]))]) {
     html += `<h2>${group}</h2><ul class="ui-list">`;
     for (const [g, file, title] of pages.filter((p) => p[0] === group))
-      html += `<li><a class="ui-list-item" href="${file}"${file === current ? ' aria-current="page"' : ""}><span class="ui-list-title">${title}</span></a></li>`;
+      html += `<li><a class="ui-list-item" href="${file}"${file === current ? ' aria-current="page"' : ""}>${symbol(file, "ui-list-symbol")}<span class="ui-list-title">${title}</span></a></li>`;
     html += "</ul>";
   }
   return html;
@@ -130,7 +146,11 @@ const nav = (current) => {
 
 for (const [, file, title] of pages) {
   let style = "", content;
-  if (file === "index.html") content = readFileSync(join(root, "site/index.html"), "utf8");
+  if (file === "index.html")
+    content = readFileSync(join(root, "site/index.html"), "utf8").replace(
+      /\{\{symbol:([\w.]+)\}\}/g,
+      (_, f) => symbol(f, "ui-card-symbol"),
+    );
   else if (file === "identity.html")
     content = `<article class="site-prose">${markdown(readFileSync(join(root, "docs/IDENTITY.md"), "utf8"))}</article>`;
   else {

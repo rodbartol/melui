@@ -59,7 +59,6 @@ body {
   color: var(--ui-color-text-muted);
   font-size: var(--ui-text-sm);
   font-weight: var(--ui-weight-bold);
-  text-transform: uppercase;
 }
 .site-main {
   min-inline-size: 0;
@@ -119,7 +118,7 @@ body {
 }
 .site-prose code {
   font-family: var(--ui-font-code);
-  font-size: 0.9em;
+  font-size: var(--ui-text-sm);
   padding: 0 var(--ui-space-2xs);
   border-radius: var(--ui-radius-sm);
   background: var(--ui-color-accent-soft);
@@ -174,4 +173,9 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 14rem), 1fr));
   gap: var(--ui-space-md);
+}
+.site-nav svg.ui-list-symbol,
+.site-drawer svg.ui-list-symbol {
+  inline-size: var(--ui-icon-sm);
+  block-size: var(--ui-icon-sm);
 }
