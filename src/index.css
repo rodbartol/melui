@@ -6,6 +6,7 @@
 @import "./reset.css"; /* Generic */
 @import "./base.css"; /* Elements */
 @import "./layout/cluster.css"; /* Objects */
+@import "./layout/grid.css";
 @import "./components/card.css"; /* Components */
 @import "./components/forms.css";
 @import "./components/button.css";

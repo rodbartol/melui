@@ -1,0 +1,19 @@
+/* OBJECT. Grid: equal columns that fill the row, as many as fit. No visual styling.
+   --ui-grid-min       the narrowest an item may get (default 12rem).
+   --ui-grid-max-cols  the most columns, however wide the row (default: no limit).
+   --ui-grid-gap       the gap (default space-md); --ui-grid-row-gap for rows only. */
+@layer ui.layout {
+  .ui-grid {
+    --_gap: var(--ui-grid-gap, var(--ui-space-md));
+    --_cols: var(--ui-grid-max-cols, 100);
+    display: grid;
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(
+        min(100%, max(var(--ui-grid-min, 12rem), (100% - (var(--_cols) - 1) * var(--_gap)) / var(--_cols))),
+        1fr
+      )
+    );
+    gap: var(--ui-grid-row-gap, var(--_gap)) var(--_gap);
+  }
+}

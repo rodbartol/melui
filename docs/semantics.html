@@ -37,6 +37,17 @@
         margin-bottom: var(--ui-space-lg);
       }
       code,
+      .demo-props {
+        inline-size: 100%;
+        border-collapse: collapse;
+        font-size: var(--ui-text-sm);
+      }
+      .demo-props :is(th, td) {
+        padding: var(--ui-space-xs) var(--ui-space-sm);
+        border-block-end: var(--ui-border-width) solid var(--ui-color-border);
+        text-align: start;
+        vertical-align: top;
+      }
       .demo-value {
         font-family: var(--ui-font-code);
         font-size: var(--ui-text-sm);
@@ -540,6 +551,27 @@
         <div class="demo-track"><code>ease-out</code><div class="demo-rail"><span class="demo-dot" style="transition-timing-function: var(--ui-ease-out)"></span></div></div>
         <div class="demo-track"><code>ease-in</code><div class="demo-rail"><span class="demo-dot" style="transition-timing-function: var(--ui-ease-in)"></span></div></div>
       </div>
+    </section>
+
+    <!-- COMPONENT PROPERTIES -->
+    <section>
+      <h2>Component properties</h2>
+      <p>Set on one element to tune a part. Not theme: a theme is colours and font.</p>
+      <table class="demo-props">
+        <thead><tr><th>Property</th><th>On</th><th>What it sets</th></tr></thead>
+        <tbody>
+          <tr><td><code>--ui-cluster-gap</code></td><td><code>ui-cluster</code></td><td>Gap between items (space-sm).</td></tr>
+          <tr><td><code>--ui-grid-min</code></td><td><code>ui-grid</code></td><td>Narrowest an item may get (12rem).</td></tr>
+          <tr><td><code>--ui-grid-max-cols</code></td><td><code>ui-grid</code></td><td>Most columns, however wide (no limit).</td></tr>
+          <tr><td><code>--ui-grid-gap, --ui-grid-row-gap</code></td><td><code>ui-grid</code></td><td>Gaps (space-md).</td></tr>
+          <tr><td><code>--ui-avatar-size</code></td><td><code>ui-avatar</code></td><td>Any size; initials scale with it.</td></tr>
+          <tr><td><code>--ui-chip-color, --ui-chip-text</code></td><td><code>ui-chip</code></td><td>A chip's own fill and text.</td></tr>
+          <tr><td><code>--ui-range-fill</code></td><td><code>ui-range</code></td><td>Filled share in Blink and WebKit, as a percentage.</td></tr>
+          <tr><td><code>--ui-appbar-height</code></td><td><code>ui-appbar</code></td><td>Bar height (4rem).</td></tr>
+          <tr><td><code>--ui-tooltip-delay</code></td><td><code>ui-tooltip</code></td><td>Rest before a tooltip shows (500ms).</td></tr>
+          <tr><td><code>--ui-overlap</code></td><td><code>ui-overlap-*</code></td><td>How far an element is pulled over its neighbour.</td></tr>
+        </tbody>
+      </table>
     </section>
 
     <script>

@@ -74,7 +74,7 @@
       .ui-toast,
       .ui-tab,
       :is(a, button).ui-list-item,
-      .ui-toolbar,
+      .ui-toolbar, .ui-appbar, .ui-chip, .ui-card-media-action,
       .ui-avatar
     ) {
     --ui-level-light: min(calc(var(--_base, 0%) + var(--_light)), var(--ui-light-top));
@@ -122,7 +122,7 @@
       .ui-toast,
       .ui-tab,
       :is(a, button).ui-list-item,
-      .ui-toolbar,
+      .ui-toolbar, .ui-appbar, .ui-chip, .ui-card-media-action,
       .ui-avatar
     ):is(:hover, :focus-visible),
   :where(
@@ -137,7 +137,7 @@
       .ui-toast,
       .ui-tab,
       :is(a, button).ui-list-item,
-      .ui-toolbar,
+      .ui-toolbar, .ui-appbar, .ui-chip, .ui-card-media-action,
       .ui-avatar
     ):is(
       [aria-selected="true"],
@@ -165,7 +165,7 @@
       .ui-toast,
       .ui-tab,
       :is(a, button).ui-list-item,
-      .ui-toolbar,
+      .ui-toolbar, .ui-appbar, .ui-chip, .ui-card-media-action,
       .ui-avatar
     ):focus-visible {
     --ui-level-light: min(calc(var(--_base, 0%) + var(--_up-light)), var(--ui-light-top));
@@ -186,7 +186,7 @@
       .ui-toast,
       .ui-tab,
       :is(a, button).ui-list-item,
-      .ui-toolbar,
+      .ui-toolbar, .ui-appbar, .ui-chip, .ui-card-media-action,
       .ui-avatar
     ):active {
     --ui-level-light: min(calc(var(--_base, 0%) + var(--ui-light-base)), var(--ui-light-top));
@@ -207,7 +207,7 @@
       .ui-toast,
       .ui-tab,
       :is(a, button).ui-list-item,
-      .ui-toolbar,
+      .ui-toolbar, .ui-appbar, .ui-chip, .ui-card-media-action,
       .ui-avatar
     ):is(
       :disabled,
@@ -238,7 +238,7 @@
       .ui-toast,
       .ui-tab,
       :is(a, button).ui-list-item,
-      .ui-toolbar,
+      .ui-toolbar, .ui-appbar, .ui-chip, .ui-card-media-action,
       .ui-avatar
     ):not(
         .ui-elevation-sunken,

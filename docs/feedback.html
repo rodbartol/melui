@@ -111,7 +111,7 @@
 
     <header>
       <h1>Feedback</h1>
-      <p>Status speaks in colour and symbol.</p>
+      <p>Status speaks in colour and symbol. Waiting shows a skeleton or a spinner.</p>
       <pre><code>&lt;span class="ui-badge ui-badge-success"&gt;&lt;svg&gt;…&lt;/svg&gt;Fed&lt;/span&gt;
 
 &lt;div class="ui-notice ui-notice-warning" role="status"&gt;
@@ -125,7 +125,15 @@
   &lt;span class="ui-tooltip-text" role="tooltip" id="t"&gt;…&lt;/span&gt;
 &lt;/span&gt;
 
-&lt;progress class="ui-progress" value="40" max="100"&gt;40%&lt;/progress&gt;</code></pre>
+&lt;progress class="ui-progress" value="40" max="100"&gt;40%&lt;/progress&gt;
+
+&lt;span class="ui-indicator"&gt;
+  &lt;button class="ui-button ui-button-icon" aria-label="Alerts, 3 unread"&gt;…&lt;/button&gt;
+  &lt;span class="ui-badge ui-badge-accent ui-indicator-item" aria-hidden="true"&gt;3&lt;/span&gt;
+&lt;/span&gt;
+
+&lt;div class="ui-skeleton" aria-hidden="true"&gt;&lt;/div&gt;
+&lt;span class="ui-spinner" role="status" aria-label="Loading"&gt;&lt;/span&gt;</code></pre>
     </header>
 
     <section>
